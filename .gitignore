@@ -151,3 +151,11 @@ vite.config.ts.timestamp-*
 # Private learning resources 
 /Mathematics/
 /Engineering/
+
+# Runtime data written by the feedback sink
+/data/
+# Local Playwright MCP artifacts
+.playwright-mcp/
+
+# Next.js generated files
+next-env.d.ts

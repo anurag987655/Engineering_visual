@@ -1,0 +1,83 @@
+## What is a field?
+
+A field is a **value everywhere at once**. Temperature is a field — every
+point in the room has a temperature. Wind is a field — every point has a
+speed and a direction.
+
+The electric field $\vec{E}$ is a field of vectors. Every point in space
+carries an arrow that says: *if you placed a positive test charge here, it
+would be pushed in this direction, with this much force per unit charge.*
+
+The playground below lets you feel that structure directly.
+
+## Interactive playground
+
+Set the charge values (positive or negative), drag the charges around, and
+watch the arrows respond. The field is a superposition — every arrow is the
+vector sum of the push from every charge.
+
+<Playground id="electric-field" />
+
+<Callout title="Try this" variant="note">
+  Place two equal charges and inspect the plane of symmetry between them:
+  the arrows bend around a quiet zone. Now flip one to negative — that
+  quiet zone becomes the busiest place in the picture.
+</Callout>
+
+## The mathematics
+
+A single point charge $Q$ creates a field that points straight away from
+(positive) or toward (negative) the charge:
+
+$$
+\vec{E}(\vec{r}) = k\frac{Q}{r^2}\,\hat{r}
+$$
+
+where $r$ is the distance from the charge, $\hat{r}$ is the unit vector
+pointing outward from it, and $k$ is Coulomb's constant.
+
+The field falls off as $1/r^2$. Halve the distance and the field
+quadruples; double it and the field drops by a factor of four. This is why
+arrows closest to a charge are the longest.
+
+With several charges, each charge contributes a field at every point, and
+the total field is the **vector sum**:
+
+$$
+\vec{E}^{\text{total}} = \sum_i k\frac{Q_i}{r_i^2}\,\hat{r}_i
+$$
+
+That is superposition: fields add, charge by charge. It is the entire
+physics of the playground — the arrows you see are literally this sum,
+evaluated at thousands of sample points.
+
+<KeyIdea>
+  The electric field is not a "current" flowing somewhere. It is a snapshot
+  of forces waiting to act. Nothing moves until you place a charge and let it
+  respond.
+</KeyIdea>
+
+## In code
+
+Superposition is just a loop. This snippet computes the field at any point
+by summing the pull of every charge:
+
+```ts
+function fieldAt(p, charges) {
+  let ex = 0;
+  let ey = 0;
+  for (const { q, x, y } of charges) {
+    const dx = p.x - x;
+    const dy = p.y - y;
+    const r2 = dx * dx + dy * dy;
+    const invR = 1 / Math.max(Math.sqrt(r2), 0.2);
+    const e = q * invR * invR * invR;
+    ex += dx * e;
+    ey += dy * e;
+  }
+  return normalize(ex, ey);
+}
+```
+
+The playground runs this loop for one charge or ten — the structure never
+changes, only the amount of arithmetic.

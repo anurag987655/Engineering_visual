@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-parchment: #f7ebe1;
+  --color-parchment-deep: #f0e0d1;
+  --color-parchment-card: #fbf4ec;
+  --color-ink: #181515;
+  --color-ink-soft: #2c2523;
+  --color-rust: #b4552d;
+  --color-positive: #bf4326;
+  --color-negative: #33506e;
+
+  --font-sans: var(--font-nunito);
+  --font-display: var(--font-fraunces);
+  --font-mono: var(--font-jetbrains);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #f7ebe1;
+  background-image: radial-gradient(rgba(44, 37, 35, 0.05) 1px, transparent 1px);
+  background-size: 22px 22px;
+  color: #181515;
+  font-family: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(180, 85, 45, 0.22);
+  color: #181515;
+}
+
+/* Vintage range slider */
+input[type="range"].pulse-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    #181515 0%,
+    #181515 var(--pulse, 50%),
+    rgba(24, 21, 21, 0.18) var(--pulse, 50%),
+    rgba(24, 21, 21, 0.18) 100%
+  );
+  cursor: pointer;
+  outline: none;
+}
+
+input[type="range"].pulse-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 18px;
+  width: 18px;
+  border-radius: 999px;
+  background: #f7ebe1;
+  border: 2.5px solid #181515;
+  box-shadow: 0 1px 3px rgba(24, 21, 21, 0.25);
+  transition: transform 0.15s ease;
+}
+
+input[type="range"].pulse-range::-webkit-slider-thumb:hover {
+  transform: scale(1.12);
+}
+
+input[type="range"].pulse-range::-moz-range-thumb {
+  height: 14px;
+  width: 14px;
+  border-radius: 999px;
+  background: #f7ebe1;
+  border: 2.5px solid #181515;
+  box-shadow: 0 1px 3px rgba(24, 21, 21, 0.25);
+}
+
+input[type="range"].pulse-range::-moz-range-track {
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(24, 21, 21, 0.18);
+}
+
+input[type="range"].pulse-range:focus-visible {
+  box-shadow: 0 0 0 3px rgba(180, 85, 45, 0.28);
+}
+
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-top: 0.35em;
+  padding-bottom: 0.35em;
+}
+
+.katex-display > .katex {
+  width: max-content;
+  margin-inline: auto;
+}
