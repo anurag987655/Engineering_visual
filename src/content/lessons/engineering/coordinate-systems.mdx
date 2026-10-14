@@ -1,0 +1,435 @@
+## Rectangular coordinate system
+
+A rectangular coordinate system, also commonly known as the Cartesian
+coordinate system, is defined by three coordinates ($x$, $y$ and $z$). It
+represents the intersection of three mutually perpendicular planes:
+
+- $x$ is a constant plane that is parallel to the $yz$ plane,
+- $y$ is a constant plane that is parallel to the $xz$ plane,
+- $z$ is a constant plane that is parallel to the $xy$ plane.
+
+The coordinates can take any value in the range
+
+$$
+-\infty < x < \infty, \qquad
+-\infty < y < \infty, \qquad
+-\infty < z < \infty
+$$
+
+The axes follow a right-handed coordinate system, meaning that if the
+fingers of the right hand curl from the positive $x$-axis toward the
+positive $y$-axis, the thumb points along the positive $z$-axis.
+
+<Callout title="Right-hand rule" variant="note">
+  Point the fingers of your right hand along $+x$, curl them toward $+y$ —
+  your thumb points along $+z$. Flip any one axis and the system becomes
+  left-handed, and every cross product in it changes sign.
+</Callout>
+
+## Vector representation and unit vectors
+
+Any vector in rectangular coordinates is written in terms of its
+orthogonal components $A_x$, $A_y$ and $A_z$:
+
+$$
+\vec{A} = A_x\,\hat{a}_x + A_y\,\hat{a}_y + A_z\,\hat{a}_z
+$$
+
+or, stacked vertically as a column,
+
+$$
+\vec{A} =
+\begin{bmatrix}
+A_x \\
+A_y \\
+A_z
+\end{bmatrix}
+$$
+
+where $\hat{a}_x$, $\hat{a}_y$ and $\hat{a}_z$ are constant everywhere in
+space and represent the unit vectors that point along the direction of
+increasing $x$, $y$ and $z$ respectively.
+
+The magnitude of the vector $\vec{A}$ is given by
+
+$$
+|\vec{A}| = \sqrt{A_x^2 + A_y^2 + A_z^2}
+$$
+
+## Interactive Cartesian coordinate system
+
+The scene below shows all three axes in a rotatable 3D view. The axes use
+different colors — rust for $x$, blue for $y$, and teal for $z$ — and each
+is labeled at both ends. Drag the scene to orbit it and see how the axes
+meet at right angles in space. Each axis is marked from $-6$ to $6$.
+
+Enter three values and press **Show**. A dot appears at the origin and
+walks the path your numbers describe — first along $x$, then along $y$,
+then along $z$ — before landing and stopping. Change any value and press
+**Show** again to watch the same pattern replayed with your new numbers.
+
+<Playground id="cartesian-point" />
+
+## Cylindrical coordinate system
+
+The three variables used in cylindrical coordinates are:
+
+- $r$: radial distance in the $xy$ plane ($0$ to $\infty$),
+- $\theta$: angle made with respect to the positive $x$ axis
+  ($0$ to $2\pi$),
+- $z$: height along the $z$ axis ($-\infty$ to $\infty$).
+
+<Callout title="A note on symbols" variant="note">
+  This lesson writes cylindrical coordinates as $(r, \theta, z)$, with
+  $\theta$ measured from the positive $x$ axis. Many textbooks — and the
+  past-year questions at the end of this chapter — write the same thing as
+  $(\rho, \phi, z)$, so $\rho = r$ and $\phi = \theta$. In **spherical**
+  coordinates below, $\theta$ and $\phi$ swap roles: there, $\theta$ is the
+  polar angle from $+z$ and $\phi$ is the azimuth.
+</Callout>
+
+## Interactive cylindrical coordinates
+
+The same three colored, labeled axes stay visible as you orbit the scene.
+Choose a radius from $0$ to $6$, an angle from $0$ to $2\pi$, and a height
+from $-6$ to $6$. Press **Show** and the picture builds itself in order:
+first a circle of the chosen radius is drawn in the $xy$ plane, then a line
+spans the chosen angle across that circle, and finally the dot moves
+upward by the chosen height and lands on the point.
+
+<Playground id="cylindrical-point" />
+
+## Rectangular and cylindrical conversions
+
+### Rectangular $(x, y, z)$ to cylindrical $(r, \theta, z)$
+
+Given a point $P(x, y, z)$ in Cartesian coordinates:
+
+1. Radial distance:
+
+   $$
+   r = \sqrt{x^2 + y^2}
+   $$
+
+2. Azimuthal angle:
+
+   $$
+   \theta = \arctan\left(\frac{y}{x}\right)
+   $$
+
+   **Note:** inspect the signs of $x$ and $y$ to place $\theta$ in the
+   correct quadrant — in practice this is `atan2(y, x)`, which already
+   resolves the quadrant for you.
+
+3. Height:
+
+   $$
+   z = z
+   $$
+
+### Cylindrical $(r, \theta, z)$ to rectangular $(x, y, z)$
+
+Given a point $P(r, \theta, z)$ in cylindrical coordinates:
+
+1. $x$-coordinate:
+
+   $$
+   x = r \cos\theta
+   $$
+
+2. $y$-coordinate:
+
+   $$
+   y = r \sin\theta
+   $$
+
+3. $z$-coordinate:
+
+   $$
+   z = z
+   $$
+
+## Direction of $\hat{a}_r$, $\hat{a}_\theta$ and $\hat{a}_z$
+
+Toggle the unit vectors in the playground above to see them at the point
+you chose. At any point, $\hat{a}_r$ points straight outward from the
+$z$-axis, $\hat{a}_\theta$ is perpendicular to it in the direction of
+increasing angle, and $\hat{a}_z$ points straight up. The three are
+mutually perpendicular, and — unlike $\hat{a}_x$, $\hat{a}_y$, $\hat{a}_z$ —
+they **change direction as you move around the space**.
+
+## Establishing the transformation matrix
+
+### 1. Cartesian to cylindrical components
+
+To find a component, project the vector onto the direction we want (the
+playground below does exactly this, in three dimensions — the vector sits
+off the floor plane whenever $A_z \neq 0$, and you can orbit the scene to
+see it). The radial direction makes an angle $\theta$ with the $x$-axis, so
+the $x$-part contributes $A_x\cos\theta$ to the radial component. The
+$y$-part contributes $A_y\sin\theta$. Adding these gives:
+
+$$
+A_r = A_x\cos\theta + A_y\sin\theta
+$$
+
+The tangential direction is perpendicular to the radial direction. Its
+$x$-direction projection is $-\sin\theta$, while its $y$-direction
+projection is $\cos\theta$. Therefore:
+
+$$
+A_\theta = -A_x\sin\theta + A_y\cos\theta
+$$
+
+The $z$-direction is the same in both coordinate systems, so:
+
+$$
+A_z = A_z
+$$
+
+Slide $A_z$ in the playground below and the teal arrow moves along the
+$z$-axis while the two in-plane projections stay exactly where they were —
+the third row of the matrix is there to leave that component alone.
+
+Together, these equations can be written as:
+
+$$
+\begin{bmatrix}
+A_r \\
+A_\theta \\
+A_z
+\end{bmatrix}
+=
+\underbrace{
+\begin{bmatrix}
+\cos\theta & \sin\theta & 0 \\
+-\sin\theta & \cos\theta & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+}_{M}
+\begin{bmatrix}
+A_x \\
+A_y \\
+A_z
+\end{bmatrix}
+$$
+
+<Playground id="vector-projection" />
+
+### 2. Use the orthogonal matrix property to convert back
+
+The transformation matrix $M$ is an orthogonal matrix. For an orthogonal
+matrix, the inverse is equal to its transpose:
+
+$$
+M^{-1} = M^{T}
+$$
+
+The transpose is obtained by swapping rows and columns. Therefore, to
+convert from cylindrical components back to Cartesian components, multiply
+by $M^{T}$:
+
+$$
+\begin{bmatrix}
+A_x \\
+A_y \\
+A_z
+\end{bmatrix}
+= M^{T}
+\begin{bmatrix}
+A_r \\
+A_\theta \\
+A_z
+\end{bmatrix}
+$$
+
+So the inverse transformation is:
+
+$$
+\begin{bmatrix}
+A_x \\
+A_y \\
+A_z
+\end{bmatrix}
+=
+\begin{bmatrix}
+\cos\theta & -\sin\theta & 0 \\
+\sin\theta & \cos\theta & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+A_r \\
+A_\theta \\
+A_z
+\end{bmatrix}
+$$
+
+Which gives:
+
+$$
+A_x = A_r\cos\theta - A_\theta\sin\theta
+$$
+
+$$
+A_y = A_r\sin\theta + A_\theta\cos\theta
+$$
+
+$$
+A_z = A_z
+$$
+
+<KeyIdea>
+  The matrix is a rotation about the $z$-axis. Rotating there never changes
+  a vector's length, and undoing a rotation is just turning back — which is
+  why $M^{-1} = M^{T}$, and why the round trip returns exactly the
+  components you started with.
+</KeyIdea>
+
+## Spherical coordinate system
+
+The three variables used in spherical coordinates are:
+
+- $r$: radial distance from the origin ($0$ to $\infty$),
+- $\theta$: polar angle measured from the positive $z$ axis
+  ($0$ to $\pi$),
+- $\phi$: azimuthal angle measured from the positive $x$ axis
+  ($0$ to $2\pi$).
+
+### Rectangular $(x, y, z)$ to spherical $(r, \theta, \phi)$
+
+Given a point $P(x, y, z)$ in Cartesian coordinates:
+
+1. Radial distance:
+
+   $$
+   r = \sqrt{x^2 + y^2 + z^2}
+   $$
+
+2. Polar angle:
+
+   $$
+   \theta = \arccos\left(\frac{z}{r}\right)
+   $$
+
+   **Note:** because $r \geq 0$, this already returns a value in
+   $[0, \pi]$ — no quadrant hunting needed.
+
+3. Azimuthal angle:
+
+   $$
+   \phi = \arctan\left(\frac{y}{x}\right)
+   $$
+
+   **Note:** inspect the signs of $x$ and $y$ to place $\phi$ in the
+   correct quadrant, i.e. use `atan2(y, x)`.
+
+### Spherical $(r, \theta, \phi)$ to rectangular $(x, y, z)$
+
+Given a point $P(r, \theta, \phi)$ in spherical coordinates:
+
+1. $x$-coordinate:
+
+   $$
+   x = r \sin\theta \cos\phi
+   $$
+
+2. $y$-coordinate:
+
+   $$
+   y = r \sin\theta \sin\phi
+   $$
+
+3. $z$-coordinate:
+
+   $$
+   z = r \cos\theta
+   $$
+
+## Interactive spherical coordinates
+
+The same three colored, labeled axes stay visible as you orbit the scene.
+Choose a distance from $0$ to $6$, a polar angle from $0$ to $\pi$, and an
+azimuth from $0$ to $2\pi$. Press **Show** and the dot builds the point
+step by step: a meridian arc sweeps out $\theta$, an arc around the
+equator sweeps out $\phi$, and finally the radial arm extends to $r$ and
+the dot lands. The unit vectors $\hat{a}_r$, $\hat{a}_\theta$ and
+$\hat{a}_\phi$ are drawn at the point where it stops.
+
+<Playground id="spherical-point" />
+
+## Spherical transformation matrix
+
+The same projection argument as before, run on the two new directions.
+Projecting $\vec{A}$ onto $\hat{a}_r$, $\hat{a}_\theta$ and $\hat{a}_\phi$
+one component at a time gives:
+
+$$
+A_r = A_x\sin\theta\cos\phi + A_y\sin\theta\sin\phi + A_z\cos\theta
+$$
+
+$$
+A_\theta = A_x\cos\theta\cos\phi + A_y\cos\theta\sin\phi - A_z\sin\theta
+$$
+
+$$
+A_\phi = -A_x\sin\phi + A_y\cos\phi
+$$
+
+Together:
+
+$$
+\begin{bmatrix}
+A_r \\
+A_\theta \\
+A_\phi
+\end{bmatrix}
+=
+\underbrace{
+\begin{bmatrix}
+\sin\theta\cos\phi & \sin\theta\sin\phi & \cos\theta \\
+\cos\theta\cos\phi & \cos\theta\sin\phi & -\sin\theta \\
+-\sin\phi & \cos\phi & 0
+\end{bmatrix}
+}_{M}
+\begin{bmatrix}
+A_x \\
+A_y \\
+A_z
+\end{bmatrix}
+$$
+
+$M$ is orthogonal again, so the way back is the transpose — swap rows for
+columns and you have the inverse:
+
+$$
+\begin{bmatrix}
+A_x \\
+A_y \\
+A_z
+\end{bmatrix}
+=
+\begin{bmatrix}
+\sin\theta\cos\phi & \cos\theta\cos\phi & -\sin\phi \\
+\sin\theta\sin\phi & \cos\theta\sin\phi & \cos\phi \\
+\cos\theta & -\sin\theta & 0
+\end{bmatrix}
+\begin{bmatrix}
+A_r \\
+A_\theta \\
+A_\phi
+\end{bmatrix}
+$$
+
+The pattern is identical in all three systems: **write the direction you
+want in terms of the basis you have, read off the projections, stack them
+into a matrix, and invert by transposing.**
+
+## Next: past-year questions
+
+Reading done — now put it to work. The next lesson collects eight past-year
+questions on coordinate systems, each with a verified, worked answer hidden
+behind a reveal button.
+
+<Callout title="Continue" variant="warn">
+  [Past-year questions: coordinate systems](/lessons/coordinate-past-year-questions)
+</Callout>

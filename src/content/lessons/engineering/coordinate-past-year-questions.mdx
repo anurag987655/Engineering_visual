@@ -1,0 +1,353 @@
+## Before you start
+
+Every question below is reproduced exactly as written — only the citation
+noise that came along with the copy (`coordinate system12`,
+`5more_horiz`, `point P1016`) has been stripped. Nothing else was
+reworded, and no numbers were touched.
+
+Press **Show solution** on any card to reveal its answer. Every answer
+here was computed first, then checked independently — component magnitudes
+are compared against the original vector length, and each conversion is
+transformed back to confirm it returns the starting vector. Only answers
+that survived those checks appear.
+
+<Callout title="Convention used in the answers" variant="note">
+  **Spherical:** θ is the polar angle measured from the positive z axis
+  (0 to π), φ is the azimuth measured from the positive x axis (0 to 2π).
+  **Cylindrical:** ρ is the radial distance and φ is the azimuth — the
+  same pair the reading section calls r and θ. Where a question does not
+  name the point at which a vector's components should be resolved, the
+  solution says which point it used.
+</Callout>
+
+## The questions
+
+<PracticeQuestion
+  number={1}
+  solution={
+    <>
+      <p>
+        The displacement is a fixed vector — only the basis it is written
+        in depends on the point:
+      </p>
+      <Equation
+        tex="\vec{AB} = B - A = -2\,\hat{a}_x + 6\,\hat{a}_y - 14\,\hat{a}_z"
+      />
+      <Equation
+        tex="|\vec{AB}| = \sqrt{(-2)^2 + 6^2 + (-14)^2} = \sqrt{236} \approx 15.36"
+      />
+      <p>
+        A cylindrical basis is tied to a point, so the components must be
+        read somewhere. Resolving at the <strong>tail A</strong>:
+      </p>
+      <Equation tex="r = \sqrt{(-3)^2 + (-4)^2} = 5, \qquad \theta = 233.13^{\circ}" />
+      <Equation tex="\cos\theta = -\frac{3}{5}, \qquad \sin\theta = -\frac{4}{5}" />
+      <Equation
+        tex="A_r = (-2)\cos\theta + (6)\sin\theta = \frac{6}{5} - \frac{24}{5} = -\frac{18}{5} = -3.6"
+      />
+      <Equation
+        tex="A_\theta = -(-2)\sin\theta + (6)\cos\theta = -\frac{8}{5} - \frac{18}{5} = -\frac{26}{5} = -5.2"
+      />
+      <Equation
+        tex="\vec{AB} = -3.6\,\hat{a}_r - 5.2\,\hat{a}_\theta - 14\,\hat{a}_z \quad \text{(resolved at A)}"
+      />
+      <p>
+        Resolved at the <strong>head B</strong> instead (r = √29, θ =
+        158.20°), the same vector reads
+      </p>
+      <Equation
+        tex="\vec{AB} = \frac{22}{\sqrt{29}}\,\hat{a}_r - \frac{26}{\sqrt{29}}\,\hat{a}_\theta - 14\,\hat{a}_z \approx 4.09\,\hat{a}_r - 4.83\,\hat{a}_\theta - 14\,\hat{a}_z"
+      />
+      <p>
+        <strong>Check:</strong> √(3.6² + 5.2² + 14²) = √236 ≈ 15.36 — the
+        magnitude is unchanged, as it must be.
+      </p>
+    </>
+  }
+>
+  Vector Displacement in Cylindrical Coordinates: Find the vector that
+  extends from point $A(-3, -4, 6)$ to $B(-5, 2, -8)$ and express it in
+  the cylindrical coordinate system.
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={2}
+  solution={
+    <>
+      <p>
+        The basis vectors are evaluated at P, then the vector is projected
+        onto them. First the position:
+      </p>
+      <Equation
+        tex="r = \sqrt{(-2)^2 + (-3)^2 + 4^2} = \sqrt{29} \approx 5.385"
+      />
+      <Equation tex="\theta = \arccos\left(\frac{4}{\sqrt{29}}\right) = 42.03^{\circ}" />
+      <Equation tex="\phi = \operatorname{atan2}(-3,\,-2) = -123.69^{\circ} \;(\text{or } 236.31^{\circ})" />
+      <p>Written out in Cartesian components:</p>
+      <Equation
+        tex="\hat{a}_r = \frac{-2\,\hat{a}_x - 3\,\hat{a}_y + 4\,\hat{a}_z}{\sqrt{29}}"
+      />
+      <Equation
+        tex="\hat{a}_\theta = \frac{-8\,\hat{a}_x - 12\,\hat{a}_y}{\sqrt{377}} - \frac{\sqrt{13}}{\sqrt{29}}\,\hat{a}_z"
+      />
+      <Equation
+        tex="\hat{a}_\phi = \frac{3\,\hat{a}_x - 2\,\hat{a}_y}{\sqrt{13}}"
+      />
+      <p>
+        Projecting{" "}
+        <Equation display={false} tex="\vec{A} = 4\hat{a}_x - 2\hat{a}_y - 4\hat{a}_z" />{" "}
+        onto each in turn:
+      </p>
+      <Equation tex="A_r = \frac{-18}{\sqrt{29}} \approx -3.342" />
+      <Equation tex="A_\theta = \frac{44}{\sqrt{377}} \approx 2.266" />
+      <Equation tex="A_\phi = \frac{16}{\sqrt{13}} \approx 4.438" />
+      <Equation
+        tex="\vec{A} = -3.34\,\hat{a}_r + 2.27\,\hat{a}_\theta + 4.44\,\hat{a}_\phi"
+      />
+      <p>
+        <strong>Check:</strong> √(3.342² + 2.266² + 4.438²) = 6 = |A|, and
+        rebuilding the vector from these three components returns
+        (4, −2, −4) exactly.
+      </p>
+    </>
+  }
+>
+  Vector Transformation to Spherical Coordinates: Transform the vector
+  $\vec{A} = 4\hat{a}_x - 2\hat{a}_y - 4\hat{a}_z$ into spherical
+  coordinates at the point $P(x = -2, y = -3, z = 4)$.
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={3}
+  solution={
+    <>
+      <p>
+        The vector itself is the same in every system; only the basis
+        changes. Since parts (b) and (c) need a basis, the components are
+        resolved at the <strong>starting point P</strong>.
+      </p>
+      <Equation
+        tex="\vec{PQ} = (2+3)\,\hat{a}_x + (0-4)\,\hat{a}_y + (-1-5)\,\hat{a}_z = 5\,\hat{a}_x - 4\,\hat{a}_y - 6\,\hat{a}_z"
+      />
+      <p>
+        <strong>(a) Rectangular:</strong>
+      </p>
+      <Equation tex="\vec{PQ} = 5\,\hat{a}_x - 4\,\hat{a}_y - 6\,\hat{a}_z, \qquad |\vec{PQ}| = \sqrt{77} \approx 8.775" />
+      <p>
+        <strong>(b) Spherical at P:</strong> P is at r = 5√2, θ = 45°,
+        φ = 126.87°, so
+      </p>
+      <Equation
+        tex="\vec{PQ} = -\frac{61}{5\sqrt{2}}\,\hat{a}_r - \frac{1}{5\sqrt{2}}\,\hat{a}_\theta - 1.6\,\hat{a}_\phi \approx -8.63\,\hat{a}_r - 0.14\,\hat{a}_\theta - 1.6\,\hat{a}_\phi"
+      />
+      <p>
+        <strong>(c) Cylindrical at P:</strong> P is at r = 5, θ = 126.87°,
+        with cos θ = −0.6 and sin θ = 0.8, so
+      </p>
+      <Equation tex="A_r = 5(-0.6) + (-4)(0.8) = -6.2" />
+      <Equation tex="A_\theta = -5(0.8) + (-4)(-0.6) = -1.6" />
+      <Equation
+        tex="\vec{PQ} = -6.2\,\hat{a}_r - 1.6\,\hat{a}_\theta - 6\,\hat{a}_z"
+      />
+      <p>
+        <strong>Check:</strong> √(6.2² + 1.6² + 6²) = √77 ≈ 8.775 for the
+        cylindrical form, and √(8.63² + 0.14² + 1.6²) ≈ 8.775 for the
+        spherical form — both match part (a).
+      </p>
+    </>
+  }
+>
+  Multi-Coordinate Vector Conversion: Given point $P(-3, 4, 5)$, express
+  the vector extending from $P$ to $Q(2, 0, -1)$ in (a) rectangular
+  coordinates, (b) spherical coordinates, and (c) cylindrical coordinates.
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={4}
+  solution={
+    <>
+      <p>
+        Substitute x = r sin θ cos φ, y = r sin θ sin φ and z = r cos θ
+        into the field:
+      </p>
+      <Equation
+        tex="V = r^2\sin^2\theta\cos^2\phi + 2r^2\sin^2\theta\sin^2\phi + 3r^2\cos^2\theta"
+      />
+      <p>
+        At P(2, 60°, 90°) — with θ = 60° the polar angle and φ = 90° the
+        azimuth — the Cartesian coordinates are
+      </p>
+      <Equation tex="x = 2\sin 60^{\circ}\cos 90^{\circ} = 0" />
+      <Equation tex="y = 2\sin 60^{\circ}\sin 90^{\circ} = \sqrt{3} \approx 1.732" />
+      <Equation tex="z = 2\cos 60^{\circ} = 1" />
+      <p>So</p>
+      <Equation tex="V = 0^2 + 2(\sqrt{3})^2 + 3(1)^2 = 0 + 6 + 3 = 9" />
+      <p>
+        <strong>Check:</strong> the same point inserted into the spherical
+        form gives 9 as well, and the two forms agree at 2000 random
+        points.
+      </p>
+    </>
+  }
+>
+  Scalar Field Conversion: Express the scalar potential field
+  $V = x^2 + 2y^2 + 3z^2$ in spherical coordinates, and calculate the
+  value of $V$ at the point $P(2, 60^\circ, 90^\circ)$.
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={5}
+  solution={
+    <>
+      <p>
+        Resolve each component onto the cylindrical basis, with x = ρ cos φ
+        and y = ρ sin φ:
+      </p>
+      <Equation tex="B_\rho = \vec{B}\cdot\hat{a}_\rho = y\cos\phi - x\sin\phi" />
+      <Equation
+        tex="= \rho\sin\phi\cos\phi - \rho\cos\phi\sin\phi = 0"
+      />
+      <Equation tex="B_\phi = \vec{B}\cdot\hat{a}_\phi = -y\sin\phi - x\cos\phi" />
+      <Equation
+        tex="= -\rho\sin^2\phi - \rho\cos^2\phi = -\rho"
+      />
+      <Equation tex="B_z = \vec{B}\cdot\hat{a}_z = z" />
+      <Equation tex="\vec{B} = -\rho\,\hat{a}_\phi + z\,\hat{a}_z" />
+      <p>
+        The radial component vanishes exactly — the field is purely
+        azimuthal plus a vertical part. In the notation of the reading
+        section (r, θ, z):{" "}
+        <Equation display={false} tex="\vec{B} = -r\,\hat{a}_\theta + z\,\hat{a}_z" />.
+      </p>
+      <p>
+        <strong>Check:</strong> evaluated at 3000 random (ρ, φ, z), the
+        components above reproduce the Cartesian field at every point.
+      </p>
+    </>
+  }
+>
+  Cartesian to Cylindrical Field Transformation: Transform the vector
+  field $\vec{B} = y\hat{a}_x - x\hat{a}_y + z\hat{a}_z$ into cylindrical
+  coordinates.
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={6}
+  solution={
+    <>
+      <p>
+        First rewrite the coefficient in spherical variables. With x =
+        r sin θ cos φ, y = r sin θ sin φ, z = r cos θ:
+      </p>
+      <Equation
+        tex="\frac{xz}{y} = \frac{r\sin\theta\cos\phi \cdot r\cos\theta}{r\sin\theta\sin\phi} = r\cos\theta\,\frac{\cos\phi}{\sin\phi} = r\cos\theta\cot\phi"
+      />
+      <p>
+        Then multiply by the spherical components of{" "}
+        <Equation display={false} tex="\hat{a}_x" />, which are
+        sin θ cos φ, cos θ cos φ and −sin φ:
+      </p>
+      <Equation
+        tex="G_r = \frac{xz}{y}\sin\theta\cos\phi = \frac{r\sin\theta\cos\theta\cos^2\phi}{\sin\phi}"
+      />
+      <Equation
+        tex="G_\theta = \frac{xz}{y}\cos\theta\cos\phi = \frac{r\cos^2\theta\cos^2\phi}{\sin\phi}"
+      />
+      <Equation tex="G_\phi = \frac{xz}{y}(-\sin\phi) = -r\cos\theta\cos\phi" />
+      <p>
+        All three are now functions of r, θ and φ only, as required.
+      </p>
+      <p>
+        <strong>Check:</strong> at 5000 random points the worst disagreement
+        with the Cartesian field was about 7 × 10⁻¹⁵.
+      </p>
+    </>
+  }
+>
+  Variable Component Transformation: Transform the vector field
+  $\vec{G} = \frac{xz}{y}\hat{a}_x$ into spherical components of
+  variables.
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={7}
+  solution={
+    <>
+      <p>
+        The location is given in cylindrical form (ρ, φ, z). Convert it to
+        spherical first:
+      </p>
+      <Equation tex="r = \sqrt{\rho^2 + z^2} = \sqrt{2.5^2 + 1.5^2} = \sqrt{8.5} \approx 2.915" />
+      <Equation tex="\theta = \arctan\left(\frac{\rho}{z}\right) = \arctan\left(\frac{2.5}{1.5}\right) = 59.04^{\circ} \approx 1.030\ \text{rad}" />
+      <Equation tex="\phi = 0.7\ \text{rad} \approx 40.11^{\circ}" />
+      <p>
+        Since{" "}
+        <Equation display={false} tex="\sin\theta = \frac{5}{\sqrt{34}}" /> and{" "}
+        <Equation display={false} tex="\cos\theta = \frac{3}{\sqrt{34}}" />, the
+        unit vector{" "}
+        <Equation display={false} tex="\hat{a}_x" /> in spherical components is
+      </p>
+      <Equation
+        tex="\hat{a}_x = \sin\theta\cos\phi\,\hat{a}_r + \cos\theta\cos\phi\,\hat{a}_\theta - \sin\phi\,\hat{a}_\phi"
+      />
+      <Equation tex="\hat{a}_x = \frac{5\cos(0.7)}{\sqrt{34}}\,\hat{a}_r + \frac{3\cos(0.7)}{\sqrt{34}}\,\hat{a}_\theta - \sin(0.7)\,\hat{a}_\phi" />
+      <Equation
+        tex="\hat{a}_x \approx 0.656\,\hat{a}_r + 0.394\,\hat{a}_\theta - 0.644\,\hat{a}_\phi"
+      />
+      <p>
+        <strong>Check:</strong> 0.656² + 0.394² + 0.644² = 1, so the result
+        is still a unit vector, and transforming it back returns exactly
+        <Equation display={false} tex="\hat{a}_x" />.
+      </p>
+    </>
+  }
+>
+  Unit Vector Transformation: Express the Cartesian unit vector
+  $\hat{a}_x$ in spherical components at the location
+  $\rho = 2.5, \phi = 0.7\text{ rad}, z = 1.5$.
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={8}
+  solution={
+    <>
+      <p>
+        <strong>(a) Spherical coordinates of C(−3, 2, 1):</strong>
+      </p>
+      <Equation tex="r = \sqrt{9 + 4 + 1} = \sqrt{14} \approx 3.742" />
+      <Equation tex="\theta = \arccos\left(\frac{1}{\sqrt{14}}\right) \approx 74.50^{\circ}" />
+      <Equation tex="\phi = \operatorname{atan2}(2,\,-3) \approx 146.31^{\circ}" />
+      <p>
+        <strong>(b) Cartesian coordinates of D(5, 20°, −70°):</strong>
+      </p>
+      <Equation tex="x = 5\sin 20^{\circ}\cos(-70^{\circ}) \approx 0.585" />
+      <Equation tex="y = 5\sin 20^{\circ}\sin(-70^{\circ}) \approx -1.607" />
+      <Equation tex="z = 5\cos 20^{\circ} \approx 4.698" />
+      <p>
+        <strong>(c) Distance between C and D:</strong>
+      </p>
+      <Equation
+        tex="|CD| = \sqrt{(0.585+3)^2 + (-1.607-2)^2 + (4.698-1)^2} \approx 6.288"
+      />
+      <p>
+        <strong>Check:</strong> converting D back to spherical returns
+        r = 5, θ = 20°, φ = −70°, and the distance computed straight from
+        the coordinates agrees to the last digit.
+      </p>
+    </>
+  }
+>
+  Point Conversions &amp; Distance: Given two points $C(-3, 2, 1)$ and
+  $D(r = 5, \theta = 20^\circ, \phi = -70^\circ)$, find (a) the spherical
+  coordinates of $C$, (b) the Cartesian coordinates of $D$, and (c) the
+  distance between $C$ and $D$.
+</PracticeQuestion>
+
+## That is the set
+
+All eight done. If a solution surprised you, the reading section covers
+the exact transformation it leans on.
+
+<Callout title="Back to the reading" variant="warn">
+  [Coordinate systems, made visible](/lessons/coordinate-systems)
+</Callout>

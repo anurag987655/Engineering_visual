@@ -6,11 +6,18 @@ import { LessonShell } from "@/components/lesson/lesson-shell";
 import { PageSkeleton } from "@/components/ui/page-skeleton";
 import GeometricSeries from "@/content/lessons/mathematics/geometric-series.mdx";
 import ElectricField from "@/content/lessons/engineering/electric-field.mdx";
+import CoordinateSystems from "@/content/lessons/engineering/coordinate-systems.mdx";
+import CoordinateQuestions from "@/content/lessons/engineering/coordinate-past-year-questions.mdx";
 
 type LessonParams = PageProps<"/lessons/[lesson]">["params"];
 
 export function generateStaticParams() {
-  return [{ lesson: "geometric-series" }, { lesson: "electric-field" }];
+  return [
+    { lesson: "geometric-series" },
+    { lesson: "electric-field" },
+    { lesson: "coordinate-systems" },
+    { lesson: "coordinate-past-year-questions" },
+  ];
 }
 
 export async function generateMetadata({
@@ -33,6 +40,8 @@ export async function generateMetadata({
 function LessonBody({ id }: { id: string }) {
   if (id === "electric-field") return <ElectricField />;
   if (id === "geometric-series") return <GeometricSeries />;
+  if (id === "coordinate-systems") return <CoordinateSystems />;
+  if (id === "coordinate-past-year-questions") return <CoordinateQuestions />;
   return null;
 }
 
