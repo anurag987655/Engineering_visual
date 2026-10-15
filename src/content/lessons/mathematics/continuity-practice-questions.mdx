@@ -1,0 +1,1132 @@
+## Before you start
+
+These are 23 questions on continuity — six conceptual, eight numerical, two
+on classifying discontinuities, four on the theory, and three economics
+applications. Press **Show solution** on any card to reveal a complete
+worked answer; try the problem first.
+
+Every solution below was computed, then re-checked: limits are evaluated from
+both sides, each ε–δ proof is verified by running its algebra backwards, and
+each economic number is recomputed from the formula. Only answers that
+survived those checks appear.
+
+If a solution surprises you, the reading section covers the exact idea it
+leans on.
+
+<Callout title="Short on time?" variant="note">
+  Prioritise **Q2, Q4, Q5, Q8, Q11, Q12, Q14, Q15, Q18, and Q21** — they
+  cover the definition, the epsilon-delta test, both proof patterns, the
+  discontinuity classes, the Extreme Value Theorem, and the economics link.
+</Callout>
+
+## Part A — Conceptual understanding
+
+<PracticeQuestion
+  number={1}
+  solution={
+    <>
+      <p>
+        <strong>Continuity at a point.</strong> A function <Equation display={false} tex="f" /> is continuous
+        at <Equation display={false} tex="x=a" /> when three things hold at once: <Equation display={false} tex="f(a)" /> exists, the two-sided
+        limit exists (left and right sides aim at the same height), and that
+        limit equals <Equation display={false} tex="f(a)" />.
+      </p>
+      <p>Reading each piece:</p>
+      <p>
+        <strong><Equation display={false} tex="f(a)" /></strong> — the value the function actually has at
+        exactly <Equation display={false} tex="x=a" />. Its height at that point.
+      </p>
+      <p>
+        <strong><Equation display={false} tex="\lim_{x\to a}f(x)" /></strong> — the height the function is
+        heading toward as <Equation display={false} tex="x" /> approaches <Equation display={false} tex="a" /> from either side. It ignores
+        what happens at <Equation display={false} tex="a" /> itself.
+      </p>
+      <p>
+        <strong><Equation display={false} tex="\lim_{x\to a}f(x)=f(a)" /></strong> — where the graph is
+        heading and where it actually lands are the same place. No hole, no
+        jump, no asymptote: the curve arrives exactly at its own point.
+      </p>
+    </>
+  }
+>
+  Explain what it means for a function $f(x)$ to be continuous at $x=a$.
+
+  Explain the meaning of each of the following:
+
+  $$
+  f(a),\qquad \lim_{x\to a}f(x),\qquad
+  \lim_{x\to a}f(x)=f(a)
+  $$
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={2}
+  solution={
+    <>
+      <p>
+        <strong>(a) Yes — continuous at 0.</strong> The three conditions all
+        pass:
+      </p>
+      <Equation tex="\lim_{x\to 0^-}|x| = \lim_{x\to 0^-}(-x) = 0" />
+      <Equation tex="\lim_{x\to 0^+}|x| = \lim_{x\to 0^+}(x) = 0" />
+      <Equation tex="f(0) = |0| = 0" />
+      <p>
+        Both sides agree at 0, and the value is 0 — so{" "}
+        <Equation display={false} tex="\lim_{x\to0}f(x)=f(0)" />.
+      </p>
+      <p>
+        <strong>(b) No — not differentiable at 0.</strong> The slope coming
+        from the left is <Equation display={false} tex="-1" />; the slope coming from the right is <Equation display={false} tex="+1" />. The
+        two one-sided derivatives disagree, so <Equation display={false} tex="f'(0)" /> does not exist. The
+        graph has a corner exactly at the origin.
+      </p>
+      <p>
+        <strong>(c)</strong> Continuity only requires the graph to arrive at
+        the right height — no breaks. Differentiability additionally requires
+        a single well-defined slope — no corners either. <Equation display={false} tex="|x|" /> arrives at 0
+        perfectly smoothly (no gap, no jump) but turns a sharp corner there,
+        so the slope never settles on one value. Continuity is the weaker
+        property: every differentiable function is continuous, but not every
+        continuous function is differentiable.
+      </p>
+    </>
+  }
+>
+  Consider the function
+
+  $$
+  f(x)=|x|
+  $$
+
+  Answer the following:
+
+  a. Is the function continuous at $x=0$?
+
+  b. Is it differentiable at $x=0$?
+
+  c. Explain why continuity does not necessarily imply differentiability.
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={3}
+  solution={
+    <>
+      <p>
+        <strong>(a) No.</strong> A two-sided limit exists only when the
+        left-hand and right-hand limits are equal. Here <Equation display={false} tex="L_L = 3" /> and
+        <Equation display={false} tex="L_R = 7" />, so
+      </p>
+      <Equation tex="\lim_{x\to a}f(x) \ \text{does not exist}" />
+      <p>
+        <strong>(b) No.</strong> Continuity needs the limit to exist
+        <em> and </em> to equal <Equation display={false} tex="f(a)" />. Since the limit does not exist,
+        condition 2 fails outright — no value of <Equation display={false} tex="f(a)" /> could rescue it.
+      </p>
+      <p>
+        <strong>(c) A jump discontinuity.</strong> Both one-sided limits
+        exist and are finite, but they differ (<Equation display={false} tex="3 \neq 7" />), so the graph
+        steps from height 3 to height 7 at <Equation display={false} tex="x=a" />.
+      </p>
+    </>
+  }
+>
+  A function has the following properties at $x=a$:
+
+  $$
+  \lim_{x\to a^-}f(x)=3
+  $$
+
+  $$
+  \lim_{x\to a^+}f(x)=7
+  $$
+
+  a. Does the two-sided limit exist?
+
+  b. Is the function continuous at $a$?
+
+  c. What type of discontinuity occurs?
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={4}
+  solution={
+    <>
+      <p>
+        <strong>The definition:</strong> <Equation display={false} tex="f" /> is continuous at <Equation display={false} tex="a" /> if for
+        every tolerance <Equation display={false} tex="\varepsilon>0" /> there is a radius <Equation display={false} tex="\delta>0" /> with
+      </p>
+      <Equation tex="|f(x)-f(a)|<\varepsilon \quad\text{whenever}\quad |x-a|<\delta" />
+      <p>
+        <strong><Equation display={false} tex="\varepsilon" /> (epsilon)</strong> is a tolerance on the
+        <em>output</em>: how far from <Equation display={false} tex="f(a)" /> you are willing to let the values
+        drift. <strong><Equation display={false} tex="\delta" /> (delta)</strong> is a radius on the
+        <em>input</em>: how close <Equation display={false} tex="x" /> must be forced to <Equation display={false} tex="a" /> to guarantee the output
+        stays inside that tolerance.
+      </p>
+      <p>
+        <strong>Why every <Equation display={false} tex="\varepsilon>0" />:</strong> the challenges keep
+        shrinking, and continuity must survive all of them. If even one
+        tolerance <Equation display={false} tex="\varepsilon>0" /> had no working <Equation display={false} tex="\delta" />, then no matter how
+        close <Equation display={false} tex="x" /> is forced to <Equation display={false} tex="a" />, some point would stay at least
+        <Equation display={false} tex="\varepsilon" /> away from <Equation display={false} tex="f(a)" /> — points arbitrarily near <Equation display={false} tex="a" /> with
+        heights held away from the function's own height. That is exactly a
+        gap or a jump. Testing every <Equation display={false} tex="\varepsilon" /> probes smaller and smaller
+        neighbourhoods of <Equation display={false} tex="a" />, and breaks hide at small scales.
+      </p>
+    </>
+  }
+>
+  State the epsilon-delta definition of continuity.
+
+  Explain in your own words what $\varepsilon$ and $\delta$ represent.
+
+  Why must the definition hold for **every** $\varepsilon>0$?
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={5}
+  solution={
+    <>
+      <p>
+        <strong>(a)</strong> For <Equation display={false} tex="x \neq 2" /> the expression simplifies:
+      </p>
+      <Equation tex="\frac{x^2-4}{x-2}=\frac{(x-2)(x+2)}{x-2}=x+2" />
+      <p>So both sides approach the same height:</p>
+      <Equation tex="\lim_{x\to2}f(x)=\lim_{x\to2}(x+2)=4" />
+      <p>
+        <strong>(b)</strong> The bottom piece of the definition sets the
+        value directly: <Equation display={false} tex="f(2)=5" />.
+      </p>
+      <p>
+        <strong>(c) No.</strong> The limit exists (4) but does not equal the
+        function value (5), so condition 3 fails:
+      </p>
+      <Equation tex="\lim_{x\to2}f(x)=4 \neq 5 = f(2)" />
+      <p>
+        <strong>(d)</strong> The function becomes continuous at <Equation display={false} tex="x=2" /> if the
+        dot moves to the height the curve approaches:
+      </p>
+      <Equation tex="f(2)=4" />
+      <p>This is why the break is called <em>removable</em> — one redefinition fixes it.</p>
+    </>
+  }
+>
+  Consider
+
+  $$
+  f(x)=
+  \begin{cases}
+  \dfrac{x^2-4}{x-2},&x\neq 2\\
+  5,&x=2
+  \end{cases}
+  $$
+
+  a. Find $\displaystyle\lim_{x\to2}f(x)$.
+
+  b. Find $f(2)$.
+
+  c. Is the function continuous at $x=2$?
+
+  d. What value should $f(2)$ have for the function to become continuous?
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={6}
+  solution={
+    <>
+      <p>
+        <strong>(a)</strong>{" "}
+        <Equation display={false} tex="C(10)=100+5(10)=100+50=150" />.
+      </p>
+      <p>
+        <strong>(b)</strong> Continuity at <Equation display={false} tex="q=10" /> means the cost responds
+        smoothly to output around 10: produce slightly more, slightly less —
+        the bill stays close to 150. There is no sudden leap in total cost as
+        output passes through 10; the cost curve is unbroken there.
+      </p>
+      <p>
+        <strong>(c)</strong> A tiny change in output <Equation display={false} tex="\Delta q" /> moves cost by
+      </p>
+      <Equation tex="\Delta C = C(10+\Delta q)-C(10) = 5\,\Delta q" />
+      <p>
+        which is itself tiny and proportional. Shrink the input change and
+        the output change shrinks with it — small changes in, small changes
+        out.
+      </p>
+      <p>
+        <strong>(d) No.</strong> Continuity forbids jumps; it says nothing
+        about shape. <Equation display={false} tex="C(q)=q^2+100" />, <Equation display={false} tex="C(q)=\sqrt{q}+100" />, and any polynomial
+        are continuous as well. Linearity is a separate, much stronger
+        assumption — constant marginal cost of 5 — that continuity does not
+        impose.
+      </p>
+    </>
+  }
+>
+  Suppose a firm's total cost function is
+
+  $$
+  C(q)=100+5q
+  $$
+
+  where $q$ is output.
+
+  a. Calculate $C(10)$.
+
+  b. Explain what continuity at $q=10$ means economically.
+
+  c. If production changes by a very small amount, what happens to the total cost?
+
+  d. Does continuity require the cost function to be linear? Explain.
+</PracticeQuestion>
+
+## Part B — Exam-oriented numerical questions
+
+### Section I: Finding Continuity Using Limits
+
+<PracticeQuestion
+  number={7}
+  solution={
+    <>
+      <p>First the actual value:</p>
+      <Equation tex="f(2)=2^2+3(2)-2=4+6-2=8" />
+      <p>
+        Polynomials are continuous everywhere (they are built from <Equation display={false} tex="x" /> and
+        constants using only addition and multiplication), so the limit is
+        found by substitution:
+      </p>
+      <Equation tex="\lim_{x\to2}(x^2+3x-2)=4+6-2=8" />
+      <p>Since</p>
+      <Equation tex="\lim_{x\to2}f(x)=8=f(2)" />
+      <p>
+        both conditions hold and <Equation display={false} tex="f" /> is <strong>continuous at <Equation display={false} tex="x=2" /></strong>.
+      </p>
+    </>
+  }
+>
+  Examine the continuity of
+
+  $$
+  f(x)=x^2+3x-2
+  $$
+
+  at $x=2$.
+
+  Verify that
+
+  $$
+  \lim_{x\to2}f(x)=f(2)
+  $$
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={8}
+  solution={
+    <>
+      <p>
+        Continuity at <Equation display={false} tex="x=2" /> needs the left limit, the right limit, and the
+        value to all agree.
+      </p>
+      <p>
+        <strong>Left limit</strong> (use <Equation display={false} tex="kx+1" /> for <Equation display={false} tex="x<2" />):
+      </p>
+      <Equation tex="\lim_{x\to2^-}f(x)=k(2)+1=2k+1" />
+      <p>
+        <strong>Right limit and value</strong> (use <Equation display={false} tex="x^2+1" /> for
+        <Equation display={false} tex="x\geq2" />):
+      </p>
+      <Equation tex="\lim_{x\to2^+}f(x)=2^2+1=5,\qquad f(2)=5" />
+      <p>Set them equal:</p>
+      <Equation tex="2k+1=5 \quad\Longrightarrow\quad 2k=4 \quad\Longrightarrow\quad \boxed{k=2}" />
+      <p>
+        With <Equation display={false} tex="k=2" /> all three quantities equal 5, so the function is
+        continuous at <Equation display={false} tex="x=2" />.
+      </p>
+    </>
+  }
+>
+  Find the value of $k$ that makes the following function continuous at $x=2$:
+
+  $$
+  f(x)=
+  \begin{cases}
+  kx+1,&x<2\\
+  x^2+1,&x\geq2
+  \end{cases}
+  $$
+
+  **Hint:** Calculate the left-hand limit, right-hand limit, and actual
+  function value.
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={9}
+  solution={
+    <>
+      <p>
+        A rational function is continuous wherever its denominator is
+        non-zero, so <Equation display={false} tex="f" /> is continuous at <strong>every real number except
+        <Equation display={false} tex="x=3" /></strong>.
+      </p>
+      <p>
+        At <Equation display={false} tex="x=3" /> two things go wrong at once. First, <Equation display={false} tex="f(3)" /> is undefined —
+        division by zero — so condition 1 fails and the function is not even
+        defined there, let alone continuous. Second, the limit does not exist
+        finitely: the numerator approaches <Equation display={false} tex="3+1=4\neq0" /> while the denominator
+        approaches 0, so
+      </p>
+      <Equation tex="\lim_{x\to3^-}\frac{x+1}{x-3}=-\infty,\qquad \lim_{x\to3^+}\frac{x+1}{x-3}=+\infty" />
+      <p>
+        That is a vertical asymptote — an infinite discontinuity. Continuity
+        can only ever be claimed on points of the domain, and <Equation display={false} tex="x=3" /> is not
+        one of them.
+      </p>
+    </>
+  }
+>
+  Determine where the function is continuous:
+
+  $$
+  f(x)=\frac{x+1}{x-3}
+  $$
+
+  Explain why the function fails to be continuous at any excluded point in
+  its domain.
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={10}
+  solution={
+    <>
+      <p>
+        Write it as the piecewise function it is:
+      </p>
+      <Equation tex="|x-3|=\begin{cases}3-x,&x<3\\ x-3,&x\geq3\end{cases}" />
+      <p>
+        <strong>Left-hand limit</strong> (approach along <Equation display={false} tex="x<3" />):
+      </p>
+      <Equation tex="\lim_{x\to3^-}|x-3|=\lim_{x\to3^-}(3-x)=0" />
+      <p>
+        <strong>Right-hand limit</strong> (approach along <Equation display={false} tex="x>3" />):
+      </p>
+      <Equation tex="\lim_{x\to3^+}|x-3|=\lim_{x\to3^+}(x-3)=0" />
+      <p>
+        <strong>Value:</strong>{" "}
+        <Equation display={false} tex="f(3)=|3-3|=0" />.
+      </p>
+      <p>
+        All three exist and agree: limit <Equation display={false} tex="=0=f(3)" />. Therefore <Equation display={false} tex="f" /> is{" "}
+        <strong>continuous at <Equation display={false} tex="x=3" /></strong>. (Geometrically: the V-shape
+        has a corner, but no break — you can draw it without lifting the
+        pen.)
+      </p>
+    </>
+  }
+>
+  Examine the continuity of
+
+  $$
+  f(x)=|x-3|
+  $$
+
+  at $x=3$.
+
+  Use the formal definition of continuity based on limits.
+</PracticeQuestion>
+
+### Section II: Epsilon-Delta Proofs
+
+<PracticeQuestion
+  number={11}
+  solution={
+    <>
+      <p>
+        The target value is <Equation display={false} tex="f(2)=3(2)+1=7" />.
+        Start by rewriting the output error:
+      </p>
+      <Equation tex="|f(x)-f(2)| = |3x+1-7| = |3x-6| = 3\,|x-2|" />
+      <p>
+        Given any challenge <Equation display={false} tex="\varepsilon>0" />, choose
+      </p>
+      <Equation tex="\delta=\frac{\varepsilon}{3}>0" />
+      <p>Then whenever <Equation display={false} tex="|x-2|<\delta" />,</p>
+      <Equation tex="|f(x)-7| = 3\,|x-2| < 3\delta = 3\cdot\frac{\varepsilon}{3}=\varepsilon" />
+      <p>
+        So for <strong>every</strong> <Equation display={false} tex="\varepsilon>0" /> we have exhibited a
+        <Equation display={false} tex="\delta>0" /> (namely <Equation display={false} tex="\varepsilon/3" />) that satisfies the definition.
+        Therefore <Equation display={false} tex="f(x)=3x+1" /> is <strong>continuous at <Equation display={false} tex="x=2" /></strong>.
+      </p>
+      <p>
+        <strong>Check:</strong> the graph has slope 3, so outputs move three
+        times as fast as inputs — a window one third the size of the
+        tolerance always contains them.
+      </p>
+    </>
+  }
+>
+  Using the epsilon-delta definition, prove that
+
+  $$
+  f(x)=3x+1
+  $$
+
+  is continuous at $x=2$.
+
+  You must show that for every $\varepsilon>0$, an appropriate $\delta>0$
+  exists.
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={12}
+  solution={
+    <>
+      <p>
+        The target is <Equation display={false} tex="f(2)=4" />. Factor the
+        error as the hint suggests:
+      </p>
+      <Equation tex="|x^2-4| = |x-2|\,|x+2|" />
+      <p>
+        The factor <Equation display={false} tex="|x-2|" /> is controlled directly by <Equation display={false} tex="\delta" />. The factor
+        <Equation display={false} tex="|x+2|" /> is not small — it is close to <Equation display={false} tex="|2+2|=4" /> — so it must be
+        <em>bounded</em>, not driven to zero. First restrict
+        <Equation display={false} tex="\delta\leq1" />: then <Equation display={false} tex="|x-2|<1" /> gives <Equation display={false} tex="1<x<3" />, so
+      </p>
+      <Equation tex="|x+2| < 5 \qquad\Longrightarrow\qquad |x^2-4| < 5\,|x-2|" />
+      <p>Now choose</p>
+      <Equation tex="\delta=\min\left(1,\ \frac{\varepsilon}{5}\right)" />
+      <p>
+        For any <Equation display={false} tex="\varepsilon>0" /> this <Equation display={false} tex="\delta" /> is positive, and whenever
+        <Equation display={false} tex="|x-2|<\delta" />,
+      </p>
+      <Equation tex="|x^2-4| < 5\delta \leq 5\cdot\frac{\varepsilon}{5}=\varepsilon" />
+      <p>
+        Since every challenge <Equation display={false} tex="\varepsilon>0" /> is answered by some
+        <Equation display={false} tex="\delta>0" />, the function <Equation display={false} tex="f(x)=x^2" /> is{" "}
+        <strong>continuous at <Equation display={false} tex="x=2" /></strong>.
+      </p>
+      <p>
+        <strong>Check:</strong> the min<Equation display={false} tex="(1,\cdot)" /> half guards the bound on
+        <Equation display={false} tex="|x+2|" />; the <Equation display={false} tex="\varepsilon/5" /> half does the real work. For
+        <Equation display={false} tex="\varepsilon=0.5" />, <Equation display={false} tex="\delta=0.1" />: <Equation display={false} tex="|x^2-4|<5(0.1)=0.5" />. ✓
+      </p>
+    </>
+  }
+>
+  Prove that
+
+  $$
+  f(x)=x^2
+  $$
+
+  is continuous at $x=2$ using the epsilon-delta definition.
+
+  **Hint:** Start with
+
+  $$
+  |x^2-4|=|x-2||x+2|
+  $$
+
+  You will need to control both factors.
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={13}
+  solution={
+    <>
+      <p>
+        First, <Equation display={false} tex="f(1)=2(1)+3=5" />. Rewrite
+        the output error:
+      </p>
+      <Equation tex="|f(x)-f(1)| = |2x+3-5| = 2\,|x-1|" />
+      <p>
+        The output stays within <Equation display={false} tex="0.2" /> of{" "}
+        <Equation display={false} tex="f(1)" /> exactly when
+      </p>
+      <Equation tex="2\,|x-1| < 0.2 \quad\Longleftrightarrow\quad |x-1| < 0.1" />
+      <p>
+        So a suitable choice is <strong><Equation display={false} tex="\delta = 0.1" /></strong>.
+      </p>
+      <p>
+        <strong>Why it guarantees the tolerance:</strong> forcing the input
+        within <Equation display={false} tex="0.1" /> of{" "}
+        <Equation display={false} tex="1" /> makes the output error{" "}
+        <Equation display={false} tex="2|x-1| < 2(0.1)=0.2" /> —
+        every input in the <Equation display={false} tex="\delta" />-window lands inside the required band
+        around <Equation display={false} tex="f(1)=5" />. This is precisely the ε–δ promise with
+        <Equation display={false} tex="\varepsilon = 0.2" />.
+      </p>
+    </>
+  }
+>
+  Consider
+
+  $$
+  f(x)=2x+3
+  $$
+
+  at $x=1$.
+
+  If the output must remain within $0.2$ of $f(1)$, find a suitable value of
+  $\delta$.
+
+  Explain why your choice guarantees the required output tolerance.
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={14}
+  solution={
+    <>
+      <p>
+        The function value is <Equation display={false} tex="f(0)=3" /> (the
+        <Equation display={false} tex="x\geq0" /> branch). To destroy continuity, exhibit{" "}
+        <strong>one</strong> tolerance that no <Equation display={false} tex="\delta" /> can answer. Choose
+      </p>
+      <Equation tex="\varepsilon = 1" />
+      <p>
+        Suppose some <Equation display={false} tex="\delta>0" /> worked. Take the point
+        <Equation display={false} tex="x=-\delta/2" />: it satisfies <Equation display={false} tex="|x-0| = \delta/2 < \delta" />, yet <Equation display={false} tex="x<0" />,
+        so <Equation display={false} tex="f(x)=1" />. Then
+      </p>
+      <Equation tex="|f(x)-f(0)| = |1-3| = 2 > 1 = \varepsilon" />
+      <p>
+        The point sits inside every <Equation display={false} tex="\delta" />-window but its value sits
+        outside the ε-band. Since this happens for <em>every</em> candidate
+        <Equation display={false} tex="\delta>0" />, no <Equation display={false} tex="\delta" /> answers the challenge <Equation display={false} tex="\varepsilon=1" /> — the
+        definition fails and <Equation display={false} tex="f" /> is <strong>not continuous at <Equation display={false} tex="x=0" /></strong>.
+      </p>
+      <p>
+        <strong>What went wrong:</strong> the jump of size 2 at the origin
+        means outputs stay a fixed distance (at least 2) from <Equation display={false} tex="f(0)" /> no
+        matter how tightly you pinch the input — exactly what continuity
+        forbids.
+      </p>
+    </>
+  }
+>
+  Consider
+
+  $$
+  f(x)=
+  \begin{cases}
+  1,&x<0\\
+  3,&x\geq0
+  \end{cases}
+  $$
+
+  Use the epsilon-delta definition to show that the function is not
+  continuous at $x=0$.
+
+  **Hint:** Choose a particular positive value of $\varepsilon$ and show
+  that no positive $\delta$ can satisfy the definition.
+</PracticeQuestion>
+
+## Part C — Discontinuities and Their Classification
+
+<PracticeQuestion
+  number={15}
+  solution={
+    <>
+      <p>
+        <strong>(a) Removable discontinuity.</strong> For <Equation display={false} tex="x\neq1" /> the
+        function equals <Equation display={false} tex="x+1" />, so
+      </p>
+      <Equation tex="\lim_{x\to1}f(x)=1+1=2" />
+      <p>
+        The limit exists, but the defined value is <Equation display={false} tex="f(1)=5" />. Limit exists,
+        wrong dot: <strong>removable</strong> — redefining <Equation display={false} tex="f(1)=2" /> would
+        repair it.
+      </p>
+      <p>
+        <strong>(b) Infinite discontinuity.</strong> At <Equation display={false} tex="x=2" /> the denominator
+        vanishes and <Equation display={false} tex="f(2)" /> is undefined. The sides diverge:
+      </p>
+      <Equation tex="\lim_{x\to2^-}\frac{1}{x-2}=-\infty,\qquad \lim_{x\to2^+}\frac{1}{x-2}=+\infty" />
+      <p>
+        The graph has a vertical asymptote — no finite limit, no value that
+        could fix it: <strong>infinite</strong>.
+      </p>
+      <p>
+        <strong>(c) Jump discontinuity.</strong> Each side is constant, so
+      </p>
+      <Equation tex="\lim_{x\to3^-}f(x)=2,\qquad \lim_{x\to3^+}f(x)=6,\qquad f(3)=6" />
+      <p>
+        Both one-sided limits exist and are finite, but <Equation display={false} tex="2\neq6" /> — the graph
+        steps up by 4: <strong>jump</strong>.
+      </p>
+    </>
+  }
+>
+  Identify the type of discontinuity at the specified point in each case.
+
+  **(a)**
+
+  $$
+  f(x)=
+  \begin{cases}
+  x+1,&x\neq1\\
+  5,&x=1
+  \end{cases}
+  $$
+
+  at $x=1$.
+
+  **(b)**
+
+  $$
+  f(x)=\frac{1}{x-2}
+  $$
+
+  at $x=2$.
+
+  **(c)**
+
+  $$
+  f(x)=
+  \begin{cases}
+  2,&x<3\\
+  6,&x\geq3
+  \end{cases}
+  $$
+
+  at $x=3$.
+
+  For each, explain your answer using the relevant limits and function
+  value.
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={16}
+  solution={
+    <>
+      <p>
+        Compute all three quantities at <Equation display={false} tex="x=2" />.
+      </p>
+      <p>
+        <strong>Left limit</strong> (use <Equation display={false} tex="x^2+1" /> for <Equation display={false} tex="x<2" />):
+      </p>
+      <Equation tex="\lim_{x\to2^-}f(x)=2^2+1=5" />
+      <p>
+        <strong>Right limit and value</strong> (use <Equation display={false} tex="kx+3" /> for <Equation display={false} tex="x\geq2" />):
+      </p>
+      <Equation tex="\lim_{x\to2^+}f(x)=2k+3,\qquad f(2)=2k+3" />
+      <p>
+        <strong>Condition 1:</strong> <Equation display={false} tex="f(2)=2k+3" /> exists for every <Equation display={false} tex="k" /> ✓
+      </p>
+      <p>
+        <strong>Condition 2:</strong> the limit exists iff both sides agree:
+      </p>
+      <Equation tex="5 = 2k+3" />
+      <p>
+        <strong>Condition 3:</strong> the common limit must equal the value —
+        the same equation, <Equation display={false} tex="5=2k+3" />, since right limit and value coincide.
+      </p>
+      <p>Solving:</p>
+      <Equation tex="2k=2 \quad\Longrightarrow\quad \boxed{k=1}" />
+      <p>
+        With <Equation display={false} tex="k=1" />: <Equation display={false} tex="f(2)=5" />, the two-sided limit is 5, and
+        <Equation display={false} tex="\lim_{x\to2}f(x)=5=f(2)" />. All three conditions hold, so <Equation display={false} tex="f" /> is
+        continuous at <Equation display={false} tex="x=2" /> exactly when <Equation display={false} tex="k=1" />.
+      </p>
+    </>
+  }
+>
+  Consider
+
+  $$
+  f(x)=
+  \begin{cases}
+  x^2+1,&x<2\\
+  kx+3,&x\geq2
+  \end{cases}
+  $$
+
+  Find $k$ such that $f$ is continuous at $x=2$.
+
+  Show all three continuity conditions.
+</PracticeQuestion>
+
+## Part D — Important Theorems and Properties
+
+<PracticeQuestion
+  number={17}
+  solution={
+    <>
+      <p>
+        <strong>(a) Yes — sum rule.</strong> If <Equation display={false} tex="f" /> and <Equation display={false} tex="g" /> are continuous
+        at <Equation display={false} tex="a" />, then{" "}
+        <Equation display={false} tex="\lim_{x\to a}(f+g)=\lim f+\lim g=f(a)+g(a)" />
+        , so <Equation display={false} tex="f+g" /> is continuous at <Equation display={false} tex="a" />.
+      </p>
+      <p>
+        <strong>(b) Yes — product rule.</strong>{" "}
+        <Equation display={false} tex="\lim(fg)=(\lim f)(\lim g)=f(a)g(a)" />
+        .
+      </p>
+      <p>
+        <strong>(c) Yes — quotient rule, provided <Equation display={false} tex="g(a)\neq0" />.</strong>{" "}
+        <Equation
+          display={false}
+          tex="\lim(f/g)=\lim f/\lim g=f(a)/g(a)"
+        />
+        . The condition is essential: if <Equation display={false} tex="g(a)=0" /> the quotient is undefined at
+        <Equation display={false} tex="a" /> and cannot be continuous there.
+      </p>
+      <p>
+        <strong>(d) Yes — difference rule.</strong>{" "}
+        <Equation display={false} tex="f-g = f+(-1)\cdot g" />
+        , which is the sum rule together with the constant-multiple rule.
+      </p>
+      <p>
+        The unifying statement: the set of functions continuous at <Equation display={false} tex="a" /> is
+        closed under addition, subtraction, multiplication, and (away from
+        division by zero) division.
+      </p>
+    </>
+  }
+>
+  Suppose $f$ and $g$ are continuous at $x=a$.
+
+  State whether each of the following functions must be continuous at $a$:
+
+  a. $f(x)+g(x)$
+
+  b. $f(x)g(x)$
+
+  c. $\dfrac{f(x)}{g(x)}$, provided $g(a)\neq0$
+
+  d. $f(x)-g(x)$
+
+  Give the relevant continuity property for each.
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={18}
+  solution={
+    <>
+      <p>
+        <strong>The theorem:</strong> if <Equation display={false} tex="f" /> is continuous on a closed and
+        bounded interval <Equation display={false} tex="[a,b]" />, then <Equation display={false} tex="f" /> attains a global maximum and a
+        global minimum somewhere in <Equation display={false} tex="[a,b]" /> — there exist <Equation display={false} tex="c,d\in[a,b]" /> with
+      </p>
+      <Equation tex="f(c)\geq f(x)\geq f(d)\qquad\text{for all }x\in[a,b]" />
+      <p>
+        <strong>Why continuity matters:</strong> a jump lets the graph step
+        over a height it never actually takes. The values below the jump may
+        climb arbitrarily close to the step without ever recording it, so the
+        largest <em>recorded</em> value never arrives.
+      </p>
+      <p>
+        <strong>Why closed and bounded matters:</strong> an open or unbounded
+        interval can leave the extreme sitting exactly where the domain has a
+        hole or a missing edge.
+      </p>
+      <p>
+        <strong>The example <Equation display={false} tex="f(x)=x" /> on <Equation display={false} tex="(0,1)" />:</strong> no. Take any
+        <Equation display={false} tex="x\in(0,1)" /> — say <Equation display={false} tex="x=0.9" />. The point <Equation display={false} tex="(x+1)/2=0.95" /> is still in the
+        interval and larger. This never stops: values approach 1 but never
+        reach it (1 is excluded), and values approach 0 but never reach it.
+        So <Equation display={false} tex="f" /> attains <strong>neither a maximum nor a minimum</strong> on
+        <Equation display={false} tex="(0,1)" />. The interval is open and unattained endpoints destroy the
+        conclusion — exactly the hypothesis the theorem insists on.
+      </p>
+    </>
+  }
+>
+  State the Weierstrass Extreme Value Theorem.
+
+  Explain why both continuity and the closed, bounded interval condition
+  matter.
+
+  Consider
+
+  $$
+  f(x)=x,\qquad x\in(0,1)
+  $$
+
+  Does this function attain a maximum and a minimum on $(0,1)$?
+
+  Explain how this example illustrates the importance of the theorem's
+  assumptions.
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={19}
+  solution={
+    <>
+      <p>
+        <Equation display={false} tex="f" /> is continuous on <Equation display={false} tex="[a,b]" /> when all of the following hold:
+      </p>
+      <p>
+        1. <Equation display={false} tex="f" /> passes the ordinary three-condition test at{" "}
+        <strong>every interior point</strong> <Equation display={false} tex="a<x<b" />;
+      </p>
+      <p>
+        2. at the left endpoint, <strong>continuity from the right</strong>:{" "}
+        <Equation display={false} tex="\lim_{x\to a^+}f(x)=f(a)" />;
+      </p>
+      <p>
+        3. at the right endpoint, <strong>continuity from the left</strong>:{" "}
+        <Equation display={false} tex="\lim_{x\to b^-}f(x)=f(b)" />.
+      </p>
+      <p>
+        <strong>Why one-sided at the ends:</strong> <Equation display={false} tex="f" /> is defined only on
+        <Equation display={false} tex="[a,b]" />. Approaching <Equation display={false} tex="a" /> from the left would require points smaller
+        than <Equation display={false} tex="a" />, which the domain does not contain — the two-sided limit at
+        <Equation display={false} tex="a" /> is impossible to even form. The right-hand limit at <Equation display={false} tex="a" /> (and the
+        left-hand limit at <Equation display={false} tex="b" />) is the strongest condition the domain can
+        support, so it stands in for the two-sided test.
+      </p>
+    </>
+  }
+>
+  State the conditions required for a function to be continuous on
+
+  $$
+  [a,b]
+  $$
+
+  Why do we use a right-hand limit at $a$ and a left-hand limit at $b$?
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={20}
+  solution={
+    <>
+      <p>
+        <strong>Definition.</strong> <Equation display={false} tex="f:\mathbb{R}^2\to\mathbb{R}" /> is
+        continuous at <Equation display={false} tex="(a,b)" /> if
+      </p>
+      <Equation tex="\forall\,\varepsilon>0\ \exists\,\delta>0:\quad |f(x,y)-f(a,b)|<\varepsilon" />
+      <Equation tex="\text{whenever}\quad \sqrt{(x-a)^2+(y-b)^2}<\delta" />
+      <p>
+        Identical in spirit to the one-variable test — only the distance
+        changes from <Equation display={false} tex="|x-a|" /> to the Euclidean metric on the plane.
+      </p>
+      <p>
+        <strong>Geometric meaning of the distance.</strong>{" "}
+        <Equation
+          display={false}
+          tex="\sqrt{(x-a)^2+(y-b)^2}"
+        />{" "}
+        is the straight-line distance from the input point <Equation display={false} tex="(x,y)" /> to the
+        point <Equation display={false} tex="(a,b)" /> in the plane. The condition "<Equation display={false} tex="<\delta" />" therefore
+        describes an open disk of radius <Equation display={false} tex="\delta" /> centred at <Equation display={false} tex="(a,b)" /> — the
+        <Equation display={false} tex="\delta" />-ball. Continuity says: <em>every</em> input inside that disk
+        has its function value inside the band <Equation display={false} tex="f(a,b)\pm\varepsilon" />.
+        Geometrically it is the same picture as one dimension — a disk of
+        inputs mapping into a band of outputs — just one dimension richer.
+      </p>
+    </>
+  }
+>
+  Define continuity for a function
+
+  $$
+  f:\mathbb{R}^2\to\mathbb{R}
+  $$
+
+  at a point $(a,b)$ using epsilon and delta.
+
+  Explain what the distance
+
+  $$
+  \sqrt{(x-a)^2+(y-b)^2}
+  $$
+
+  represents geometrically.
+
+  *Prioritize this question if multivariable continuity is included in your
+  exam syllabus.*
+</PracticeQuestion>
+
+## Part E — Economics Application Questions
+
+<PracticeQuestion
+  number={21}
+  solution={
+    <>
+      <p>
+        <strong>(a)</strong>{" "}
+        <Equation display={false} tex="C(10)=200+8(10)=200+80=280" />.
+      </p>
+      <p>
+        <strong>(b)</strong>{" "}
+        <Equation display={false} tex="C(10.1)=200+8(10.1)=200+80.8=280.8" />
+        , so
+      </p>
+      <Equation tex="\Delta C = 280.80-280.00 = 0.80" />
+      <p>
+        <strong>(c)</strong> <Equation display={false} tex="C(q)=200+8q" /> is a polynomial, hence continuous
+        everywhere; concretely at <Equation display={false} tex="q=10" />,
+      </p>
+      <Equation tex="\lim_{q\to10}(200+8q)=280=C(10)" />
+      <p>
+        The limit equals the value, so there is no jump: cost near output 10
+        behaves smoothly, hovering close to 280.
+      </p>
+      <p>
+        <strong>(d)</strong> The cost deviation is
+      </p>
+      <Equation tex="|C(q)-C(10)| = |8(q-10)| = 8\,|q-10|" />
+      <p>Requiring it to stay under <Equation display={false} tex="0.80" />:</p>
+      <Equation tex="8\,|q-10| < 0.80 \quad\Longleftrightarrow\quad |q-10| < 0.1" />
+      <p>
+        So <strong><Equation display={false} tex="\delta = 0.1" /></strong> works: any output within 0.1 units
+        of 10 holds cost within $0.80 of 280. (Each unit of output adds
+        exactly 8, so 0.1 units adds 0.80 — the ε–δ promise with
+        <Equation display={false} tex="\varepsilon = 0.80" />.)
+      </p>
+    </>
+  }
+>
+  A firm's total cost function is
+
+  $$
+  C(q)=200+8q
+  $$
+
+  where $q$ is the quantity produced.
+
+  a. Find $C(10)$.
+
+  b. If production changes from 10 to 10.1 units, calculate the change in cost.
+
+  c. Explain why the cost function is continuous at $q=10$.
+
+  d. If the acceptable cost deviation is $\varepsilon=0.80$, find a suitable
+  $\delta$.
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={22}
+  solution={
+    <>
+      <p>
+        <strong>(a) Left-hand limit</strong> (approach with <Equation display={false} tex="q<10" />, where
+        <Equation display={false} tex="P(q)=100q" />):
+      </p>
+      <Equation tex="\lim_{q\to10^-}P(q)=100(10)=1000" />
+      <p>
+        <strong>(b) Right-hand limit</strong> (approach with <Equation display={false} tex="q\geq10" />,
+        where <Equation display={false} tex="P(q)=100q-200" />):
+      </p>
+      <Equation tex="\lim_{q\to10^+}P(q)=100(10)-200=800" />
+      <p>
+        The actual charge at exactly 10 units is <Equation display={false} tex="P(10)=800" />, matching the
+        right-hand limit.
+      </p>
+      <p>
+        <strong>(c) No.</strong> The one-sided limits disagree:
+      </p>
+      <Equation tex="1000 \neq 800" />
+      <p>
+        The two-sided limit does not exist, so condition 2 fails — a{" "}
+        <strong>jump discontinuity</strong> of size 200 at <Equation display={false} tex="q=10" />.
+      </p>
+      <p>
+        <strong>(d) Economic meaning.</strong> The pricing rule builds in a
+        bulk-discount cliff: a customer one hair below 10 units is billed
+        almost 1000, while at exactly 10 units the bill drops to 800.
+        Reaching the threshold <em>lowers</em> the total charge, so spending
+        less money buys more goods. For the firm, expenditure is not a smooth
+        function of quantity — a tiny quantity change near the threshold
+        moves the bill by 200. Discontinuous pricing like this is common
+        (quantity discounts, tiered rates), and it is exactly where the
+        smooth-trade-off assumptions of calculus-based optimisation break
+        down.
+      </p>
+    </>
+  }
+>
+  A firm charges according to the following rule:
+
+  $$
+  P(q)=
+  \begin{cases}
+  100q,&q<10\\
+  100q-200,&q\geq10
+  \end{cases}
+  $$
+
+  where $P(q)$ represents the total amount charged for $q$ units.
+
+  a. Calculate the left-hand limit at $q=10$.
+
+  b. Calculate the right-hand limit at $q=10$.
+
+  c. Is the function continuous at $q=10$?
+
+  d. Explain the economic meaning of the discontinuity.
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={23}
+  solution={
+    <>
+      <p>
+        <strong>(a)</strong>{" "}
+        <Equation
+          display={false}
+          tex="\pi(5)=50(5)-(5)^2-100=250-25-100=125"
+        />
+        .
+      </p>
+      <p>
+        <strong>(b) Yes.</strong> <Equation display={false} tex="\pi(q)" /> is a polynomial, so it is
+        continuous everywhere; concretely at <Equation display={false} tex="q=5" />,
+      </p>
+      <Equation tex="\lim_{q\to5}\pi(q)=250-25-100=125=\pi(5)" />
+      <p>
+        Limit exists, equals the value — continuity confirmed directly.
+      </p>
+      <p>
+        <strong>(c)</strong> Continuity means profit has no sudden breaks:
+        nudging output slightly around 5 changes profit only slightly. The
+        profit curve near <Equation display={false} tex="q=5" /> is unbroken, so no small production decision
+        can cause an abrupt swing in profit.
+      </p>
+      <p>
+        <strong>(d) No.</strong> Continuity guarantees that a maximum{" "}
+        <em>exists</em> (on a closed, bounded feasible set, by the Extreme
+        Value Theorem) — not that it sits at <Equation display={false} tex="q=5" />. Locating it needs more
+        information, such as the derivative:
+      </p>
+      <Equation tex="\pi'(q)=50-2q=0 \quad\Longrightarrow\quad q=25" />
+      <p>
+        and indeed{" "}
+        <Equation display={false} tex="\pi(25)=1250-625-100=525" /> is far
+        larger than <Equation display={false} tex="\pi(5)=125" />. So not
+        only does continuity fail to guarantee the maximum at <Equation display={false} tex="q=5" /> — here
+        <Equation display={false} tex="q=5" /> is not even the maximising output. Continuity is what makes
+        optimisation <em>possible</em>; first-order conditions (or brute
+        comparison) are what make it <em>local</em>.
+      </p>
+    </>
+  }
+>
+  Suppose a firm's profit function is
+
+  $$
+  \pi(q)=50q-q^2-100
+  $$
+
+  a. Find $\pi(5)$.
+
+  b. Is the profit function continuous at $q=5$?
+
+  c. Explain what continuity means in the context of the firm's profit.
+
+  d. Does continuity alone guarantee that the firm maximizes profit at
+  $q=5$? Explain.
+</PracticeQuestion>
+
+## That is the set
+
+All 23 done. The ideas behind these solutions — the three-condition test,
+the ε–δ challenge, the three discontinuity classes, and the theorems — are
+spelled out in the reading, with interactive diagrams for the parts that
+move.
+
+<Callout title="Back to the reading" variant="warn">
+  [Continuity](/lessons/continuity)
+</Callout>

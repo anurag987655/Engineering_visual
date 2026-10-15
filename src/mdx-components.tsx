@@ -66,18 +66,30 @@ const components = {
     </code>
   ),
   table: ({ children }: { children?: React.ReactNode }) => (
-    <div className="my-8 overflow-x-auto rounded-xl border border-[#2C2523]/25">
-      <table className="w-full text-left text-sm">{children}</table>
+    <div
+      role="region"
+      aria-label="Lesson table; scroll horizontally to view all columns"
+      tabIndex={0}
+      className="my-8 overflow-x-auto rounded-xl border border-[#2C2523]/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#B4552D]"
+    >
+      <table className="w-full min-w-[900px] table-fixed border-separate border-spacing-0 text-left text-sm leading-6">
+        {children}
+      </table>
+      <p className="border-t border-[#2C2523]/15 bg-[#F0E0D1]/50 px-4 py-2 text-xs text-[#181515]/55 sm:hidden">
+        Swipe sideways to see every column.
+      </p>
     </div>
   ),
   thead: ({ children }: { children?: React.ReactNode }) => (
     <thead className="bg-[#F0E0D1]/80">{children}</thead>
   ),
   th: ({ children }: { children?: React.ReactNode }) => (
-    <th className="px-4 py-2.5 font-semibold text-[#181515]">{children}</th>
+    <th className="break-words border-b border-r border-[#2C2523]/15 px-6 py-5 align-top font-semibold leading-6 text-[#181515] last:border-r-0">
+      {children}
+    </th>
   ),
   td: ({ children }: { children?: React.ReactNode }) => (
-    <td className="border-t border-[#2C2523]/15 px-4 py-2.5 text-[#181515]/80">
+    <td className="break-words border-b border-r border-[#2C2523]/10 px-6 py-5 align-top leading-6 text-[#181515]/80 last:border-r-0">
       {children}
     </td>
   ),

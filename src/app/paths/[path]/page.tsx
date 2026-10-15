@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
@@ -26,7 +27,32 @@ export async function generateMetadata({
   return { title: path.title, description: path.description };
 }
 
-export default async function PathPage({ params }: PageProps<"/paths/[path]">) {
+export default function PathPage({ params }: PageProps<"/paths/[path]">) {
+  return (
+    <Suspense
+      fallback={
+        <div
+          role="status"
+          aria-label="Loading learning path"
+          className="mx-auto max-w-4xl px-5 pb-24 pt-10 lg:px-8"
+        >
+          <div className="h-4 w-40 animate-pulse rounded bg-[#2C2523]/10" />
+          <div className="mt-10 h-12 max-w-lg animate-pulse rounded bg-[#2C2523]/10" />
+          <div className="mt-5 h-6 max-w-2xl animate-pulse rounded bg-[#2C2523]/10" />
+          <div className="mt-10 h-36 rounded-2xl bg-[#2C2523]/10" />
+        </div>
+      }
+    >
+      <PathContent params={params} />
+    </Suspense>
+  );
+}
+
+async function PathContent({
+  params,
+}: {
+  params: PageProps<"/paths/[path]">["params"];
+}) {
   const { path: slug } = await params;
   const path = getPath(slug);
   if (!path) notFound();

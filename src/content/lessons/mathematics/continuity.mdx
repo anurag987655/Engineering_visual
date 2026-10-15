@@ -1,0 +1,596 @@
+## What continuity means
+
+A function is **continuous** when small changes in the input produce small
+changes in the output. Nothing sudden ever happens to it.
+
+Picture yourself walking up a ramp: take a tiny step forward and you rise a
+tiny bit. Now picture a staircase: you shuffle forward and stay flat, then at
+one instant you jump up a whole step. The ramp is continuous. The staircase is
+not — the jump is a break.
+
+Graphically, a continuous function can be drawn in one stroke, without lifting
+the pen from the paper. Its graph has:
+
+- no **gaps** (missing points),
+- no **jumps** (the graph steps from one height to another), and
+- no **asymptotes** (the graph racing off to infinity).
+
+Those three failures are exactly the three ways continuity can break, and each
+one gets its own section below. First, let us make "no breaks" precise,
+because a picture alone can hide very small breaks.
+
+<Playground id="continuity-at-a-point" />
+
+Choose each case, then move the **a** slider. Watch the vertical guide move
+across the graph and compare the three readouts below it:
+
+- **Continuous** — the three readouts (left limit, right limit, and f(a))
+  always agree, so the verdict never changes.
+- **Removable hole** — at a = 2 the two sides agree on height 4, but the
+  function was defined to be 5, so the dot floats above the hole.
+- **Jump** — at a = 2 the left side aims at one height and the right side at
+  another; no single value of f(2) can satisfy both.
+- **Vertical asymptote** — at a = 3 the function is undefined and the limits
+  are infinite.
+
+On the graph, an **open circle** marks a height the curve approaches but does
+not take at that input. A **filled circle** marks the value the function
+actually takes. The slider's orange guide marks the test input; when it lands
+on a break, compare those markers with the left-limit, right-limit, and f(a)
+readouts to see exactly which condition fails.
+
+## The formal definition
+
+Here is the definition, stated once in full:
+
+<Callout title="Continuity at a point" variant="note">
+  <div>
+    A function $f:\mathbb{R}\to\mathbb{R}$, defined on an open interval
+    containing $x=a$, is <strong>continuous at</strong> $a$ if all three
+    conditions hold:
+  </div>
+  <ol>
+    <li>
+      <strong>The function value exists:</strong> $f(a)$ is a real number.
+    </li>
+    <li>
+      <strong>The two-sided limit exists:</strong> both one-sided limits
+      agree, $\lim_{x\to a^-} f(x) = L_L$ and $\lim_{x\to a^+} f(x) = L_R$
+      with $L_L = L_R = L$.
+    </li>
+    <li>
+      <strong>The limit matches the value:</strong>{" "}
+      <Equation display={false} tex="\lim_{x\to a} f(x) = f(a)" />.
+    </li>
+  </ol>
+</Callout>
+
+Read the three pieces in plain language:
+
+- $f(a)$ is the height the curve **actually has** at the point $a$.
+- $\lim_{x\to a} f(x)$ is the height the curve is **heading toward** as $x$
+  approaches $a$ from the left and the right — it says nothing about what
+  happens exactly at $a$.
+- $\lim_{x\to a} f(x) = f(a)$ says where the curve heads and where it lands
+  are **the same place**.
+
+Condition 2 carries the left and right limits: both sides must exist and both
+must aim at the same height. If they disagree, the limit does not exist — you
+have a jump.
+
+<KeyIdea>
+  Three questions decide everything: <strong>Is f(a) there? Do both sides
+  agree? Does the limit land exactly on f(a)?</strong> If any answer is no,
+  the function is discontinuous at that point.
+</KeyIdea>
+
+### A worked example
+
+Consider
+
+$$
+f(x)=
+\begin{cases}
+\dfrac{x^2-4}{x-2}, & x\neq 2\\[6pt]
+5, & x=2
+\end{cases}
+$$
+
+For every $x \neq 2$ the numerator factors, so
+
+$$
+\frac{x^2-4}{x-2}=\frac{(x-2)(x+2)}{x-2}=x+2
+$$
+
+The two sides both head for $2+2=4$, so
+
+$$
+\lim_{x\to 2}f(x)=4
+$$
+
+But the function was defined to be $f(2)=5$. Since $4 \neq 5$, condition 3
+fails and the function is **not continuous at 2**. The graph is a straight
+line with a hole at height 4 and a stray dot at height 5 — exactly the
+removable case you dragged around in the playground.
+
+## The epsilon-delta test
+
+The three-condition test leans on limits. The epsilon-delta test says the
+same thing as a game between two people — a skeptic and a defender.
+
+<Callout title="Epsilon-delta definition of continuity" variant="note">
+  <div>$f$ is continuous at $a$ if</div>
+  <Equation
+    tex="\forall\,\varepsilon>0 \;\exists\,\delta>0:\qquad |f(x)-f(a)| < \varepsilon \quad\text{whenever}\quad |x-a| < \delta"
+  />
+</Callout>
+
+Translating each piece:
+
+- **$\varepsilon$ (epsilon)** is the *challenge*: a tolerance for the output.
+  "I will accept your function near $a$ only if the values stay within
+  $\varepsilon$ of $f(a)$."
+- **$\delta$ (delta)** is your *response*: a window radius around $a$. "Keep
+  the input within $\delta$ of $a$, and I promise the output lands inside
+  your tolerance."
+- **For every $\varepsilon>0$** means the defender must win *every* challenge,
+  no matter how tiny.
+
+In symbols: your output error is controlled by your input error,
+
+$$
+|x-a|<\delta \quad\Longrightarrow\quad |f(x)-f(a)|<\varepsilon
+$$
+
+<Playground id="epsilon-delta" />
+
+Try it yourself:
+
+1. Set a strict tolerance — say $\varepsilon = 0.20$.
+2. Drag $\delta$ wide and watch the verdict flip to **fails**: some input
+   inside the window climbs outside the band.
+3. Shrink $\delta$ (or press **Use a winning δ**) until the verdict reads
+   **answers this ε**.
+4. Now make $\varepsilon$ tiny and repeat — a winning $\delta$ still exists,
+   just smaller.
+
+Why must the definition hold for **every** $\varepsilon>0$? Because gaps hide
+in the small scales. If even one tolerance $\varepsilon>0$ had no working
+$\delta$, then no matter how close you force $x$ to $a$, some point stays at
+least $\varepsilon$ away from $f(a)$ — the curve would visibly miss its own
+point, which is precisely a gap or a jump.
+
+## Continuity and differentiability
+
+Two words often get confused:
+
+- **Continuous** — no break; you can draw the graph without lifting the pen.
+- **Differentiable** — no break *and* no corner; the graph has a unique
+  tangent slope at every point.
+
+The classic example separates them:
+
+$$
+f(x)=|x|
+$$
+
+At $x=0$ the three conditions all pass: the left side heads for 0, the right
+side heads for 0, and $f(0)=0$. The function is continuous there.
+
+Is it differentiable? Coming from the left the graph has slope $-1$; coming
+from the right it has slope $+1$. At the corner the slope does not settle on
+one value, so the derivative does not exist.
+
+<Figure caption="The absolute value function is continuous everywhere, but at x = 0 the two sides meet at a corner — left slope −1, right slope +1, no single tangent.">
+  <svg
+    viewBox="0 0 560 268"
+    role="img"
+    aria-label="Graph of the absolute value function with its two one-sided slopes marked"
+    className="block w-full"
+  >
+    <line x1="40" y1="220" x2="540" y2="220" stroke="#181515" strokeWidth="1.2" style={{ opacity: 0.4 }} />
+    <line x1="280" y1="30" x2="280" y2="246" stroke="#181515" strokeWidth="1.2" style={{ opacity: 0.4 }} />
+    <line x1="80" y1="60" x2="280" y2="220" stroke="#181515" strokeWidth="2.6" strokeLinecap="round" />
+    <line x1="280" y1="220" x2="480" y2="60" stroke="#181515" strokeWidth="2.6" strokeLinecap="round" />
+    <line x1="280" y1="220" x2="311" y2="245" stroke="#B4552D" strokeWidth="2" strokeDasharray="6 4" />
+    <line x1="280" y1="220" x2="249" y2="245" stroke="#B4552D" strokeWidth="2" strokeDasharray="6 4" />
+    <circle cx="280" cy="220" r="5.5" fill="#B4552D" stroke="#FBF4EC" strokeWidth="1.8" />
+    <text x="140" y="118" fontSize="13" className="font-mono" fill="#181515">slope −1</text>
+    <text x="392" y="118" fontSize="13" className="font-mono" fill="#181515">slope +1</text>
+    <text x="288" y="238" fontSize="12" className="font-mono" fill="#B4552D">x = 0</text>
+    <text x="280" y="46" fontSize="12.5" className="font-mono" fill="#181515" textAnchor="middle" style={{ opacity: 0.65 }}>
+      a corner: no single slope
+    </text>
+    <text x="536" y="212" fontSize="12" className="font-mono" fill="#181515" textAnchor="end" style={{ opacity: 0.5 }}>x</text>
+  </svg>
+</Figure>
+
+The lesson in one line:
+
+<KeyIdea>
+  Differentiable <strong>implies</strong> continuous, but continuous does not
+  imply differentiable. Continuity rules out breaks; differentiability rules
+  out breaks <em>and</em> corners.
+</KeyIdea>
+
+## Three types of discontinuity
+
+When the test at a point fails, the failure has a shape. There are three, and
+they map straight onto the three conditions of the definition.
+
+### 1. Removable discontinuity
+
+The limit exists — both sides aim at the same height — but $f(a)$ is either
+missing or set to the wrong value.
+
+**Mathematically:** $\lim_{x\to a}f(x)=L$ exists, but $f(a)\neq L$ (or
+$f(a)$ is undefined).
+
+**Example:**
+
+$$
+f(x)=\frac{x^2-4}{x-2},\qquad \text{so } f(2)\text{ is undefined},\quad
+\lim_{x\to2}f(x)=4
+$$
+
+**Why "removable":** one dot repairs it. Redefine $f(2)=4$ and the function
+becomes continuous at 2. The break was never structural.
+
+### 2. Jump discontinuity
+
+Both one-sided limits exist and are finite, but they are not equal.
+
+**Mathematically:** $\lim_{x\to a^-}f(x)=L_L$ and
+$\lim_{x\to a^+}f(x)=L_R$ with $L_L \neq L_R$.
+
+**Example:**
+
+$$
+f(x)=
+\begin{cases}
+2, & x<3\\
+6, & x\geq 3
+\end{cases}
+\qquad L_L=2,\quad L_R=6
+$$
+
+**Why not removable:** no single value of $f(3)$ can equal both 2 and 6.
+Redefining the point only moves the dot — the step stays.
+
+### 3. Infinite discontinuity
+
+The function grows without bound near $a$; the graph has a vertical
+asymptote.
+
+**Mathematically:** at least one one-sided limit is $\pm\infty$ (so no finite
+limit exists, and $f(a)$ cannot be a real number).
+
+**Example:**
+
+$$
+f(x)=\frac{1}{x-2}
+\qquad \lim_{x\to2^-}f(x)=-\infty,\qquad
+\lim_{x\to2^+}f(x)=+\infty
+$$
+
+**Why not removable:** you cannot fill the hole with any real number — the
+graph never settles near one.
+
+The three cases, side by side:
+
+<div className="my-8 grid gap-4">
+  <section className="rounded-2xl border border-[#2C2523]/25 bg-[#FBF4EC] p-5 sm:p-6">
+    <h4 className="font-display text-lg font-semibold text-[#181515]">Removable: both sides meet, but the point is missing or misplaced</h4>
+    <div className="mt-4 grid gap-3 sm:grid-cols-3">
+      <div className="rounded-xl bg-[#F0E0D1]/60 p-3"><div className="font-mono text-[10px] uppercase tracking-wider text-[#181515]/55">Left limit</div><div className="mt-1 font-mono text-base">L</div></div>
+      <div className="rounded-xl bg-[#F0E0D1]/60 p-3"><div className="font-mono text-[10px] uppercase tracking-wider text-[#181515]/55">Right limit</div><div className="mt-1 font-mono text-base">L</div></div>
+      <div className="rounded-xl bg-[#F0E0D1]/60 p-3"><div className="font-mono text-[10px] uppercase tracking-wider text-[#181515]/55">Function value</div><div className="mt-1">Missing or not equal to L</div></div>
+    </div>
+    <p className="mt-4 text-sm leading-6 text-[#181515]/75"><strong>Repair:</strong> yes. Set f(a) = L.</p>
+  </section>
+  <section className="rounded-2xl border border-[#2C2523]/25 bg-[#FBF4EC] p-5 sm:p-6">
+    <h4 className="font-display text-lg font-semibold text-[#181515]">Jump: the two sides approach different heights</h4>
+    <div className="mt-4 grid gap-3 sm:grid-cols-3">
+      <div className="rounded-xl bg-[#F0E0D1]/60 p-3"><div className="font-mono text-[10px] uppercase tracking-wider text-[#181515]/55">Left limit</div><div className="mt-1 font-mono text-base">Lₗ</div></div>
+      <div className="rounded-xl bg-[#F0E0D1]/60 p-3"><div className="font-mono text-[10px] uppercase tracking-wider text-[#181515]/55">Right limit</div><div className="mt-1 font-mono text-base">Lᵣ, where Lₗ ≠ Lᵣ</div></div>
+      <div className="rounded-xl bg-[#F0E0D1]/60 p-3"><div className="font-mono text-[10px] uppercase tracking-wider text-[#181515]/55">Function value</div><div className="mt-1">Any value</div></div>
+    </div>
+    <p className="mt-4 text-sm leading-6 text-[#181515]/75"><strong>Repair:</strong> no. One value cannot equal both limits.</p>
+  </section>
+  <section className="rounded-2xl border border-[#2C2523]/25 bg-[#FBF4EC] p-5 sm:p-6">
+    <h4 className="font-display text-lg font-semibold text-[#181515]">Infinite: at least one side grows without bound</h4>
+    <div className="mt-4 grid gap-3 sm:grid-cols-3">
+      <div className="rounded-xl bg-[#F0E0D1]/60 p-3"><div className="font-mono text-[10px] uppercase tracking-wider text-[#181515]/55">Left limit</div><div className="mt-1 font-mono text-base">−∞ or +∞</div></div>
+      <div className="rounded-xl bg-[#F0E0D1]/60 p-3"><div className="font-mono text-[10px] uppercase tracking-wider text-[#181515]/55">Right limit</div><div className="mt-1 font-mono text-base">+∞ or −∞</div></div>
+      <div className="rounded-xl bg-[#F0E0D1]/60 p-3"><div className="font-mono text-[10px] uppercase tracking-wider text-[#181515]/55">Function value</div><div className="mt-1">Undefined at the asymptote</div></div>
+    </div>
+    <p className="mt-4 text-sm leading-6 text-[#181515]/75"><strong>Repair:</strong> no. The function has no finite limit there.</p>
+  </section>
+</div>
+
+## Continuity on an interval
+
+At an interior point, the usual three-condition test applies. The endpoints of
+a closed interval need special care, because beyond an endpoint there is
+nothing to approach from.
+
+<Callout title="Continuity on [a, b]" variant="note">
+  <div>
+    $f$ is <strong>continuous on the closed interval</strong> $[a,b]$ when it
+    satisfies:
+  </div>
+  <ol>
+    <li>the ordinary continuity test at every point strictly inside, $a < x < b$;</li>
+    <li>
+      <strong>continuity from the right at</strong> $a$:{" "}
+      <Equation display={false} tex="\lim_{x\to a^+}f(x)=f(a)" />
+    </li>
+    <li>
+      <strong>continuity from the left at</strong> $b$:{" "}
+      <Equation display={false} tex="\lim_{x\to b^-}f(x)=f(b)" />
+    </li>
+  </ol>
+</Callout>
+
+Why one-sided at the ends? The two-sided limit at $a$ would require
+approaching $a$ from the left, but no points exist to the left of $a$ — the
+domain stops there. The same holds at $b$ from the right. The one-sided
+limits are the only ones the domain can support.
+
+For example, $f(x)=\sqrt{x}$ on $[0,1]$ is continuous: at every $x>0$ the
+ordinary test passes, and at the left endpoint $x=0$ only the right side
+exists, with $\lim_{x\to0^+}\sqrt{x}=0=f(0)$.
+
+## Algebra of continuous functions
+
+Continuity survives the usual algebraic operations. Suppose $f$ and $g$ are
+continuous at $a$ and $c$ is a constant. Then all of these are continuous at
+$a$:
+
+<table>
+  <thead>
+    <tr><th>Combination</th><th>Condition</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>f(x) + g(x) and f(x) − g(x)</td><td>None beyond continuity of f and g</td></tr>
+    <tr><td>c · f(x)</td><td>None</td></tr>
+    <tr><td>f(x) · g(x)</td><td>None</td></tr>
+    <tr><td>f(x) / g(x)</td><td>Requires g(a) ≠ 0</td></tr>
+  </tbody>
+</table>
+
+The quotient is the only one with a catch: if $g(a)=0$ the denominator
+vanishes and the function is undefined there — the graph may blow up.
+
+Two useful consequences:
+
+- **Polynomials are continuous everywhere.** They are built from $x$ and
+  constants using only addition and multiplication, so the rules above apply
+  at every point. For example $f(x)=x^2+3x-2$ passes the test at every $x$,
+  including $x=2$.
+- **Rational functions are continuous wherever the denominator is not
+  zero.** For $f(x)=\dfrac{x+1}{x-3}$ every point is fine except $x=3$, where
+  the denominator dies and the function is not even defined — so the domain
+  of a rational function already excludes its problem points.
+
+## The Extreme Value Theorem
+
+One theorem makes continuity worth checking: on a well-behaved interval,
+continuous functions are guaranteed to reach their extremes.
+
+<Callout title="Weierstrass Extreme Value Theorem" variant="note">
+  <div>
+    Let $f:[a,b]\to\mathbb{R}$ be continuous. Then $f$ attains both its
+    <strong>global minimum</strong> and its <strong>global maximum</strong> on
+    $[a,b]$. In other words, there are points
+    $x_{\min},x_{\max}\in[a,b]$ such that, for every $x\in[a,b]$,
+  </div>
+  <Equation tex="f(x_{\min})=\min_{t\in[a,b]}f(t)\;\leq\;f(x)\;\leq\;\max_{t\in[a,b]}f(t)=f(x_{\max})" />
+</Callout>
+
+Both hypotheses do real work:
+
+- **Continuity** forbids jumps. With a jump, the graph can step past a height
+  it never actually records, and the highest *recorded* value never arrives.
+- **Closed and bounded** (a compact set) keeps the endpoints in play. Drop it
+  and the supremum or infimum may sit exactly at a missing endpoint.
+
+The second failure is easy to see with $f(x)=x$ on the open interval $(0,1)$.
+The values climb toward 1 forever but never reach it — there is no largest
+number below 1. Likewise they sink toward 0 but never reach it. So this
+function attains **neither** a maximum nor a minimum on $(0,1)$.
+
+<Figure caption="Left: on the closed interval [0, 1] the arch reaches its top and both endpoints are recorded, so max and min exist. Right: on the open interval (0, 1) the line approaches 0 and 1 but never lands on either — neither extreme is attained.">
+  <svg
+    viewBox="0 0 640 270"
+    role="img"
+    aria-label="Comparison of a continuous function on a closed interval attaining its extrema against f of x equals x on an open interval attaining neither"
+    className="block w-full"
+  >
+    <text x="60" y="28" fontSize="13" className="font-mono" fill="#181515" style={{ opacity: 0.7 }}>
+      closed interval [0, 1]
+    </text>
+    <line x1="50" y1="230" x2="310" y2="230" stroke="#181515" strokeWidth="1.2" style={{ opacity: 0.4 }} />
+    <line x1="50" y1="230" x2="50" y2="40" stroke="#181515" strokeWidth="1.2" style={{ opacity: 0.4 }} />
+    <path d="M 70 230 Q 180 20 290 230" fill="none" stroke="#181515" strokeWidth="2.6" />
+    <circle cx="70" cy="230" r="5.5" fill="#181515" />
+    <circle cx="290" cy="230" r="5.5" fill="#181515" />
+    <circle cx="180" cy="74" r="5.5" fill="#B4552D" stroke="#FBF4EC" strokeWidth="1.6" />
+    <text x="180" y="58" fontSize="12" className="font-mono" fill="#B4552D" textAnchor="middle">max reached</text>
+    <text x="70" y="252" fontSize="12" className="font-mono" fill="#181515" textAnchor="middle" style={{ opacity: 0.7 }}>min reached</text>
+    <text x="290" y="252" fontSize="12" className="font-mono" fill="#181515" textAnchor="middle" style={{ opacity: 0.7 }}>min here too</text>
+
+    <line x1="330" y1="135" x2="330" y2="135" stroke="#181515" />
+    <text x="370" y="28" fontSize="13" className="font-mono" fill="#181515" style={{ opacity: 0.7 }}>
+      open interval (0, 1)
+    </text>
+    <line x1="370" y1="230" x2="610" y2="230" stroke="#181515" strokeWidth="1.2" style={{ opacity: 0.4 }} />
+    <line x1="370" y1="240" x2="370" y2="50" stroke="#181515" strokeWidth="1.2" style={{ opacity: 0.4 }} />
+    <line x1="400" y1="218" x2="576" y2="70" stroke="#181515" strokeWidth="2.6" strokeDasharray="1 0" />
+    <circle cx="400" cy="218" r="5.5" fill="#FBF4EC" stroke="#181515" strokeWidth="2.2" />
+    <circle cx="576" cy="70" r="5.5" fill="#FBF4EC" stroke="#181515" strokeWidth="2.2" />
+    <text x="400" y="252" fontSize="12" className="font-mono" fill="#B4552D" textAnchor="middle">open — 0 excluded</text>
+    <text x="576" y="52" fontSize="12" className="font-mono" fill="#B4552D" textAnchor="middle">open — 1 excluded</text>
+    <text x="470" y="140" fontSize="12.5" className="font-mono" fill="#181515" textAnchor="middle" style={{ opacity: 0.65 }}>
+      no max, no min
+    </text>
+  </svg>
+</Figure>
+
+That is why economic optimisation problems care: a continuous profit function
+on a closed feasible interval **must** have a best output somewhere, so
+searching for it is not pointless.
+
+## Continuity in economics
+
+Economic models lean on continuity constantly, usually without saying so.
+When we write a demand curve such as
+
+$$
+Q_d = 100 - 3P
+$$
+
+we are assuming price and quantity can move by arbitrarily small amounts and
+the quantity demanded moves by a correspondingly small amount. That is exactly
+continuity.
+
+Is the real world continuous? Strictly, no — you buy apples in whole apples,
+and the smallest price move is one penny. But modelling is a choice: if
+counting in pennies instead of dollars gives the same insight, the
+granularity does not matter. What matters is whether assuming smooth, small
+changes improves the model or hides something. Continuity buys us powerful
+tools — approximations, derivatives, and guarantees that optima exist — and
+those tools assume changes stay small.
+
+### A continuous cost function
+
+Suppose a firm's total cost is
+
+$$
+C(q)=100+5q
+$$
+
+where $q$ is output. This is a polynomial, so it is continuous everywhere.
+
+- $C(10)=100+5(10)=150$.
+- Continuity at $q=10$ means: produce slightly more or slightly less than 10
+  and the cost changes only slightly. If output moves by $\Delta q$, cost
+  moves by $\Delta C=5\,\Delta q$ — proportional, never a jump.
+- Continuity does **not** require linearity. $C(q)=q^2+100$ and
+  $C(q)=\sqrt{q}+100$ are continuous too. Any polynomial, any rational
+  function away from division by zero, all pass.
+
+### A discontinuous pricing policy
+
+Now a firm that charges
+
+$$
+P(q)=
+\begin{cases}
+100q, & q<10\\
+100q-200, & q\geq10
+\end{cases}
+$$
+
+Approaching 10 units from below, the bill heads for $1000$. At exactly 10
+units the firm charges $800$. The left-hand limit is 1000, the right-hand
+value is 800 — a **jump discontinuity** with a 200-unit discount hanging on
+the threshold.
+
+Economically this reads as a bulk-discount cliff: the last step from 9.99 to
+10.00 units *reduces* the bill. Firms really do price this way, but the jump
+breaks the smooth-trade-off assumption — a tiny change in quantity can change
+expenditure by a lot, and the calculus of optimisation no longer applies
+across the threshold.
+
+And note the limit of continuity's promise: even a perfectly continuous
+profit function only guarantees that a best output **exists**. Finding it
+needs more — derivatives, or simply checking values.
+
+## Continuity in several variables
+
+Everything so far used inputs on a line. For a function
+
+$$
+f:\mathbb{R}^2\to\mathbb{R}
+$$
+
+the input is a *point* $\mathbf{x}=(x,y)$, and distances are measured with
+the Euclidean metric — straight-line distance:
+
+$$
+\|\mathbf{x}-\mathbf{a}\|
+=\sqrt{(x-a_1)^2+(y-a_2)^2}
+$$
+
+The definition then reads:
+
+$$
+\forall\,\varepsilon>0\;\exists\,\delta>0:
+\qquad |f(\mathbf{x})-f(\mathbf{a})|<\varepsilon
+\quad\text{whenever}\quad
+\sqrt{(x-a_1)^2+(y-a_2)^2}<\delta
+$$
+
+The set of inputs within $\delta$ of $\mathbf{a}$ is the **open
+$\delta$-ball** (in the plane, a disk):
+
+$$
+B_\delta(\mathbf{a})
+=\{\mathbf{x}\in\mathbb{R}^n : \|\mathbf{x}-\mathbf{a}\|<\delta\}
+$$
+
+So the picture is unchanged, only one dimension richer: *every input inside
+the $\delta$-disk must land inside the $\varepsilon$-band around
+$f(\mathbf{a})$.*
+
+<Figure caption="Continuity in the plane: the open δ-disk around a collects the nearby inputs, and f must map all of them into the ε-band around f(a). Geometrically, √((x−a₁)²+(y−a₂)²) is simply the straight-line distance from x to a.">
+  <svg
+    viewBox="0 0 640 250"
+    role="img"
+    aria-label="A delta disk around a in the input plane mapping through f into an epsilon band around f of a on the output line"
+    className="block w-full"
+  >
+    <text x="60" y="26" fontSize="13" className="font-mono" fill="#181515" style={{ opacity: 0.7 }}>
+      inputs: the δ-disk around a
+    </text>
+    <line x1="50" y1="200" x2="260" y2="200" stroke="#181515" strokeWidth="1.2" style={{ opacity: 0.4 }} />
+    <line x1="70" y1="220" x2="70" y2="60" stroke="#181515" strokeWidth="1.2" style={{ opacity: 0.4 }} />
+    <circle cx="155" cy="140" r="58" fill="#181515" fillOpacity="0.06" stroke="#B4552D" strokeWidth="1.8" strokeDasharray="6 5" />
+    <circle cx="155" cy="140" r="5.5" fill="#B4552D" />
+    <text x="164" y="134" fontSize="12.5" className="font-mono" fill="#181515">a</text>
+    <text x="155" y="232" fontSize="12" className="font-mono" fill="#B4552D" textAnchor="middle">inputs with |x − a| &lt; δ</text>
+
+    <line x1="278" y1="140" x2="350" y2="140" stroke="#181515" strokeWidth="1.8" />
+    <polygon points="350,140 340,134 340,146" fill="#181515" />
+    <text x="314" y="128" fontSize="13" className="font-mono" fill="#181515" textAnchor="middle">f</text>
+
+    <text x="392" y="26" fontSize="13" className="font-mono" fill="#181515" style={{ opacity: 0.7 }}>
+      outputs: the ε-band around f(a)
+    </text>
+    <rect x="392" y="86" width="218" height="52" fill="#B4552D" fillOpacity="0.14" stroke="#B4552D" strokeWidth="1.4" strokeDasharray="6 4" />
+    <line x1="380" y1="112" x2="624" y2="112" stroke="#181515" strokeWidth="1.4" />
+    <polygon points="624,112 614,106 614,118" fill="#181515" />
+    <circle cx="501" cy="112" r="5.5" fill="#181515" />
+    <text x="510" y="106" fontSize="12.5" className="font-mono" fill="#181515">f(a)</text>
+    <text x="398" y="80" fontSize="12" className="font-mono" fill="#B4552D">f(a) + ε</text>
+    <text x="398" y="154" fontSize="12" className="font-mono" fill="#B4552D">f(a) − ε</text>
+    <text x="501" y="232" fontSize="12" className="font-mono" fill="#B4552D" textAnchor="middle">all values land inside the band</text>
+  </svg>
+</Figure>
+
+If some input inside the disk ever mapped outside the band, the defender has
+lost that challenge and $f$ is discontinuous at $\mathbf{a}$. Everything you
+learned in one dimension — jumps, holes, the challenge game — carries over
+unchanged.
+
+## Check yourself
+
+You now have the definition, the epsilon-delta game, the three failure modes,
+the interval rules, the algebra, the Extreme Value Theorem, and the economic
+interpretation. The fastest way to lock them in is to work the problems —
+every answer waits behind a reveal.
+
+<Callout title="Practice: 23 questions with worked solutions" variant="warn">
+  [Practice Questions: Continuity](/lessons/continuity-practice-questions)
+</Callout>
