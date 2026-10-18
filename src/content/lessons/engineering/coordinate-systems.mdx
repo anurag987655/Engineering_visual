@@ -74,18 +74,17 @@ then along $z$ — before landing and stopping. Change any value and press
 
 The three variables used in cylindrical coordinates are:
 
-- $r$: radial distance in the $xy$ plane ($0$ to $\infty$),
-- $\theta$: angle made with respect to the positive $x$ axis
+- $\rho$: radial distance in the $xy$ plane ($0$ to $\infty$),
+- $\phi$: angle made with respect to the positive $x$ axis
   ($0$ to $2\pi$),
 - $z$: height along the $z$ axis ($-\infty$ to $\infty$).
 
 <Callout title="A note on symbols" variant="note">
-  This lesson writes cylindrical coordinates as $(r, \theta, z)$, with
-  $\theta$ measured from the positive $x$ axis. Many textbooks — and the
-  past-year questions at the end of this chapter — write the same thing as
-  $(\rho, \phi, z)$, so $\rho = r$ and $\phi = \theta$. In **spherical**
-  coordinates below, $\theta$ and $\phi$ swap roles: there, $\theta$ is the
-  polar angle from $+z$ and $\phi$ is the azimuth.
+  This lesson writes cylindrical coordinates as $(\rho, \phi, z)$ and
+  spherical coordinates as $(r, \theta, \phi)$ — the same notation the
+  past-year questions at the end of this chapter use. $\phi$ is the azimuth
+  in **both** systems; $\rho$ is the cylindrical radius, $r$ the spherical
+  radius, and $\theta$ the polar angle from $+z$ (spherical only).
 </Callout>
 
 ## Interactive cylindrical coordinates
@@ -101,23 +100,23 @@ upward by the chosen height and lands on the point.
 
 ## Rectangular and cylindrical conversions
 
-### Rectangular $(x, y, z)$ to cylindrical $(r, \theta, z)$
+### Rectangular $(x, y, z)$ to cylindrical $(\rho, \phi, z)$
 
 Given a point $P(x, y, z)$ in Cartesian coordinates:
 
 1. Radial distance:
 
    $$
-   r = \sqrt{x^2 + y^2}
+   \rho = \sqrt{x^2 + y^2}
    $$
 
 2. Azimuthal angle:
 
    $$
-   \theta = \arctan\left(\frac{y}{x}\right)
+   \phi = \arctan\left(\frac{y}{x}\right)
    $$
 
-   **Note:** inspect the signs of $x$ and $y$ to place $\theta$ in the
+   **Note:** inspect the signs of $x$ and $y$ to place $\phi$ in the
    correct quadrant — in practice this is `atan2(y, x)`, which already
    resolves the quadrant for you.
 
@@ -127,20 +126,20 @@ Given a point $P(x, y, z)$ in Cartesian coordinates:
    z = z
    $$
 
-### Cylindrical $(r, \theta, z)$ to rectangular $(x, y, z)$
+### Cylindrical $(\rho, \phi, z)$ to rectangular $(x, y, z)$
 
-Given a point $P(r, \theta, z)$ in cylindrical coordinates:
+Given a point $P(\rho, \phi, z)$ in cylindrical coordinates:
 
 1. $x$-coordinate:
 
    $$
-   x = r \cos\theta
+   x = \rho \cos\phi
    $$
 
 2. $y$-coordinate:
 
    $$
-   y = r \sin\theta
+   y = \rho \sin\phi
    $$
 
 3. $z$-coordinate:
@@ -149,11 +148,11 @@ Given a point $P(r, \theta, z)$ in cylindrical coordinates:
    z = z
    $$
 
-## Direction of $\hat{a}_r$, $\hat{a}_\theta$ and $\hat{a}_z$
+## Direction of $\hat{a}_\rho$, $\hat{a}_\phi$ and $\hat{a}_z$
 
 Toggle the unit vectors in the playground above to see them at the point
-you chose. At any point, $\hat{a}_r$ points straight outward from the
-$z$-axis, $\hat{a}_\theta$ is perpendicular to it in the direction of
+you chose. At any point, $\hat{a}_\rho$ points straight outward from the
+$z$-axis, $\hat{a}_\phi$ is perpendicular to it in the direction of
 increasing angle, and $\hat{a}_z$ points straight up. The three are
 mutually perpendicular, and — unlike $\hat{a}_x$, $\hat{a}_y$, $\hat{a}_z$ —
 they **change direction as you move around the space**.
@@ -165,20 +164,20 @@ they **change direction as you move around the space**.
 To find a component, project the vector onto the direction we want (the
 playground below does exactly this, in three dimensions — the vector sits
 off the floor plane whenever $A_z \neq 0$, and you can orbit the scene to
-see it). The radial direction makes an angle $\theta$ with the $x$-axis, so
-the $x$-part contributes $A_x\cos\theta$ to the radial component. The
-$y$-part contributes $A_y\sin\theta$. Adding these gives:
+see it). The radial direction makes an angle $\phi$ with the $x$-axis, so
+the $x$-part contributes $A_x\cos\phi$ to the radial component. The
+$y$-part contributes $A_y\sin\phi$. Adding these gives:
 
 $$
-A_r = A_x\cos\theta + A_y\sin\theta
+A_\rho = A_x\cos\phi + A_y\sin\phi
 $$
 
 The tangential direction is perpendicular to the radial direction. Its
-$x$-direction projection is $-\sin\theta$, while its $y$-direction
-projection is $\cos\theta$. Therefore:
+$x$-direction projection is $-\sin\phi$, while its $y$-direction
+projection is $\cos\phi$. Therefore:
 
 $$
-A_\theta = -A_x\sin\theta + A_y\cos\theta
+A_\phi = -A_x\sin\phi + A_y\cos\phi
 $$
 
 The $z$-direction is the same in both coordinate systems, so:
@@ -195,15 +194,15 @@ Together, these equations can be written as:
 
 $$
 \begin{bmatrix}
-A_r \\
-A_\theta \\
+A_\rho \\
+A_\phi \\
 A_z
 \end{bmatrix}
 =
 \underbrace{
 \begin{bmatrix}
-\cos\theta & \sin\theta & 0 \\
--\sin\theta & \cos\theta & 0 \\
+\cos\phi & \sin\phi & 0 \\
+-\sin\phi & \cos\phi & 0 \\
 0 & 0 & 1
 \end{bmatrix}
 }_{M}
@@ -237,8 +236,8 @@ A_z
 \end{bmatrix}
 = M^{T}
 \begin{bmatrix}
-A_r \\
-A_\theta \\
+A_\rho \\
+A_\phi \\
 A_z
 \end{bmatrix}
 $$
@@ -253,13 +252,13 @@ A_z
 \end{bmatrix}
 =
 \begin{bmatrix}
-\cos\theta & -\sin\theta & 0 \\
-\sin\theta & \cos\theta & 0 \\
+\cos\phi & -\sin\phi & 0 \\
+\sin\phi & \cos\phi & 0 \\
 0 & 0 & 1
 \end{bmatrix}
 \begin{bmatrix}
-A_r \\
-A_\theta \\
+A_\rho \\
+A_\phi \\
 A_z
 \end{bmatrix}
 $$
@@ -267,11 +266,11 @@ $$
 Which gives:
 
 $$
-A_x = A_r\cos\theta - A_\theta\sin\theta
+A_x = A_\rho\cos\phi - A_\phi\sin\phi
 $$
 
 $$
-A_y = A_r\sin\theta + A_\theta\cos\theta
+A_y = A_\rho\sin\phi + A_\phi\cos\phi
 $$
 
 $$

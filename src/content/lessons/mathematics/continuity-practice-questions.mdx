@@ -16,7 +16,7 @@ leans on.
 <Callout title="Short on time?" variant="note">
   Prioritise **Q2, Q4, Q5, Q8, Q11, Q12, Q14, Q15, Q18, and Q21** — they
   cover the definition, the epsilon-delta test, both proof patterns, the
-  discontinuity classes, the Extreme Value Theorem, and the economics link.
+  discontinuity classes, the Mean Value Theorem, and the economics link.
 </Callout>
 
 ## Part A — Conceptual understanding
@@ -804,49 +804,46 @@ leans on.
   solution={
     <>
       <p>
-        <strong>The theorem:</strong> if <Equation display={false} tex="f" /> is continuous on a closed and
-        bounded interval <Equation display={false} tex="[a,b]" />, then <Equation display={false} tex="f" /> attains a global maximum and a
-        global minimum somewhere in <Equation display={false} tex="[a,b]" /> — there exist <Equation display={false} tex="c,d\in[a,b]" /> with
+        <strong>The theorem:</strong> if <Equation display={false} tex="f" /> is continuous on the closed
+        interval <Equation display={false} tex="[a,b]" /> and differentiable on the open interval{" "}
+        <Equation display={false} tex="(a,b)" />, then there exists at least one{" "}
+        <Equation display={false} tex="c\in(a,b)" /> with
       </p>
-      <Equation tex="f(c)\geq f(x)\geq f(d)\qquad\text{for all }x\in[a,b]" />
+      <Equation tex="f'(c)=\frac{f(b)-f(a)}{b-a}" />
       <p>
-        <strong>Why continuity matters:</strong> a jump lets the graph step
-        over a height it never actually takes. The values below the jump may
-        climb arbitrarily close to the step without ever recording it, so the
-        largest <em>recorded</em> value never arrives.
-      </p>
-      <p>
-        <strong>Why closed and bounded matters:</strong> an open or unbounded
-        interval can leave the extreme sitting exactly where the domain has a
-        hole or a missing edge.
+        In words: somewhere inside the interval the instantaneous rate of
+        change equals the average rate of change over the whole interval.
       </p>
       <p>
-        <strong>The example <Equation display={false} tex="f(x)=x" /> on <Equation display={false} tex="(0,1)" />:</strong> no. Take any
-        <Equation display={false} tex="x\in(0,1)" /> — say <Equation display={false} tex="x=0.9" />. The point <Equation display={false} tex="(x+1)/2=0.95" /> is still in the
-        interval and larger. This never stops: values approach 1 but never
-        reach it (1 is excluded), and values approach 0 but never reach it.
-        So <Equation display={false} tex="f" /> attains <strong>neither a maximum nor a minimum</strong> on
-        <Equation display={false} tex="(0,1)" />. The interval is open and unattained endpoints destroy the
-        conclusion — exactly the hypothesis the theorem insists on.
+        <strong>Verifying it for <Equation display={false} tex="f(x)=x^2" /> on <Equation display={false} tex="[0,2]" />:</strong>{" "}
+        <Equation display={false} tex="f" /> is a polynomial, so it is continuous on{" "}
+        <Equation display={false} tex="[0,2]" /> and differentiable on{" "}
+        <Equation display={false} tex="(0,2)" /> — the hypotheses hold. The average rate of change is
+      </p>
+      <Equation tex="\frac{f(2)-f(0)}{2-0}=\frac{4-0}{2}=2" />
+      <p>
+        Set the derivative equal to this:
+      </p>
+      <Equation tex="f'(c)=2c=2\qquad\Longrightarrow\qquad c=1" />
+      <p>
+        Since <Equation display={false} tex="1\in(0,2)" />, the theorem is confirmed. Geometrically: the
+        chord from <Equation display={false} tex="(0,0)" /> to <Equation display={false} tex="(2,4)" /> has slope 2, and the
+        tangent to the parabola at <Equation display={false} tex="c=1" /> also has slope 2 — the two are
+        parallel.
       </p>
     </>
   }
 >
-  State the Weierstrass Extreme Value Theorem.
+  State the Mean Value Theorem.
 
-  Explain why both continuity and the closed, bounded interval condition
-  matter.
-
-  Consider
+  Verify it for
 
   $$
-  f(x)=x,\qquad x\in(0,1)
+  f(x)=x^2,\qquad x\in[0,2]
   $$
 
-  Does this function attain a maximum and a minimum on $(0,1)$?
-
-  Explain how this example illustrates the importance of the theorem's
-  assumptions.
+  Find the value of $c$ guaranteed by the theorem, and explain what it means
+  geometrically.
 </PracticeQuestion>
 
 <PracticeQuestion
@@ -1087,8 +1084,8 @@ leans on.
       </p>
       <p>
         <strong>(d) No.</strong> Continuity guarantees that a maximum{" "}
-        <em>exists</em> (on a closed, bounded feasible set, by the Extreme
-        Value Theorem) — not that it sits at <Equation display={false} tex="q=5" />. Locating it needs more
+        <em>exists</em> on a closed, bounded feasible set — not that it sits
+        at <Equation display={false} tex="q=5" />. Locating it needs more
         information, such as the derivative:
       </p>
       <Equation tex="\pi'(q)=50-2q=0 \quad\Longrightarrow\quad q=25" />

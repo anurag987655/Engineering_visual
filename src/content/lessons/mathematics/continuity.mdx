@@ -373,73 +373,15 @@ Two useful consequences:
   the denominator dies and the function is not even defined — so the domain
   of a rational function already excludes its problem points.
 
-## The Extreme Value Theorem
+## The Mean Value Theorem
 
-One theorem makes continuity worth checking: on a well-behaved interval,
-continuous functions are guaranteed to reach their extremes.
-
-<Callout title="Weierstrass Extreme Value Theorem" variant="note">
+<Callout title="Mean Value Theorem (MVT)" variant="note">
   <div>
-    Let $f:[a,b]\to\mathbb{R}$ be continuous. Then $f$ attains both its
-    <strong>global minimum</strong> and its <strong>global maximum</strong> on
-    $[a,b]$. In other words, there are points
-    $x_{\min},x_{\max}\in[a,b]$ such that, for every $x\in[a,b]$,
+    If $f$ is continuous on $[a, b]$ and differentiable on $(a, b)$, there
+    exists at least one $c \in (a, b)$ such that
   </div>
-  <Equation tex="f(x_{\min})=\min_{t\in[a,b]}f(t)\;\leq\;f(x)\;\leq\;\max_{t\in[a,b]}f(t)=f(x_{\max})" />
+  <Equation tex="f'(c) = \frac{f(b) - f(a)}{b - a}" />
 </Callout>
-
-Both hypotheses do real work:
-
-- **Continuity** forbids jumps. With a jump, the graph can step past a height
-  it never actually records, and the highest *recorded* value never arrives.
-- **Closed and bounded** (a compact set) keeps the endpoints in play. Drop it
-  and the supremum or infimum may sit exactly at a missing endpoint.
-
-The second failure is easy to see with $f(x)=x$ on the open interval $(0,1)$.
-The values climb toward 1 forever but never reach it — there is no largest
-number below 1. Likewise they sink toward 0 but never reach it. So this
-function attains **neither** a maximum nor a minimum on $(0,1)$.
-
-<Figure caption="Left: on the closed interval [0, 1] the arch reaches its top and both endpoints are recorded, so max and min exist. Right: on the open interval (0, 1) the line approaches 0 and 1 but never lands on either — neither extreme is attained.">
-  <svg
-    viewBox="0 0 640 270"
-    role="img"
-    aria-label="Comparison of a continuous function on a closed interval attaining its extrema against f of x equals x on an open interval attaining neither"
-    className="block w-full"
-  >
-    <text x="60" y="28" fontSize="13" className="font-mono" fill="#181515" style={{ opacity: 0.7 }}>
-      closed interval [0, 1]
-    </text>
-    <line x1="50" y1="230" x2="310" y2="230" stroke="#181515" strokeWidth="1.2" style={{ opacity: 0.4 }} />
-    <line x1="50" y1="230" x2="50" y2="40" stroke="#181515" strokeWidth="1.2" style={{ opacity: 0.4 }} />
-    <path d="M 70 230 Q 180 20 290 230" fill="none" stroke="#181515" strokeWidth="2.6" />
-    <circle cx="70" cy="230" r="5.5" fill="#181515" />
-    <circle cx="290" cy="230" r="5.5" fill="#181515" />
-    <circle cx="180" cy="74" r="5.5" fill="#B4552D" stroke="#FBF4EC" strokeWidth="1.6" />
-    <text x="180" y="58" fontSize="12" className="font-mono" fill="#B4552D" textAnchor="middle">max reached</text>
-    <text x="70" y="252" fontSize="12" className="font-mono" fill="#181515" textAnchor="middle" style={{ opacity: 0.7 }}>min reached</text>
-    <text x="290" y="252" fontSize="12" className="font-mono" fill="#181515" textAnchor="middle" style={{ opacity: 0.7 }}>min here too</text>
-
-    <line x1="330" y1="135" x2="330" y2="135" stroke="#181515" />
-    <text x="370" y="28" fontSize="13" className="font-mono" fill="#181515" style={{ opacity: 0.7 }}>
-      open interval (0, 1)
-    </text>
-    <line x1="370" y1="230" x2="610" y2="230" stroke="#181515" strokeWidth="1.2" style={{ opacity: 0.4 }} />
-    <line x1="370" y1="240" x2="370" y2="50" stroke="#181515" strokeWidth="1.2" style={{ opacity: 0.4 }} />
-    <line x1="400" y1="218" x2="576" y2="70" stroke="#181515" strokeWidth="2.6" strokeDasharray="1 0" />
-    <circle cx="400" cy="218" r="5.5" fill="#FBF4EC" stroke="#181515" strokeWidth="2.2" />
-    <circle cx="576" cy="70" r="5.5" fill="#FBF4EC" stroke="#181515" strokeWidth="2.2" />
-    <text x="400" y="252" fontSize="12" className="font-mono" fill="#B4552D" textAnchor="middle">open — 0 excluded</text>
-    <text x="576" y="52" fontSize="12" className="font-mono" fill="#B4552D" textAnchor="middle">open — 1 excluded</text>
-    <text x="470" y="140" fontSize="12.5" className="font-mono" fill="#181515" textAnchor="middle" style={{ opacity: 0.65 }}>
-      no max, no min
-    </text>
-  </svg>
-</Figure>
-
-That is why economic optimisation problems care: a continuous profit function
-on a closed feasible interval **must** have a best output somewhere, so
-searching for it is not pointless.
 
 ## Continuity in economics
 
@@ -459,8 +401,8 @@ and the smallest price move is one penny. But modelling is a choice: if
 counting in pennies instead of dollars gives the same insight, the
 granularity does not matter. What matters is whether assuming smooth, small
 changes improves the model or hides something. Continuity buys us powerful
-tools — approximations, derivatives, and guarantees that optima exist — and
-those tools assume changes stay small.
+tools — approximations and derivatives — and those tools assume changes stay
+small.
 
 ### A continuous cost function
 
@@ -503,9 +445,9 @@ breaks the smooth-trade-off assumption — a tiny change in quantity can change
 expenditure by a lot, and the calculus of optimisation no longer applies
 across the threshold.
 
-And note the limit of continuity's promise: even a perfectly continuous
-profit function only guarantees that a best output **exists**. Finding it
-needs more — derivatives, or simply checking values.
+And note the limit of continuity's promise: continuity alone does not locate
+the best output. Finding it needs more — derivatives, or simply checking
+values.
 
 ## Continuity in several variables
 
@@ -587,7 +529,7 @@ unchanged.
 ## Check yourself
 
 You now have the definition, the epsilon-delta game, the three failure modes,
-the interval rules, the algebra, the Extreme Value Theorem, and the economic
+the interval rules, the algebra, the Mean Value Theorem, and the economic
 interpretation. The fastest way to lock them in is to work the problems —
 every answer waits behind a reveal.
 

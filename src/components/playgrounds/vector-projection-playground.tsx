@@ -258,7 +258,7 @@ export function VectorProjectionPlayground() {
       solid(ctx);
 
       const [lx, ly] = p.to2d(footR[0] / 2, footR[1] / 2, 0);
-      label(ctx, "Ax·cosθ + Ay·sinθ", lx + 4, ly - 10, {
+      label(ctx, "Ax·cosφ + Ay·sinφ", lx + 4, ly - 10, {
         color: RUST,
         font: '600 11px var(--font-mono), monospace',
       });
@@ -271,13 +271,13 @@ export function VectorProjectionPlayground() {
     });
 
     const [rx, ry] = p.to2d(footR[0], footR[1], footR[2]);
-    label(ctx, `Ar = ${fmt(ar)}`, rx + 8, ry + 14, {
+    label(ctx, `Aρ = ${fmt(ar)}`, rx + 8, ry + 14, {
       color: RUST,
       font: '700 12px var(--font-display), serif',
     });
 
     const [ux, uy] = p.to2d(footT[0], footT[1], footT[2]);
-    label(ctx, `Aθ = ${fmt(at)}`, ux + 8, uy + 14, {
+    label(ctx, `Aφ = ${fmt(at)}`, ux + 8, uy + 14, {
       color: BLUE,
       font: '700 12px var(--font-display), serif',
     });
@@ -314,7 +314,7 @@ export function VectorProjectionPlayground() {
   return (
     <SceneShell
       title="Projection & transformation matrix"
-      subtitle="Slide θ and A_z and watch A fall onto the new axes."
+      subtitle="Slide φ and A_z and watch A fall onto the new axes."
       badge="M"
       ariaLabel="Three dimensional vector projection showing how Cartesian components transform into cylindrical components"
       canvasRef={canvasRef}
@@ -325,10 +325,10 @@ export function VectorProjectionPlayground() {
             <span className="h-3 w-3 rounded-sm bg-[#181515]" /> A
           </span>
           <span className="flex items-center gap-1.5">
-            <span className="h-3 w-3 rounded-sm bg-[#B4552D]" /> Aᵣ
+            <span className="h-3 w-3 rounded-sm bg-[#B4552D]" /> Aρ
           </span>
           <span className="flex items-center gap-1.5">
-            <span className="h-3 w-3 rounded-sm bg-[#33506E]" /> Aθ
+            <span className="h-3 w-3 rounded-sm bg-[#33506E]" /> Aφ
           </span>
           <span className="flex items-center gap-1.5">
             <span className="h-3 w-3 rounded-sm bg-[#2F6F6A]" /> Az
@@ -369,7 +369,7 @@ export function VectorProjectionPlayground() {
         />
         <Slider
           id="proj-theta"
-          label="Angle θ"
+          label="Angle φ"
           value={thetaDeg}
           display={`${thetaDeg}°`}
           min={0}
@@ -383,13 +383,13 @@ export function VectorProjectionPlayground() {
         <div className="flex flex-wrap items-center gap-2.5">
           <PrimaryButton onClick={replay}>Replay projection</PrimaryButton>
           <Chip active={showContributions} onClick={() => setShowContributions((v) => !v)}>
-            Show Ax cosθ and Ay sinθ
+            Show Ax cosφ and Ay sinφ
           </Chip>
           <Chip active={inverse} onClick={() => setInverse((v) => !v)}>
             Invert (Mᵀ)
           </Chip>
           <Chip active={showRadialPlane} onClick={() => setShowRadialPlane((v) => !v)}>
-            Radial plane (âᵣ, ẑ)
+            Radial plane (âρ, ẑ)
           </Chip>
           <Chip onClick={reset}>Reset view</Chip>
         </div>
@@ -402,14 +402,14 @@ export function VectorProjectionPlayground() {
         <Readout
           items={[
             {
-              label: "Ar",
+              label: "Aρ",
               value: `${fmt(ax)}·${fmt(Math.cos(theta))} + ${fmt(ay)}·${fmt(
                 Math.sin(theta),
               )} = ${fmt(ar)}`,
               color: AXIS_COLOR.x,
             },
             {
-              label: "Aθ",
+              label: "Aφ",
               value: `−${fmt(ax)}·${fmt(Math.sin(theta))} + ${fmt(ay)}·${fmt(
                 Math.cos(theta),
               )} = ${fmt(at)}`,

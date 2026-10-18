@@ -176,7 +176,7 @@ export function CylindricalPointPlayground() {
           Math.sin(sweepAngle) * r * 0.5,
           0,
         );
-        label(ctx, "r", mx, my - 8, {
+        label(ctx, "ρ", mx, my - 8, {
           color: RUST,
           font: '700 13px var(--font-display), serif',
         });
@@ -188,7 +188,7 @@ export function CylindricalPointPlayground() {
       : prog.circle < 1
         ? `Drawing the circle of radius ${fmt(r)}…`
         : prog.sweep < 1
-          ? `Spanning θ = ${thetaDeg}°…`
+          ? `Spanning φ = ${thetaDeg}°…`
           : prog.lift < 1
             ? `Lifting by z = ${fmt(z)}…`
             : `Landed at (${fmt(dot[0])}, ${fmt(dot[1])}, ${fmt(dot[2])})`;
@@ -212,7 +212,7 @@ export function CylindricalPointPlayground() {
     <SceneShell
       title="Interactive cylindrical coordinates"
       subtitle="Circle → angle → height, in that order."
-      badge="r,θ,z"
+      badge="ρ,φ,z"
       ariaLabel="Interactive cylindrical coordinate system building a point from radius, angle and height"
       canvasRef={canvasRef}
       pointer={pointer}
@@ -222,7 +222,7 @@ export function CylindricalPointPlayground() {
             <span className="h-3 w-3 rounded-full bg-[#BF4326]" /> Point
           </span>
           <span className="flex items-center gap-1.5">
-            <span className="h-3 w-3 rounded-sm bg-[#B4552D]" /> Radius r
+            <span className="h-3 w-3 rounded-sm bg-[#B4552D]" /> Radius ρ
           </span>
           <span className="flex items-center gap-1.5">
             <span className="h-3 w-3 rounded-sm bg-[#33506E]" /> Height z
@@ -233,7 +233,7 @@ export function CylindricalPointPlayground() {
       <div className="grid gap-6 lg:grid-cols-3">
         <Slider
           id="cyl-r"
-          label="Radius r"
+          label="Radius ρ"
           value={r}
           display={fmt(r)}
           min={0}
@@ -243,7 +243,7 @@ export function CylindricalPointPlayground() {
         />
         <Slider
           id="cyl-theta"
-          label="Angle θ"
+          label="Angle φ"
           value={thetaDeg}
           display={thetaLabel}
           min={0}
@@ -270,7 +270,7 @@ export function CylindricalPointPlayground() {
             active={showVectors}
             onClick={() => setShowVectors((v) => !v)}
           >
-            Unit vectors âr, âθ, âz
+            Unit vectors âρ, âφ, âz
           </Chip>
           <Chip onClick={reset}>Reset view</Chip>
         </div>
@@ -280,7 +280,7 @@ export function CylindricalPointPlayground() {
       <div className="mt-5">
         <Readout
           items={[
-            { label: "cylindrical", value: `(r, θ, z) = (${fmt(r)}, ${thetaLabel}, ${fmt(z)})` },
+            { label: "cylindrical", value: `(ρ, φ, z) = (${fmt(r)}, ${thetaLabel}, ${fmt(z)})` },
             { label: "rectangular", value: `(x, y, z) = (${fmt(x)}, ${fmt(y)}, ${fmt(z)})`, color: AXIS_COLOR.x },
           ]}
         />
@@ -301,8 +301,8 @@ function drawUnitVectors(
   const ez: [number, number, number] = [0, 0, 1];
 
   const specs: { dir: [number, number, number]; color: string; name: string }[] = [
-    { dir: er, color: RUST, name: "a_r" },
-    { dir: eth, color: BLUE, name: "a_θ" },
+    { dir: er, color: RUST, name: "a_ρ" },
+    { dir: eth, color: BLUE, name: "a_φ" },
     { dir: ez, color: "#181515", name: "a_z" },
   ];
 

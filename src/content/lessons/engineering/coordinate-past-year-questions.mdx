@@ -15,7 +15,7 @@ that survived those checks appear.
   **Spherical:** θ is the polar angle measured from the positive z axis
   (0 to π), φ is the azimuth measured from the positive x axis (0 to 2π).
   **Cylindrical:** ρ is the radial distance and φ is the azimuth — the
-  same pair the reading section calls r and θ. Where a question does not
+  same notation the reading section uses. Where a question does not
   name the point at which a vector's components should be resolved, the
   solution says which point it used.
 </Callout>
@@ -40,23 +40,23 @@ that survived those checks appear.
         A cylindrical basis is tied to a point, so the components must be
         read somewhere. Resolving at the <strong>tail A</strong>:
       </p>
-      <Equation tex="r = \sqrt{(-3)^2 + (-4)^2} = 5, \qquad \theta = 233.13^{\circ}" />
-      <Equation tex="\cos\theta = -\frac{3}{5}, \qquad \sin\theta = -\frac{4}{5}" />
+      <Equation tex="\rho = \sqrt{(-3)^2 + (-4)^2} = 5, \qquad \phi = 233.13^{\circ}" />
+      <Equation tex="\cos\phi = -\frac{3}{5}, \qquad \sin\phi = -\frac{4}{5}" />
       <Equation
-        tex="A_r = (-2)\cos\theta + (6)\sin\theta = \frac{6}{5} - \frac{24}{5} = -\frac{18}{5} = -3.6"
+        tex="A_\rho = (-2)\cos\phi + (6)\sin\phi = \frac{6}{5} - \frac{24}{5} = -\frac{18}{5} = -3.6"
       />
       <Equation
-        tex="A_\theta = -(-2)\sin\theta + (6)\cos\theta = -\frac{8}{5} - \frac{18}{5} = -\frac{26}{5} = -5.2"
+        tex="A_\phi = -(-2)\sin\phi + (6)\cos\phi = -\frac{8}{5} - \frac{18}{5} = -\frac{26}{5} = -5.2"
       />
       <Equation
-        tex="\vec{AB} = -3.6\,\hat{a}_r - 5.2\,\hat{a}_\theta - 14\,\hat{a}_z \quad \text{(resolved at A)}"
+        tex="\vec{AB} = -3.6\,\hat{a}_\rho - 5.2\,\hat{a}_\phi - 14\,\hat{a}_z \quad \text{(resolved at A)}"
       />
       <p>
-        Resolved at the <strong>head B</strong> instead (r = √29, θ =
+        Resolved at the <strong>head B</strong> instead (ρ = √29, φ =
         158.20°), the same vector reads
       </p>
       <Equation
-        tex="\vec{AB} = \frac{22}{\sqrt{29}}\,\hat{a}_r - \frac{26}{\sqrt{29}}\,\hat{a}_\theta - 14\,\hat{a}_z \approx 4.09\,\hat{a}_r - 4.83\,\hat{a}_\theta - 14\,\hat{a}_z"
+        tex="\vec{AB} = \frac{22}{\sqrt{29}}\,\hat{a}_\rho - \frac{26}{\sqrt{29}}\,\hat{a}_\phi - 14\,\hat{a}_z \approx 4.09\,\hat{a}_\rho - 4.83\,\hat{a}_\phi - 14\,\hat{a}_z"
       />
       <p>
         <strong>Check:</strong> √(3.6² + 5.2² + 14²) = √236 ≈ 15.36 — the
@@ -141,13 +141,13 @@ that survived those checks appear.
         tex="\vec{PQ} = -\frac{61}{5\sqrt{2}}\,\hat{a}_r - \frac{1}{5\sqrt{2}}\,\hat{a}_\theta - 1.6\,\hat{a}_\phi \approx -8.63\,\hat{a}_r - 0.14\,\hat{a}_\theta - 1.6\,\hat{a}_\phi"
       />
       <p>
-        <strong>(c) Cylindrical at P:</strong> P is at r = 5, θ = 126.87°,
-        with cos θ = −0.6 and sin θ = 0.8, so
+        <strong>(c) Cylindrical at P:</strong> P is at ρ = 5, φ = 126.87°,
+        with cos φ = −0.6 and sin φ = 0.8, so
       </p>
-      <Equation tex="A_r = 5(-0.6) + (-4)(0.8) = -6.2" />
-      <Equation tex="A_\theta = -5(0.8) + (-4)(-0.6) = -1.6" />
+      <Equation tex="A_\rho = 5(-0.6) + (-4)(0.8) = -6.2" />
+      <Equation tex="A_\phi = -5(0.8) + (-4)(-0.6) = -1.6" />
       <Equation
-        tex="\vec{PQ} = -6.2\,\hat{a}_r - 1.6\,\hat{a}_\theta - 6\,\hat{a}_z"
+        tex="\vec{PQ} = -6.2\,\hat{a}_\rho - 1.6\,\hat{a}_\phi - 6\,\hat{a}_z"
       />
       <p>
         <strong>Check:</strong> √(6.2² + 1.6² + 6²) = √77 ≈ 8.775 for the
@@ -215,9 +215,7 @@ that survived those checks appear.
       <Equation tex="\vec{B} = -\rho\,\hat{a}_\phi + z\,\hat{a}_z" />
       <p>
         The radial component vanishes exactly — the field is purely
-        azimuthal plus a vertical part. In the notation of the reading
-        section (r, θ, z):{" "}
-        <Equation display={false} tex="\vec{B} = -r\,\hat{a}_\theta + z\,\hat{a}_z" />.
+        azimuthal plus a vertical part.
       </p>
       <p>
         <strong>Check:</strong> evaluated at 3000 random (ρ, φ, z), the
