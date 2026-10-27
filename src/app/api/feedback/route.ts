@@ -5,6 +5,9 @@ import { validateFeedback } from "@/lib/feedback/validate";
 const WINDOW_MS = 10 * 60 * 1000;
 const MAX_PER_WINDOW = 6;
 const MIN_FILL_MS = 1500;
+/** Hard cap on the request body; fields are validated (and truncated) below. */
+const MAX_BODY_BYTES = 32 * 1024;
+const RATE_LIMIT_RETRY_SECONDS = Math.ceil(WINDOW_MS / 1000);
 
 const recentHits = new Map<string, number[]>();
 
@@ -32,13 +35,38 @@ export async function POST(request: Request) {
   if (isRateLimited(ip)) {
     return Response.json(
       { ok: false, error: "Too many submissions. Please try again later." },
-      { status: 429 },
+      { status: 429, headers: { "Retry-After": String(RATE_LIMIT_RETRY_SECONDS) } },
+    );
+  }
+
+  const declaredLength = Number(request.headers.get("content-length") ?? "0");
+  if (Number.isFinite(declaredLength) && declaredLength > MAX_BODY_BYTES) {
+    return Response.json(
+      { ok: false, error: "Request body is too large." },
+      { status: 413 },
+    );
+  }
+
+  let body: string;
+  try {
+    body = await request.text();
+  } catch {
+    return Response.json(
+      { ok: false, error: "Invalid request body." },
+      { status: 400 },
+    );
+  }
+
+  if (body.length > MAX_BODY_BYTES) {
+    return Response.json(
+      { ok: false, error: "Request body is too large." },
+      { status: 413 },
     );
   }
 
   let raw: unknown;
   try {
-    raw = await request.json();
+    raw = JSON.parse(body);
   } catch {
     return Response.json(
       { ok: false, error: "Invalid request body." },

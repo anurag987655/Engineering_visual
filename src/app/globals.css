@@ -15,8 +15,10 @@
   --font-mono: var(--font-jetbrains);
 }
 
-html {
-  scroll-behavior: smooth;
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -33,14 +35,20 @@ body {
   color: #181515;
 }
 
-/* Vintage range slider */
+/* Vintage range slider. The input box is 24px tall for touch targets; the
+   visible track stays 4px via content-box background clipping. */
 input[type="range"].pulse-range {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
-  height: 4px;
+  height: 24px;
+  padding: 10px 0;
+  box-sizing: border-box;
+  background-clip: content-box;
+  background-origin: content-box;
   border-radius: 999px;
-  background: linear-gradient(
+  background-color: rgba(24, 21, 21, 0.18);
+  background-image: linear-gradient(
     to right,
     #181515 0%,
     #181515 var(--pulse, 50%),
@@ -77,9 +85,9 @@ input[type="range"].pulse-range::-moz-range-thumb {
 }
 
 input[type="range"].pulse-range::-moz-range-track {
-  height: 4px;
+  height: 100%;
   border-radius: 999px;
-  background: rgba(24, 21, 21, 0.18);
+  background: transparent;
 }
 
 input[type="range"].pulse-range:focus-visible {
@@ -96,4 +104,15 @@ input[type="range"].pulse-range:focus-visible {
 .katex-display > .katex {
   width: max-content;
   margin-inline: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

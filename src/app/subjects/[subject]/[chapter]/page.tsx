@@ -11,14 +11,23 @@ import {
   getLessonsForChapter,
   getSubject,
 } from "@/lib/content";
+import { chapters, subjects } from "@/content/library";
 
-type ChapterParams = PageProps<"/subjects/[subject]/[chapter]">["params"];
+type Chapter = NonNullable<ReturnType<typeof getChapterInSubject>>;
+type Subject = NonNullable<ReturnType<typeof getSubject>>;
 
 export function generateStaticParams() {
-  return [
-    { subject: "engineering", chapter: "electric-fields" },
-    { subject: "mathematics", chapter: "sequences-and-series" },
-  ];
+  const subjectSlugById = new Map(
+    subjects.map((subject) => [subject.id, subject.slug]),
+  );
+  return chapters
+    .map((chapter) => {
+      const slug = subjectSlugById.get(chapter.subjectId);
+      return slug ? { subject: slug, chapter: chapter.slug } : null;
+    })
+    .filter(
+      (entry): entry is { subject: string; chapter: string } => entry !== null,
+    );
 }
 
 export async function generateMetadata({
@@ -34,22 +43,26 @@ export async function generateMetadata({
   };
 }
 
-export default function ChapterPage({
+/**
+ * `params` is awaited outside `<Suspense>` so unknown subject/chapter slugs
+ * return a real `404` response instead of a streamed soft-404 with status 200.
+ */
+export default async function ChapterPage({
   params,
 }: PageProps<"/subjects/[subject]/[chapter]">) {
-  return (
-    <Suspense fallback={<PageSkeleton />}>
-      <ChapterView params={params} />
-    </Suspense>
-  );
-}
-
-async function ChapterView({ params }: { params: ChapterParams }) {
   const { subject: subjectSlug, chapter: chapterSlug } = await params;
   const subject = getSubject(subjectSlug);
   const chapter = subject && getChapterInSubject(subjectSlug, chapterSlug);
   if (!subject || !chapter) notFound();
 
+  return (
+    <Suspense fallback={<PageSkeleton />}>
+      <ChapterView subject={subject} chapter={chapter} />
+    </Suspense>
+  );
+}
+
+function ChapterView({ subject, chapter }: { subject: Subject; chapter: Chapter }) {
   const lessons = getLessonsForChapter(chapter.id);
   const nextInSubject = getSubjectNextChapter(subject.id, chapter.order);
 

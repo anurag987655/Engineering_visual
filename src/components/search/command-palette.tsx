@@ -61,10 +61,7 @@ export function CommandPalette({ entries }: { entries: SearchEntry[] }) {
 
   const matches = useMemo(() => {
     if (!query.trim()) {
-      return {
-        flat: [] as SearchEntry[],
-        byGroup: new Map<SearchGroup, SearchEntry[]>(),
-      };
+      return { byGroup: new Map<SearchGroup, SearchEntry[]>() };
     }
     const tokens = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
     const scored = entries
@@ -80,10 +77,7 @@ export function CommandPalette({ entries }: { entries: SearchEntry[] }) {
         .map((item) => item.entry);
       if (list.length > 0) byGroup.set(group, list);
     }
-    return {
-      flat: scored.map((item) => item.entry),
-      byGroup,
-    };
+    return { byGroup };
   }, [entries, query]);
 
   useEffect(() => {
@@ -143,7 +137,10 @@ export function CommandPalette({ entries }: { entries: SearchEntry[] }) {
   }
 
   function onKeyDown(event: KeyboardEvent) {
-    const total = matches.flat.length;
+    // Keyboard navigation must operate on the same list that is rendered
+    // (grouped, capped per group); otherwise Enter can open a different
+    // result than the one shown as active.
+    const total = flat.length;
     if (event.key === "ArrowDown") {
       event.preventDefault();
       setActive((value) => Math.min(value + 1, Math.max(total - 1, 0)));
@@ -152,8 +149,8 @@ export function CommandPalette({ entries }: { entries: SearchEntry[] }) {
       setActive((value) => Math.max(value - 1, 0));
     } else if (event.key === "Enter") {
       event.preventDefault();
-      const item = matches.flat[active];
-      if (item) navigate(item.href);
+      const item = flat[active];
+      if (item) navigate(item.entry.href);
     }
   }
 

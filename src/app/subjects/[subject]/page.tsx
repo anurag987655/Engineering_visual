@@ -11,11 +11,10 @@ import {
   getLessonsForSubject,
   getSubject,
 } from "@/lib/content";
-
-type SubjectParams = PageProps<"/subjects/[subject]">["params"];
+import { subjects } from "@/content/library";
 
 export function generateStaticParams() {
-  return [{ subject: "engineering" }, { subject: "mathematics" }];
+  return subjects.map((subject) => ({ subject: subject.slug }));
 }
 
 export async function generateMetadata({
@@ -27,21 +26,29 @@ export async function generateMetadata({
   return { title: subject.title, description: subject.description };
 }
 
-export default function SubjectPage({
+/**
+ * `params` is awaited outside `<Suspense>` so an unknown subject slug returns
+ * a real `404` response instead of a streamed soft-404 with status 200.
+ */
+export default async function SubjectPage({
   params,
 }: PageProps<"/subjects/[subject]">) {
-  return (
-    <Suspense fallback={<PageSkeleton />}>
-      <SubjectView params={params} />
-    </Suspense>
-  );
-}
-
-async function SubjectView({ params }: { params: SubjectParams }) {
   const { subject: slug } = await params;
   const subject = getSubject(slug);
   if (!subject) notFound();
 
+  return (
+    <Suspense fallback={<PageSkeleton />}>
+      <SubjectView subject={subject} />
+    </Suspense>
+  );
+}
+
+function SubjectView({
+  subject,
+}: {
+  subject: NonNullable<ReturnType<typeof getSubject>>;
+}) {
   const chaptersList = getChaptersForSubject(subject.id);
   const subjectLessons = getLessonsForSubject(subject.id);
 

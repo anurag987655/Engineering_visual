@@ -99,7 +99,7 @@ export const chapters: Chapter[] = [
       "Apply superposition to compute a total field",
       "Read field lines and vector fields",
     ],
-    lessonIds: ["electric-field"],
+    lessonIds: [],
   },
   {
     id: "eng-em-energy-potential",
@@ -479,43 +479,6 @@ export const lessons: LessonMeta[] = [
     order: 2,
   },
   {
-    id: "electric-field",
-    slug: "electric-field",
-    subjectId: "engineering",
-    chapterId: "eng-em-electric-fields",
-    title: "The Electric Field, Made Visible",
-    summary:
-      "Charge is invisible, yet its influence fills the space around it. Build the electric field of point charges by hand in a live playground.",
-    level: "intro",
-    readingTime: 9,
-    author: "Engineering Visual",
-    updated: "2026-10-13",
-    objectives: [
-      "Describe the electric field as a vector defined at every point",
-      "Use superposition to add the fields of several charges",
-      "Interpret field lines and vector fields",
-      "Recognise the inverse-square dependence of the field",
-    ],
-    keywords: [
-      "electric field",
-      "point charge",
-      "Coulomb's law",
-      "superposition",
-      "field lines",
-      "vector field",
-      "electromagnetism",
-    ],
-    prerequisites: ["eng-em-vector-algebra"],
-    outline: [
-      { id: "what-is-a-field", label: "What is a field?" },
-      { id: "interactive-playground", label: "Interactive playground" },
-      { id: "the-mathematics", label: "The mathematics" },
-      { id: "in-code", label: "In code" },
-    ],
-    playgrounds: ["electric-field"],
-    order: 1,
-  },
-  {
     id: "coordinate-systems",
     slug: "coordinate-systems",
     subjectId: "engineering",
@@ -637,6 +600,6 @@ export const paths: LearningPath[] = [
     description:
       "Follow the engineering electromagnetism sequence from the field concept upwards.",
     audience: "Electronics, communication, and information engineering students.",
-    lessonIds: ["coordinate-systems", "coordinate-past-year-questions", "electric-field"],
+    lessonIds: ["coordinate-systems", "coordinate-past-year-questions"],
   },
 ];

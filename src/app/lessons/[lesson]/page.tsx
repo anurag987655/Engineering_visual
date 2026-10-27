@@ -1,27 +1,26 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
+import { Suspense, type ComponentType } from "react";
 import { notFound } from "next/navigation";
 import { getLesson } from "@/lib/content";
+import { lessons } from "@/content/library";
 import { LessonShell } from "@/components/lesson/lesson-shell";
 import { PageSkeleton } from "@/components/ui/page-skeleton";
-import GeometricSeries from "@/content/lessons/mathematics/geometric-series.mdx";
-import Continuity from "@/content/lessons/mathematics/continuity.mdx";
-import ContinuityPracticeQuestions from "@/content/lessons/mathematics/continuity-practice-questions.mdx";
-import ElectricField from "@/content/lessons/engineering/electric-field.mdx";
-import CoordinateSystems from "@/content/lessons/engineering/coordinate-systems.mdx";
-import CoordinateQuestions from "@/content/lessons/engineering/coordinate-past-year-questions.mdx";
 
-type LessonParams = PageProps<"/lessons/[lesson]">["params"];
+const LESSON_LOADERS: Record<string, () => Promise<{ default: ComponentType }>> =
+  {
+    "geometric-series": () =>
+      import("@/content/lessons/mathematics/geometric-series.mdx"),
+    continuity: () => import("@/content/lessons/mathematics/continuity.mdx"),
+    "continuity-practice-questions": () =>
+      import("@/content/lessons/mathematics/continuity-practice-questions.mdx"),
+    "coordinate-systems": () =>
+      import("@/content/lessons/engineering/coordinate-systems.mdx"),
+    "coordinate-past-year-questions": () =>
+      import("@/content/lessons/engineering/coordinate-past-year-questions.mdx"),
+  };
 
 export function generateStaticParams() {
-  return [
-    { lesson: "geometric-series" },
-    { lesson: "continuity" },
-    { lesson: "continuity-practice-questions" },
-    { lesson: "electric-field" },
-    { lesson: "coordinate-systems" },
-    { lesson: "coordinate-past-year-questions" },
-  ];
+  return lessons.map((lesson) => ({ lesson: lesson.slug }));
 }
 
 export async function generateMetadata({
@@ -41,17 +40,23 @@ export async function generateMetadata({
   };
 }
 
-function LessonBody({ id }: { id: string }) {
-  if (id === "electric-field") return <ElectricField />;
-  if (id === "geometric-series") return <GeometricSeries />;
-  if (id === "continuity") return <Continuity />;
-  if (id === "continuity-practice-questions") return <ContinuityPracticeQuestions />;
-  if (id === "coordinate-systems") return <CoordinateSystems />;
-  if (id === "coordinate-past-year-questions") return <CoordinateQuestions />;
-  return null;
+async function LessonBody({ id }: { id: string }) {
+  const load = LESSON_LOADERS[id];
+  if (!load) return null;
+  const { default: Lesson } = await load();
+  return <Lesson />;
 }
 
-export default function LessonPage({ params }: PageProps<"/lessons/[lesson]">) {
+/**
+ * `params` is awaited inside the `<Suspense>` boundary so the App Shell stays
+ * free of URL data (see the `instant-shell-url-data` insight). Real `404`s for
+ * unknown lesson URLs are guaranteed by `src/proxy.ts`, which rewrites them
+ * to `/_not-found` before any response is written; the `notFound()` call here
+ * is defense in depth.
+ */
+export default function LessonPage({
+  params,
+}: PageProps<"/lessons/[lesson]">) {
   return (
     <Suspense fallback={<PageSkeleton />}>
       <LessonView params={params} />
@@ -59,7 +64,11 @@ export default function LessonPage({ params }: PageProps<"/lessons/[lesson]">) {
   );
 }
 
-async function LessonView({ params }: { params: LessonParams }) {
+async function LessonView({
+  params,
+}: {
+  params: PageProps<"/lessons/[lesson]">["params"];
+}) {
   const { lesson } = await params;
   const meta = getLesson(lesson);
   if (!meta) notFound();

@@ -28,9 +28,11 @@ export function useSceneCanvas(draw: SceneDraw): RefObject<
 > {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const drawRef = useRef(draw);
+  const invalidateRef = useRef(true);
 
   useEffect(() => {
     drawRef.current = draw;
+    invalidateRef.current = true;
   });
 
   useEffect(() => {
@@ -42,6 +44,12 @@ export function useSceneCanvas(draw: SceneDraw): RefObject<
     let width = 0;
     let height = 0;
     let visible = true;
+    let frozenElapsed: number | null = null;
+
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const invalidate = () => {
+      invalidateRef.current = true;
+    };
 
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
@@ -51,6 +59,7 @@ export function useSceneCanvas(draw: SceneDraw): RefObject<
       height = rect.height;
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
+      invalidateRef.current = true;
     };
 
     const resizeObserver = new ResizeObserver(resize);
@@ -59,20 +68,38 @@ export function useSceneCanvas(draw: SceneDraw): RefObject<
     const intersectionObserver = new IntersectionObserver(
       (entries) => {
         visible = entries.some((entry) => entry.isIntersecting);
+        invalidateRef.current = true;
       },
       { threshold: 0.01 },
     );
     intersectionObserver.observe(canvas);
 
+    // Orbit dragging mutates refs without re-rendering, so watch the canvas
+    // directly to keep static (reduced-motion) frames responsive.
+    canvas.addEventListener("pointerdown", invalidate);
+    canvas.addEventListener("pointermove", invalidate);
+    motionQuery.addEventListener("change", invalidate);
+
     const started = performance.now();
     const loop = (now: number) => {
       raf = requestAnimationFrame(loop);
       if (!visible || width === 0 || height === 0) return;
+      const reduced = motionQuery.matches;
+      if (reduced) {
+        // Freeze time on the first reduced-motion frame; redraw only when
+        // something (state, resize, drag) invalidates the canvas.
+        if (frozenElapsed === null) frozenElapsed = now - started;
+        if (!invalidateRef.current) return;
+        invalidateRef.current = false;
+      } else {
+        frozenElapsed = null;
+      }
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, width, height);
-      drawRef.current(ctx, width, height, now - started);
+      const elapsed = reduced ? frozenElapsed : now - started;
+      drawRef.current(ctx, width, height, elapsed ?? 0);
     };
 
     resize();
@@ -82,6 +109,9 @@ export function useSceneCanvas(draw: SceneDraw): RefObject<
       cancelAnimationFrame(raf);
       resizeObserver.disconnect();
       intersectionObserver.disconnect();
+      canvas.removeEventListener("pointerdown", invalidate);
+      canvas.removeEventListener("pointermove", invalidate);
+      motionQuery.removeEventListener("change", invalidate);
     };
   }, []);
 

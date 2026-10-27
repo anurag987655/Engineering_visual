@@ -10,12 +10,10 @@ import {
   getPathLessons,
   getSubjectForChapter,
 } from "@/lib/content";
+import { paths } from "@/content/library";
 
 export function generateStaticParams() {
-  return [
-    { path: "mathematics-foundations" },
-    { path: "electromagnetism-foundations" },
-  ];
+  return paths.map((path) => ({ path: path.slug }));
 }
 
 export async function generateMetadata({
@@ -27,6 +25,13 @@ export async function generateMetadata({
   return { title: path.title, description: path.description };
 }
 
+/**
+ * `params` is awaited inside the `<Suspense>` boundary so the App Shell stays
+ * free of URL data (see the `instant-shell-url-data` insight). Real `404`s for
+ * unknown path slugs are guaranteed by `src/proxy.ts`, which rewrites them to
+ * `/_not-found` before any response is written; the `notFound()` call here is
+ * defense in depth.
+ */
 export default function PathPage({ params }: PageProps<"/paths/[path]">) {
   return (
     <Suspense
@@ -56,7 +61,6 @@ async function PathContent({
   const { path: slug } = await params;
   const path = getPath(slug);
   if (!path) notFound();
-
   const lessons = getPathLessons(path);
   const firstLesson = lessons[0];
 

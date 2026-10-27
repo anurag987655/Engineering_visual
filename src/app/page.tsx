@@ -27,15 +27,14 @@ const STEPS = [
 ];
 
 export default function Home() {
-  const featured = [
-    getLesson("geometric-series"),
-    getLesson("electric-field"),
-  ].filter((lesson) => lesson !== undefined);
+  const featured = [getLesson("geometric-series")].filter(
+    (lesson) => lesson !== undefined,
+  );
 
   const paths = getPaths();
 
   return (
-    <main className="flex-1">
+    <div className="flex-1">
       {/* Hero */}
       <section className="border-b border-[#2C2523]/20 bg-[#FBF4EC]">
         <div className="mx-auto max-w-6xl px-5 pb-20 pt-16 sm:pt-24 lg:px-8">
@@ -213,7 +212,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }
 

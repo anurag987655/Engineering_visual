@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import type { LessonMeta } from "@/content/library";
 import { lessonProgressKey } from "@/lib/progress/keys";
-import { useProgress } from "@/lib/progress/provider";
+import { useProgress, useProgressStore } from "@/lib/progress/provider";
 import type { LessonStatus } from "@/lib/progress/store";
 
 const LABELS: Record<LessonStatus, string> = {
@@ -40,14 +40,18 @@ export function LessonStatusDot({
 }
 
 export function CompletionToggle({ lesson }: { lesson: LessonMeta }) {
+  const store = useProgressStore();
   const { progress, setStatus } = useProgress();
   const key = lessonProgressKey(lesson);
   const status = progress[key]?.status ?? "not-started";
 
   useEffect(() => {
-    if (status === "not-started") setStatus(key, "started");
+    // Read the store directly: during hydration `status` still reflects the
+    // server snapshot (empty), and acting on it would overwrite saved
+    // progress — including a lesson already marked completed.
+    if (store.get(key) === "not-started") store.setStatus(key, "started");
     // Mark as started once when the student first opens the lesson.
-  }, [key, status, setStatus]);
+  }, [key, store]);
 
   const completed = status === "completed";
 
