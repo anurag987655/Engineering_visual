@@ -1,0 +1,407 @@
+## Two charges in free space
+
+Take two positive charges in free space and leave them alone for a
+moment. Now push them closer together. Look at what happens to the
+force between them: it pushes back harder the closer you try to bring
+them. Pull the charges apart instead, and the very same force grows
+weaker — far enough away, it vanishes completely.
+
+The same story plays out with two negative charges. Negatives also push
+each other away, and that push behaves with distance in exactly the
+same way.
+
+So what happens if the charges are not alike? Take one positive charge
+and one negative charge. Now the force does the opposite job: it pulls
+the charges together, and it pulls harder the closer they get.
+
+## Seeing the force respond
+
+The scene below puts all three cases in front of you. Pick a case with
+the buttons, then drag the separation slider to move the charges closer
+or farther apart. Two arrows appear — one on each charge — showing the
+force that charge feels. Press **Sweep distance** to watch a full
+close-and-open sweep with your hands off the controls, and watch the
+arrows breathe: they grow as the charges approach and fade as they
+retreat.
+
+<Playground id="coulomb-force" />
+
+## Coulomb's law
+
+Every behaviour we just watched is captured by one rule, published by
+Charles-Augustin de Coulomb in 1785 after a careful set of experiments
+with charged spheres.
+
+<KeyIdea>
+  The force between two point charges acts along the straight line that
+  joins them. Its magnitude grows with the product of the two charges
+  and shrinks with the square of the distance between them. Charges of
+  the same sign repel each other; charges of opposite signs attract
+  each other.
+</KeyIdea>
+
+## Magnitude of the force
+
+Start with what we saw in the scene. Bigger charges meant a bigger
+force, so the force must grow with each charge:
+
+$$F \propto Q_1 Q_2$$
+
+Double either charge and the force doubles. Double both, and it grows
+four times over.
+
+We also saw the force die off with distance. Careful measurement shows
+that it is not just any drop — it is an inverse-square drop:
+
+$$F \propto \frac{1}{R^2}$$
+
+Double the distance and the force falls to one quarter. Triple it, and
+the force falls to one ninth.
+
+Put the two proportionalities together, and bring in one constant that
+describes how strongly free space pushes back:
+
+$$F = K\,\frac{Q_1 Q_2}{R^2} \;=\; \frac{Q_1 Q_2}{4\pi\epsilon_0 R^2}$$
+
+where:
+
+- $Q_1$ and $Q_2$ are the quantities of electric charge, measured in
+  coulombs (C),
+- $R$ is the distance between the two point charges, measured in metres
+  (m),
+- $K$ is the proportionality constant for free space (a vacuum):
+
+$$K = \frac{1}{4\pi\epsilon_0} \approx 8.988 \times 10^{9}\;\left[\mathrm{N\cdot m^{2}/C^{2}}\right]$$
+
+- $\epsilon_0$ is the permittivity of free space, which measures how
+  easily an electric field forms in a vacuum:
+
+$$\epsilon_0 \approx 8.854 \times 10^{-12}\;\left[\mathrm{F/m}\right]$$
+
+<Callout title="A quick feel for the numbers" variant="note">
+  Two charges of $1\,\mu\text{C}$ sitting $2\text{ m}$ apart feel a force
+  of about $2.25\text{ mN}$ — roughly the weight of two or three paper
+  clips. Slide them to $1\text{ m}$ apart and the force climbs to
+  $8.99\text{ mN}$: four times as strong, from half the distance.
+</Callout>
+
+## Direction of the force
+
+Magnitude tells us how strong the force is. We still need to pin down
+which way it points. The playground above already draws both arrows —
+$\vec{F}_{12}$ and $\vec{F}_{21}$ — for like charges and for opposite
+charges. Now let us derive them properly.
+
+First, a naming convention. $\vec{F}_{12}$ means "the force on charge 2
+caused by charge 1". The first subscript is the charge that feels the
+force; the second is the charge that causes it.
+
+Put $Q_1$ at position $\vec{r}_1$ and $Q_2$ at position $\vec{r}_2$. The
+displacement vector pointing from $Q_1$ to $Q_2$ is
+
+$$\vec{R}_{12} = \vec{r}_2 - \vec{r}_1$$
+
+To talk about direction alone, we strip off the length and keep a unit
+vector — a little arrow of length one that points along $\vec{R}_{12}$:
+
+$$\hat{a}_{R12} = \frac{\vec{R}_{12}}{|\vec{R}_{12}|} = \frac{\vec{r}_2 - \vec{r}_1}{|\vec{r}_2 - \vec{r}_1|}$$
+
+The force on $Q_2$ due to $Q_1$ is then
+
+$$\vec{F}_{12} = \frac{Q_1 Q_2}{4\pi\epsilon_0 R_{12}^{2}}\,\hat{a}_{R12} = \frac{Q_1 Q_2 (\vec{r}_2 - \vec{r}_1)}{4\pi\epsilon_0\,|\vec{r}_2 - \vec{r}_1|^{3}}$$
+
+The sign of the product $Q_1 Q_2$ decides everything:
+
+- **Like charges** ($Q_1 Q_2 > 0$): the product is positive, so
+  $\vec{F}_{12}$ points in the same direction as $\vec{R}_{12}$ — away
+  from $Q_1$. That is repulsion.
+- **Opposite charges** ($Q_1 Q_2 < 0$): the product is negative, so
+  $\vec{F}_{12}$ points opposite to $\vec{R}_{12}$ — back toward $Q_1$.
+  That is attraction.
+
+And what about the force on $Q_1$? It has the same size and points
+exactly the opposite way:
+
+$$\vec{F}_{21} = -\vec{F}_{12}$$
+
+This is Newton's third law at work, and you can watch it happen in the
+playground: the two arrows always have the same length, and they always
+point opposite ways.
+
+## Principle of superposition
+
+One pair of charges is manageable. What about a whole crowd? Coulomb's
+law is linear — no products of different source charges appear in it —
+so each charge behaves as though the others were not there at all. To
+find the total force on a charge, apply Coulomb's law to each pair
+separately, then add the resulting arrows tip to tip.
+
+<Figure caption="Three source charges Q₁, Q₂ and Q₃ act on the test charge Qₜ at once. Each contributes its own force arrow — pushing if the signs match, pulling if they differ. The thick arrow is the vector sum of the three. A fourth charge (faint) would join the sum the same way.">
+  <svg
+    viewBox="0 0 640 400"
+    className="w-full"
+    role="img"
+    aria-label="A test charge Q t surrounded by three source charges, each pulling or pushing with its own force arrow, and a thick resultant arrow showing the vector sum"
+  >
+    <defs>
+      <marker
+        id="coulomb-arrow-ink"
+        viewBox="0 0 10 10"
+        refX="8"
+        refY="5"
+        markerWidth="6"
+        markerHeight="6"
+        orient="auto-start-reverse"
+      >
+        <path d="M0,0 L10,5 L0,10 z" fill="#181515" />
+      </marker>
+      <marker
+        id="coulomb-arrow-rust"
+        viewBox="0 0 10 10"
+        refX="8"
+        refY="5"
+        markerWidth="6.5"
+        markerHeight="6.5"
+        orient="auto-start-reverse"
+      >
+        <path d="M0,0 L10,5 L0,10 z" fill="#B4552D" />
+      </marker>
+    </defs>
+
+    {/* Dashed connectors from each source to the test charge. */}
+    <g stroke="rgba(24,21,21,0.22)" strokeWidth="1.2" strokeDasharray="4 5">
+      <line x1="130" y1="90" x2="310" y2="195" />
+      <line x1="90" y1="320" x2="310" y2="195" />
+      <line x1="530" y1="80" x2="310" y2="195" />
+      <line x1="500" y1="305" x2="310" y2="195" strokeOpacity="0.5" />
+    </g>
+
+    {/* Tip-to-tail construction of the sum: F1t + F2t + F3t. */}
+    <path
+      d="M310,195 L357.5,222.7 L312.3,248.4 L275.1,267.8"
+      fill="none"
+      stroke="rgba(24,21,21,0.35)"
+      strokeWidth="1.1"
+      strokeDasharray="3 4"
+    />
+
+    {/* Individual force arrows from Q t. */}
+    <g stroke="#181515" strokeWidth="1.7" markerEnd="url(#coulomb-arrow-ink)">
+      <line x1="310" y1="195" x2="357.5" y2="222.7" />
+      <line x1="310" y1="195" x2="264.8" y2="220.7" />
+      <line x1="310" y1="195" x2="272.8" y2="214.4" />
+    </g>
+
+    {/* Faint fourth force, suggesting Qₙ. */}
+    <line
+      x1="310"
+      y1="195"
+      x2="337.7"
+      y2="211"
+      stroke="rgba(24,21,21,0.3)"
+      strokeWidth="1.3"
+      strokeDasharray="5 4"
+      markerEnd="url(#coulomb-arrow-ink)"
+      opacity="0.55"
+    />
+
+    {/* Resultant arrow. */}
+    <line
+      x1="310"
+      y1="195"
+      x2="275.1"
+      y2="267.8"
+      stroke="#B4552D"
+      strokeWidth="3"
+      markerEnd="url(#coulomb-arrow-rust)"
+    />
+
+    {/* Source charges. */}
+    <g fontFamily="var(--font-mono), ui-monospace, monospace" fontWeight="700">
+      <circle cx="130" cy="90" r="12" fill="#BF4326" />
+      <text x="130" y="95" textAnchor="middle" fill="#FBF4EC" fontSize="15">+</text>
+      <text x="130" y="68" textAnchor="middle" fill="#BF4326" fontSize="13">Q₁</text>
+
+      <circle cx="90" cy="320" r="12" fill="#33506E" />
+      <text x="90" y="325" textAnchor="middle" fill="#FBF4EC" fontSize="16">−</text>
+      <text x="90" y="352" textAnchor="middle" fill="#33506E" fontSize="13">Q₂</text>
+
+      <circle cx="530" cy="80" r="12" fill="#BF4326" />
+      <text x="530" y="85" textAnchor="middle" fill="#FBF4EC" fontSize="15">+</text>
+      <text x="530" y="58" textAnchor="middle" fill="#BF4326" fontSize="13">Q₃</text>
+
+      <circle cx="500" cy="305" r="11" fill="#33506E" opacity="0.4" />
+      <text x="500" y="310" textAnchor="middle" fill="#FBF4EC" fontSize="14">−</text>
+      <text x="500" y="338" textAnchor="middle" fill="#33506E" fontSize="12" opacity="0.65">Qₙ …</text>
+
+      {/* Test charge. */}
+      <circle cx="310" cy="195" r="16" fill="none" stroke="rgba(24,21,21,0.15)" strokeWidth="6" />
+      <circle cx="310" cy="195" r="10" fill="#181515" />
+      <text x="310" y="200" textAnchor="middle" fill="#FBF4EC" fontSize="13">+</text>
+      <text x="310" y="172" textAnchor="middle" fill="#181515" fontSize="13">Qₜ</text>
+    </g>
+
+    {/* Force labels. */}
+    <g
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+      fontSize="13"
+      fontWeight="600"
+      fill="#181515"
+    >
+      <text x="347" y="238">F₁ₜ</text>
+      <text x="248" y="236" textAnchor="end">F₂ₜ</text>
+      <text x="282" y="192" textAnchor="end">F₃ₜ</text>
+      <text x="344" y="207" fill="rgba(24,21,21,0.45)" fontSize="12">Fₙₜ</text>
+    </g>
+    <text
+      x="258"
+      y="282"
+      textAnchor="end"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+      fontSize="13"
+      fontWeight="700"
+      fill="#B4552D"
+    >
+      F total
+    </text>
+  </svg>
+</Figure>
+
+When $n$ point charges $Q_1, Q_2, \dots, Q_n$ act at the same time on a
+test charge $Q_t$ located at position $\vec{r}$, the net force is simply
+the vector sum of the individual forces:
+
+$$\vec{F}_{\text{total}} = \vec{F}_{1t} + \vec{F}_{2t} + \dots + \vec{F}_{nt} = \sum_{m=1}^{n} \frac{Q_m Q_t (\vec{r} - \vec{r}_m)}{4\pi\epsilon_0\,|\vec{r} - \vec{r}_m|^{3}}$$
+
+Each term in that sum is just Coulomb's law in vector form, written for
+one source charge at a time. Compute each arrow, then add them tip to
+tip — that is the whole principle.
+
+## Practice problems
+
+Two problems. Try each one before revealing its solution. The answers
+use $K \approx 8.99 \times 10^{9}\ \mathrm{N\cdot m^{2}/C^{2}}$.
+
+<PracticeQuestion
+  number={1}
+  solution={
+    <>
+      <p>
+        Call the charges and the test charge as follows:{" "}
+        <Equation display={false} tex="Q_1 = 1\text{ mC}" /> at{" "}
+        <Equation display={false} tex="\vec{r}_1 = (3, 2, -1)" />,{" "}
+        <Equation display={false} tex="Q_2 = -2\text{ mC}" /> at{" "}
+        <Equation display={false} tex="\vec{r}_2 = (-1, -1, 4)" />, and the
+        test charge <Equation display={false} tex="Q_t = 10\text{ nC}" /> at{" "}
+        <Equation display={false} tex="\vec{r}_t = (0, 3, 1)" />. By
+        superposition, the total force on <Equation display={false} tex="Q_t" />{" "}
+        is <Equation display={false} tex="\vec{F}_{1t} + \vec{F}_{2t}" />.
+      </p>
+      <p>
+        <strong>Force from Q₁.</strong> The displacement is{" "}
+        <Equation display={false} tex="\vec{r}_t - \vec{r}_1 = (-3, 1, 2)" />,{" "}
+        with <Equation display={false} tex="|\vec{r}_t - \vec{r}_1|^2 = 14" />.
+      </p>
+      <Equation
+        tex="|\vec{F}_{1t}| = \frac{(8.99\times10^{9})(10\times10^{-9})(1\times10^{-3})}{14} = 6.42\times10^{-3}\ \text{N}"
+      />
+      <p>
+        The product <Equation display={false} tex="Q_t Q_1" /> is positive, so
+        this force points along <Equation display={false} tex="\vec{r}_t - \vec{r}_1" />:
+      </p>
+      <Equation
+        tex="\vec{F}_{1t} = 6.42\times10^{-3}\cdot\frac{-3\,\hat{a}_x + \hat{a}_y + 2\,\hat{a}_z}{\sqrt{14}} = -5.15\,\hat{a}_x + 1.72\,\hat{a}_y + 3.43\,\hat{a}_z \ \text{mN}"
+      />
+      <p>
+        <strong>Force from Q₂.</strong> Here{" "}
+        <Equation display={false} tex="\vec{r}_t - \vec{r}_2 = (1, 4, -3)" />{" "}
+        with <Equation display={false} tex="|\vec{r}_t - \vec{r}_2|^2 = 26" />.
+      </p>
+      <Equation
+        tex="|\vec{F}_{2t}| = \frac{(8.99\times10^{9})(10\times10^{-9})(2\times10^{-3})}{26} = 6.91\times10^{-3}\ \text{N}"
+      />
+      <p>
+        The product <Equation display={false} tex="Q_t Q_2" /> is negative, so
+        this force points opposite to{" "}
+        <Equation display={false} tex="\vec{r}_t - \vec{r}_2" /> — toward Q₂:
+      </p>
+      <Equation
+        tex="\vec{F}_{2t} = -6.91\times10^{-3}\cdot\frac{1\,\hat{a}_x + 4\,\hat{a}_y - 3\,\hat{a}_z}{\sqrt{26}} = -1.36\,\hat{a}_x - 5.42\,\hat{a}_y + 4.07\,\hat{a}_z \ \text{mN}"
+      />
+      <p>Adding the two arrows component by component:</p>
+      <Equation
+        tex="\vec{F}_t = \vec{F}_{1t} + \vec{F}_{2t} = -6.50\,\hat{a}_x - 3.71\,\hat{a}_y + 7.50\,\hat{a}_z \ \text{mN}"
+      />
+      <Equation
+        tex="|\vec{F}_t| = \sqrt{(-6.50)^2 + (-3.71)^2 + (7.50)^2} \approx 10.6\ \text{mN}"
+      />
+      <p>
+        <strong>Check:</strong> each piece on its own satisfies Coulomb's
+        law — √(5.15² + 1.72² + 3.43²) = 6.42 mN matches |F₁ₜ| from{" "}
+        <Equation display={false} tex="kQ_tQ_1/R^2" />, and √(1.36² + 5.42² +
+        4.07²) = 6.91 mN matches |F₂ₜ|. The total √(6.50² + 3.71² + 7.50²) =
+        10.6 mN is consistent with adding those two arrows tip to tip.
+      </p>
+    </>
+  }
+>
+  Two point charges $1\text{ mC}$ and $-2\text{ mC}$ are located at
+  $(3, 2, -1)\text{ m}$ and $(-1, -1, 4)\text{ m}$ respectively. Calculate
+  the electric force on a $10\text{ nC}$ charge located at
+  $(0, 3, 1)\text{ m}$.
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={2}
+  solution={
+    <>
+      <p>
+        The force <Equation display={false} tex="\vec{F}_1" /> is felt by Q₁
+        and comes from Q₂, so it must point along the line that joins them.
+        The direction from Q₂ to Q₁ is
+      </p>
+      <Equation
+        tex="\vec{R}_{21} = \vec{r}_1 - \vec{r}_2 = -2\,\hat{a}_x + 2\,\hat{a}_y - \hat{a}_z, \qquad |\vec{R}_{21}| = 3\ \text{m}"
+      />
+      <p>The force's own length, and its projection onto that line:</p>
+      <Equation
+        tex="|\vec{F}_1| = \sqrt{8^2 + (-8)^2 + 4^2} = 12\ \text{N}"
+      />
+      <Equation
+        tex="\hat{a}_{R21} = \frac{-2\,\hat{a}_x + 2\,\hat{a}_y - \hat{a}_z}{3}, \qquad \vec{F}_1\cdot\hat{a}_{R21} = \frac{-16 - 16 - 4}{3} = -12\ \text{N}"
+      />
+      <p>
+        The projection is negative, so the force points opposite to{" "}
+        <Equation display={false} tex="\vec{R}_{21}" /> — that is, from Q₁
+        toward Q₂. Q₁ is positive, so Q₂ must be{" "}
+        <strong>negative</strong>: the two charges attract. Using{" "}
+        <Equation
+          display={false}
+          tex="\vec{F}_1 = \frac{Q_1 Q_2}{4\pi\epsilon_0 R_{21}^2}\,\hat{a}_{R21}"
+        />
+        :
+      </p>
+      <Equation
+        tex="Q_1 Q_2 = (\vec{F}_1\cdot\hat{a}_{R21})\,4\pi\epsilon_0 R_{21}^2 = (-12)\cdot\frac{9}{8.99\times10^{9}} = -1.20\times10^{-8}\ \text{C}^2"
+      />
+      <Equation
+        tex="Q_2 = \frac{-1.20\times10^{-8}}{300\times10^{-6}} \approx -40\ \mu\text{C}"
+      />
+      <p>
+        <strong>Check:</strong> put Q₂ = −40 µC back into Coulomb's law:
+        |F| = (8.99×10⁹)(300×10⁻⁶)(40×10⁻⁶) / 3² ≈ 12 N, pointing from Q₁
+        toward Q₂, i.e. along{" "}
+        <Equation
+          display={false}
+          tex="\frac{(2, -2, 1)}{3}\times 12 = 8\,\hat{a}_x - 8\,\hat{a}_y + 4\,\hat{a}_z\ \text{N}"
+        />{" "}
+        — exactly the force we started with.
+      </p>
+    </>
+  }
+>
+  A point charge $Q_1 = 300\ \mu\text{C}$ located at $(1, -1, -3)\text{ m}$
+  experiences a force $\vec{F}_1 = 8\,\hat{a}_x - 8\,\hat{a}_y + 4\,\hat{a}_z\ \text{N}$
+  due to a point charge $Q_2$ located at $(3, -3, -2)\text{ m}$.
+  Determine $Q_2$.
+</PracticeQuestion>

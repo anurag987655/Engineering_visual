@@ -13,10 +13,14 @@ const LESSON_LOADERS: Record<string, () => Promise<{ default: ComponentType }>> 
     continuity: () => import("@/content/lessons/mathematics/continuity.mdx"),
     "continuity-practice-questions": () =>
       import("@/content/lessons/mathematics/continuity-practice-questions.mdx"),
+    "taylor-series": () =>
+      import("@/content/lessons/mathematics/taylor-series.mdx"),
     "coordinate-systems": () =>
       import("@/content/lessons/engineering/coordinate-systems.mdx"),
     "coordinate-past-year-questions": () =>
       import("@/content/lessons/engineering/coordinate-past-year-questions.mdx"),
+    "coulombs-law": () =>
+      import("@/content/lessons/engineering/coulombs-law.mdx"),
   };
 
 export function generateStaticParams() {

@@ -2,20 +2,24 @@
 
 import { CartesianPointPlayground } from "@/components/playgrounds/cartesian-point-playground";
 import { ContinuityPlayground } from "@/components/playgrounds/continuity-playground";
+import { CoulombForcePlayground } from "@/components/playgrounds/coulomb-force-playground";
 import { CylindricalPointPlayground } from "@/components/playgrounds/cylindrical-point-playground";
 import { EpsilonDeltaPlayground } from "@/components/playgrounds/epsilon-delta-playground";
 import { GeometricSeriesConvergence } from "@/components/playgrounds/geometric-series-playground";
 import { SphericalPointPlayground } from "@/components/playgrounds/spherical-point-playground";
+import { TaylorApproximation } from "@/components/playgrounds/taylor-approximation-playground";
 import { VectorProjectionPlayground } from "@/components/playgrounds/vector-projection-playground";
 
 const PLAYGROUND_COMPONENTS: Record<string, React.ComponentType> = {
   "geometric-series-convergence": GeometricSeriesConvergence,
+  "taylor-approximation": TaylorApproximation,
   "cartesian-point": CartesianPointPlayground,
   "cylindrical-point": CylindricalPointPlayground,
   "vector-projection": VectorProjectionPlayground,
   "spherical-point": SphericalPointPlayground,
   "continuity-at-a-point": ContinuityPlayground,
   "epsilon-delta": EpsilonDeltaPlayground,
+  "coulomb-force": CoulombForcePlayground,
 };
 
 export function Playground({ id }: { id: string }) {
