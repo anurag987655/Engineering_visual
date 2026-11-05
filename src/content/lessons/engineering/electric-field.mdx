@@ -1,0 +1,2100 @@
+## Why a field?
+
+Coulomb's law tells us the size and direction of the force between two
+charges. What it does not tell us is *how* that force crosses empty space.
+Charge $Q_1$ pushes on $Q_2$ with nothing in between — no rod, no string,
+no contact of any kind. This is the old "action at a distance" puzzle.
+
+Field theory resolves it by splitting the interaction into two stages:
+
+1. The **source charge** $Q$ modifies the space around it. Every point in
+   that space acquires a new property — a direction and a strength — that
+   was not there before. That modified space is the **electric field**.
+2. Any **test charge** placed in the field interacts only with the field
+   at its own location. The push it feels is local: the field right there
+   does the work.
+
+## Electric field
+
+An **electric field** is a vector field that surrounds any charge
+distribution. To every point in space we attach an arrow: the arrow's
+direction is the direction a positive test charge would move, and the
+arrow's length is proportional to how hard it would be pushed.
+
+Two facts shape every field you will ever meet:
+
+- The **direction** of the field depends on the sign of the source charge
+  and on where you stand relative to it. Field arrows point away from a
+  positive charge and toward a negative charge.
+- The **magnitude** of the field follows an inverse-square law: double
+  your distance from a point charge and the field drops to one quarter of
+  its original strength.
+
+The field direction depends on the source charge's sign. The labels in
+the diagram identify the positive and negative source charges; the arrows
+show the direction a positive test charge would move.
+
+<Figure caption="Positive source charge +Q: field arrows point outward. Negative source charge −Q: field arrows point inward. The signs inside the circles identify each source charge.">
+  <svg
+    viewBox="0 0 640 320"
+    className="block w-full"
+    role="img"
+    aria-label="Side-by-side field maps: a positive charge with arrows pointing outward in all directions, and a negative charge with arrows pointing inward from all directions"
+  >
+    <defs>
+      <marker
+        id="ef2-out"
+        viewBox="0 0 10 10"
+        refX="8"
+        refY="5"
+        markerWidth="6"
+        markerHeight="6"
+        orient="auto-start-reverse"
+      >
+        <path d="M0,0 L10,5 L0,10 z" fill="#BF4326" />
+      </marker>
+      <marker
+        id="ef2-in"
+        viewBox="0 0 10 10"
+        refX="8"
+        refY="5"
+        markerWidth="6"
+        markerHeight="6"
+        orient="auto-start-reverse"
+      >
+        <path d="M0,0 L10,5 L0,10 z" fill="#33506E" />
+      </marker>
+    </defs>
+
+    {/* Positive charge, arrows outward. */}
+    <g transform="translate(165,150)">
+      <text
+        x="0"
+        y="-108"
+        textAnchor="middle"
+        fill="#BF4326"
+        fontSize="16"
+        fontWeight="700"
+        fontFamily="var(--font-mono), ui-monospace, monospace"
+      >
+        Positive source (+Q)
+      </text>
+      <circle
+        cx="0"
+        cy="0"
+        r="78"
+        fill="none"
+        stroke="rgba(24,21,21,0.15)"
+        strokeWidth="1"
+        strokeDasharray="3 5"
+      />
+      <g stroke="#BF4326" strokeWidth="1.8" markerEnd="url(#ef2-out)">
+        <line x1="0" y1="-44" x2="0" y2="-94" />
+        <line x1="0" y1="44" x2="0" y2="94" />
+        <line x1="-44" y1="0" x2="-94" y2="0" />
+        <line x1="44" y1="0" x2="94" y2="0" />
+        <line x1="31" y1="-31" x2="66" y2="-66" />
+        <line x1="31" y1="31" x2="66" y2="66" />
+        <line x1="-31" y1="-31" x2="-66" y2="-66" />
+        <line x1="-31" y1="31" x2="-66" y2="66" />
+      </g>
+      <circle cx="0" cy="0" r="16" fill="#BF4326" />
+      <path d="M-8,0 H8 M0,-8 V8" stroke="#FBF4EC" strokeWidth="3" strokeLinecap="round" />
+      <text
+        x="0"
+        y="132"
+        textAnchor="middle"
+        fill="#BF4326"
+        fontSize="19"
+        fontWeight="700"
+        fontFamily="var(--font-mono), ui-monospace, monospace"
+      >
+        +Q
+      </text>
+    </g>
+
+    {/* Negative charge, arrows inward. */}
+    <g transform="translate(475,150)">
+      <text
+        x="0"
+        y="-108"
+        textAnchor="middle"
+        fill="#33506E"
+        fontSize="16"
+        fontWeight="700"
+        fontFamily="var(--font-mono), ui-monospace, monospace"
+      >
+        Negative source (−Q)
+      </text>
+      <circle
+        cx="0"
+        cy="0"
+        r="78"
+        fill="none"
+        stroke="rgba(24,21,21,0.15)"
+        strokeWidth="1"
+        strokeDasharray="3 5"
+      />
+      <g stroke="#33506E" strokeWidth="1.8" markerEnd="url(#ef2-in)">
+        <line x1="0" y1="-94" x2="0" y2="-44" />
+        <line x1="0" y1="94" x2="0" y2="44" />
+        <line x1="-94" y1="0" x2="-44" y2="0" />
+        <line x1="94" y1="0" x2="44" y2="0" />
+        <line x1="66" y1="-66" x2="31" y2="-31" />
+        <line x1="66" y1="66" x2="31" y2="31" />
+        <line x1="-66" y1="-66" x2="-31" y2="-31" />
+        <line x1="-66" y1="66" x2="-31" y2="31" />
+      </g>
+      <circle cx="0" cy="0" r="16" fill="#33506E" />
+      <path d="M-8,0 H8" stroke="#FBF4EC" strokeWidth="3" strokeLinecap="round" />
+      <text
+        x="0"
+        y="132"
+        textAnchor="middle"
+        fill="#33506E"
+        fontSize="19"
+        fontWeight="700"
+        fontFamily="var(--font-mono), ui-monospace, monospace"
+      >
+        −Q
+      </text>
+    </g>
+  </svg>
+</Figure>
+
+The graph below shows how field magnitude changes with distance from a
+point charge. The horizontal axis is distance $r$; the vertical axis is
+field magnitude $|E|$. The rust arrows mark $|E|$ at $r$, $2r$, $3r$ and
+$4r$.
+Each time you double the distance, the arrow shrinks to one quarter of
+its previous height.
+
+<Figure caption="For a point charge, field magnitude |E| decreases as distance r increases. The arrows mark the field at r, 2r, 3r and 4r, showing the inverse-square relationship.">
+  <svg
+    viewBox="0 0 640 370"
+    className="block w-full"
+    role="img"
+    aria-label="Graph of electric field magnitude against distance: a falling inverse-square curve with rust arrows at r, 2r, 3r and 4r whose heights shrink as one over r squared"
+  >
+    <defs>
+      <marker
+        id="ef3-rust"
+        viewBox="0 0 10 10"
+        refX="8"
+        refY="5"
+        markerWidth="6"
+        markerHeight="6"
+        orient="auto-start-reverse"
+      >
+        <path d="M0,0 L10,5 L0,10 z" fill="#B4552D" />
+      </marker>
+    </defs>
+
+    {/* Axes. */}
+    <text
+      x="355"
+      y="28"
+      textAnchor="middle"
+      fill="#181515"
+      fontSize="16"
+      fontWeight="700"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >
+      Field magnitude |E|
+    </text>
+    <g stroke="#181515" strokeWidth="1.6">
+      <line x1="100" y1="300" x2="610" y2="300" markerEnd="url(#ef3-rust)" />
+      <line x1="100" y1="300" x2="100" y2="40" />
+    </g>
+    <path d="M100,40 l-4,10 l8,0 z" fill="#181515" />
+    <path d="M610,300 l-10,-4 l0,8 z" fill="#B4552D" />
+
+    <text
+      x="620"
+      y="305"
+      fill="#181515"
+      fontSize="18"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >
+      r
+    </text>
+    <text
+      x="86"
+      y="52"
+      fill="#181515"
+      fontSize="18"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >
+      |E|
+    </text>
+
+    {/* Inverse-square curve. */}
+    <path
+      d="M177,50 L180,70 L188,110 L196,140 L204,164 L212,183 L220,198 L260,243 L300,263 L340,274 L420,286 L500,291 L580,294"
+      fill="none"
+      stroke="#181515"
+      strokeWidth="1.9"
+    />
+
+    {/* Field-vector arrows at r, 2r, 3r, 4r. */}
+    <g stroke="#B4552D" strokeWidth="1.9" markerEnd="url(#ef3-rust)">
+      <line x1="180" y1="300" x2="180" y2="70" />
+      <line x1="260" y1="300" x2="260" y2="243" />
+      <line x1="340" y1="300" x2="340" y2="274" />
+      <line x1="420" y1="300" x2="420" y2="286" />
+    </g>
+
+    {/* Distance ticks. */}
+    <g
+      fill="#181515"
+      fontSize="18"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+      textAnchor="middle"
+    >
+      <text x="180" y="324">r</text>
+      <text x="260" y="324">2r</text>
+      <text x="340" y="324">3r</text>
+      <text x="420" y="324">4r</text>
+    </g>
+    <text
+      x="355"
+      y="358"
+      textAnchor="middle"
+      fill="#181515"
+      fontSize="16"
+      fontWeight="700"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >
+      Distance from charge, r
+    </text>
+  </svg>
+</Figure>
+
+<KeyIdea>
+  The electric field belongs to the space itself. It is there whether or
+  not a test charge is present to feel it — the test charge only reveals
+  what the source charge has already set up.
+</KeyIdea>
+
+## Electric field intensity
+
+The **electric field intensity** $\vec{E}$ is the quantitative version of
+that idea: it is the force felt per unit positive test charge at a point.
+Bring a small test charge $q_0$ to the point, measure the force $\vec{F}$
+on it, and divide:
+
+$$
+\vec{E} = \lim_{q_0 \to 0} \frac{\vec{F}}{q_0}
+$$
+
+
+The limit is there for a reason. A test charge of its own produces a
+field, and if it is large it can push the source charges around and
+distort the very thing we are trying to measure. Letting $q_0$ shrink to
+zero removes that disturbance, so $\vec{E}$ describes the field of the
+source charges alone.
+
+The units follow straight from the definition: newtons per coulomb
+$(\mathrm{N/C})$, which is the same as volts per metre $(\mathrm{V/m})$.
+
+<Figure caption="Defining the field at a point P. A small test charge q₀ placed at P feels a force F; the ratio E = F / q₀ is the field intensity at P — a property of the source charge, not of the probe.">
+  <svg
+    viewBox="0 0 640 300"
+    className="block w-full"
+    role="img"
+    aria-label="A source charge Q on the left, a dashed line to a point P on the right where a small test charge q zero feels a force arrow F, with the electric field arrow E drawn at the same point"
+  >
+    <defs>
+      <marker
+        id="ef4-ink"
+        viewBox="0 0 10 10"
+        refX="8"
+        refY="5"
+        markerWidth="6"
+        markerHeight="6"
+        orient="auto-start-reverse"
+      >
+        <path d="M0,0 L10,5 L0,10 z" fill="#181515" />
+      </marker>
+      <marker
+        id="ef4-rust"
+        viewBox="0 0 10 10"
+        refX="8"
+        refY="5"
+        markerWidth="6.5"
+        markerHeight="6.5"
+        orient="auto-start-reverse"
+      >
+        <path d="M0,0 L10,5 L0,10 z" fill="#B4552D" />
+      </marker>
+    </defs>
+
+    {/* Source charge and the line to P. */}
+    <circle cx="90" cy="150" r="16" fill="#BF4326" />
+    <path d="M85,151 H95 M90,146 V156" stroke="#FBF4EC" strokeWidth="2.6" strokeLinecap="round" />
+    <text
+      x="90"
+      y="196"
+      textAnchor="middle"
+      fill="#BF4326"
+      fontSize="19"
+      fontWeight="700"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >
+      Q
+    </text>
+
+    <line
+      x1="112"
+      y1="150"
+      x2="395"
+      y2="150"
+      stroke="rgba(24,21,21,0.3)"
+      strokeWidth="1.2"
+      strokeDasharray="5 5"
+    />
+    <text
+      x="255"
+      y="138"
+      textAnchor="middle"
+      fill="rgba(24,21,21,0.55)"
+      fontSize="18"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >
+      R
+    </text>
+
+    {/* Point P with test charge. */}
+    <circle
+      cx="420"
+      cy="150"
+      r="13"
+      fill="#181515"
+      stroke="rgba(24,21,21,0.18)"
+      strokeWidth="6"
+    />
+    <path d="M415,149 H425 M420,144 V154" stroke="#FBF4EC" strokeWidth="2.6" strokeLinecap="round" />
+    <text
+      x="420"
+      y="122"
+      textAnchor="middle"
+      fill="#181515"
+      fontSize="18"
+      fontWeight="700"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >
+      P
+    </text>
+    <text
+      x="420"
+      y="196"
+      textAnchor="middle"
+      fill="#181515"
+      fontSize="18"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >
+      q₀
+    </text>
+
+    {/* Force and field arrows at P. */}
+    <line
+      x1="440"
+      y1="150"
+      x2="575"
+      y2="150"
+      stroke="#B4552D"
+      strokeWidth="2.4"
+      markerEnd="url(#ef4-rust)"
+    />
+    <text
+      x="592"
+      y="155"
+      fill="#B4552D"
+      fontSize="19"
+      fontWeight="700"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >
+      F
+    </text>
+
+    <line
+      x1="440"
+      y1="95"
+      x2="575"
+      y2="95"
+      stroke="#181515"
+      strokeWidth="2.4"
+      markerEnd="url(#ef4-ink)"
+    />
+    <text
+      x="592"
+      y="100"
+      fill="#181515"
+      fontSize="19"
+      fontWeight="700"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >
+      E
+    </text>
+    <text
+      x="508"
+      y="80"
+      textAnchor="middle"
+      fill="rgba(24,21,21,0.55)"
+      fontSize="17"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >
+      E = F / q₀
+    </text>
+  </svg>
+</Figure>
+
+## Electric field intensity due to a point charge
+
+Now derive $\vec{E}$ from scratch for the simplest source: a single point
+charge $Q$ sitting at the source point
+
+$$
+\vec{r}\,' = x'\,\hat{a}_x + y'\,\hat{a}_y + z'\,\hat{a}_z
+$$
+
+
+We want the field at the field point
+
+$$
+\vec{r} = x\,\hat{a}_x + y\,\hat{a}_y + z\,\hat{a}_z
+$$
+
+
+<Figure caption="Geometry of the derivation. The vector r′ locates the source charge Q, the vector r locates the field point P, and R = r − r′ is the displacement from the charge to P. The unit vector â_R points along R.">
+  <svg
+    viewBox="0 0 640 340"
+    className="block w-full"
+    role="img"
+    aria-label="A source charge Q at position r prime, a field point P at position r, and the displacement vector R from Q to P labelled as r minus r prime"
+  >
+    <defs>
+      <marker
+        id="ef5-ink"
+        viewBox="0 0 10 10"
+        refX="8"
+        refY="5"
+        markerWidth="6"
+        markerHeight="6"
+        orient="auto-start-reverse"
+      >
+        <path d="M0,0 L10,5 L0,10 z" fill="#181515" />
+      </marker>
+      <marker
+        id="ef5-rust"
+        viewBox="0 0 10 10"
+        refX="8"
+        refY="5"
+        markerWidth="6.5"
+        markerHeight="6.5"
+        orient="auto-start-reverse"
+      >
+        <path d="M0,0 L10,5 L0,10 z" fill="#B4552D" />
+      </marker>
+    </defs>
+
+    {/* Position vectors from the origin. */}
+    <circle cx="70" cy="280" r="4" fill="#181515" />
+    <text
+      x="60"
+      y="300"
+      fill="#181515"
+      fontSize="18"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >
+      O
+    </text>
+
+    <line
+      x1="70"
+      y1="280"
+      x2="215"
+      y2="215"
+      stroke="#181515"
+      strokeWidth="1.7"
+      markerEnd="url(#ef5-ink)"
+    />
+    <text
+      x="128"
+      y="262"
+      fill="#181515"
+      fontSize="18"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >
+      r′
+    </text>
+
+    <line
+      x1="70"
+      y1="280"
+      x2="505"
+      y2="95"
+      stroke="#181515"
+      strokeWidth="1.7"
+      markerEnd="url(#ef5-ink)"
+    />
+    <text
+      x="300"
+      y="205"
+      fill="#181515"
+      fontSize="18"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >
+      r
+    </text>
+
+    {/* Source charge at r prime. */}
+    <circle cx="230" cy="208" r="15" fill="#BF4326" />
+    <path d="M225,208 H235 M230,203 V213" stroke="#FBF4EC" strokeWidth="2.6" strokeLinecap="round" />
+    <text
+      x="230"
+      y="248"
+      textAnchor="middle"
+      fill="#BF4326"
+      fontSize="19"
+      fontWeight="700"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >
+      Q
+    </text>
+
+    {/* R from Q to P. */}
+    <line
+      x1="245"
+      y1="201"
+      x2="505"
+      y2="95"
+      stroke="#B4552D"
+      strokeWidth="2.4"
+      markerEnd="url(#ef5-rust)"
+    />
+    <text
+      x="368"
+      y="132"
+      fill="#B4552D"
+      fontSize="19"
+      fontWeight="700"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >
+      R = r − r′
+    </text>
+
+    {/* Field point P. */}
+    <circle cx="515" cy="91" r="8" fill="#181515" />
+    <text
+      x="533"
+      y="86"
+      fill="#181515"
+      fontSize="19"
+      fontWeight="700"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >
+      P
+    </text>
+    <text
+      x="533"
+      y="108"
+      fill="rgba(24,21,21,0.55)"
+      fontSize="17"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >
+      (x, y, z)
+    </text>
+    <text
+      x="205"
+      y="196"
+      fill="rgba(24,21,21,0.55)"
+      fontSize="17"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >
+      (x′, y′, z′)
+    </text>
+  </svg>
+</Figure>
+
+**Step 1 — the displacement.** The directed segment from the source to
+the field point is
+
+$$
+\vec{R} = \vec{r} - \vec{r}\,'
+$$
+
+
+with magnitude $R = |\vec{r} - \vec{r}\,'|$ and unit vector
+
+$$
+\hat{a}_R = \frac{\vec{R}}{R} = \frac{\vec{r} - \vec{r}\,'}{|\vec{r} - \vec{r}\,'|}
+$$
+
+
+**Step 2 — the force on a test charge.** Place a test charge $q_0$ at $P$.
+Coulomb's law gives the force on it:
+
+$$
+\vec{F} = \frac{q_0 Q}{4\pi\epsilon_0 R^2}\,\hat{a}_R
+$$
+
+
+**Step 3 — divide by the test charge.** By definition,
+$\vec{E} = \vec{F}/q_0$, so the $q_0$ cancels and
+
+$$
+\vec{E} = \frac{Q}{4\pi\epsilon_0 R^2}\,\hat{a}_R
+$$
+
+
+**Step 4 — substitute the vectors.** Replacing $R$ and $\hat{a}_R$ with
+their definitions gives the field in terms of the two position vectors:
+
+$$
+\vec{E} = \frac{Q\,(\vec{r} - \vec{r}\,')}{4\pi\epsilon_0\,|\vec{r} - \vec{r}\,'|^{3}}
+$$
+
+
+The power of three appears because one factor of $R$ comes from the
+denominator $R^2$ and the other from normalising $\hat{a}_R$.
+
+**Step 5 — Cartesian components.** Writing out
+$\vec{r} - \vec{r}\,' = (x-x')\hat{a}_x + (y-y')\hat{a}_y + (z-z')\hat{a}_z$:
+
+$$
+\vec{E} = \frac{Q\left[(x-x')\,\hat{a}_x + (y-y')\,\hat{a}_y + (z-z')\,\hat{a}_z\right]}{4\pi\epsilon_0\left[(x-x')^2 + (y-y')^2 + (z-z')^2\right]^{3/2}}
+$$
+
+
+**Step 6 — the special case of a charge at the origin.** If $Q$ sits at
+the origin, $\vec{r}\,' = 0$ and $R = r$, the spherical radius. The field
+becomes purely radial:
+
+$$
+\vec{E} = \frac{Q}{4\pi\epsilon_0 r^{2}}\,\hat{a}_r
+$$
+
+
+This is the inverse-square law we saw in the graph: the magnitude falls
+as $1/r^2$, and for $Q > 0$ the field points outward along $\hat{a}_r$;
+for $Q < 0$ it points inward.
+
+## Electric field intensity due to n point charges
+
+One charge is a sum-free problem. With a crowd of charges $Q_1, Q_2,
+\dots, Q_n$ placed at $\vec{r}_1, \vec{r}_2, \dots, \vec{r}_n$, Coulomb's
+law stays linear — no product of two different source charges ever
+appears — so each charge produces its field as if the others were not
+there. Compute each field separately, then add the arrows tip to tip.
+
+<Figure caption="Three source charges act on the field point P at once. Each contributes its own field arrow — pointing away from a positive source, toward a negative one. The thick rust arrow is the vector sum of the three.">
+  <svg
+    viewBox="0 0 640 380"
+    className="block w-full"
+    role="img"
+    aria-label="Three source charges around a field point P, each with its own electric field arrow, and a thick resultant arrow showing their vector sum"
+  >
+    <defs>
+      <marker
+        id="ef6-ink"
+        viewBox="0 0 10 10"
+        refX="8"
+        refY="5"
+        markerWidth="6"
+        markerHeight="6"
+        orient="auto-start-reverse"
+      >
+        <path d="M0,0 L10,5 L0,10 z" fill="#181515" />
+      </marker>
+      <marker
+        id="ef6-rust"
+        viewBox="0 0 10 10"
+        refX="8"
+        refY="5"
+        markerWidth="6.5"
+        markerHeight="6.5"
+        orient="auto-start-reverse"
+      >
+        <path d="M0,0 L10,5 L0,10 z" fill="#B4552D" />
+      </marker>
+    </defs>
+
+    {/* Dashed connectors from sources to P. */}
+    <g stroke="rgba(24,21,21,0.22)" strokeWidth="1.2" strokeDasharray="4 5">
+      <line x1="110" y1="110" x2="320" y2="200" />
+      <line x1="130" y1="300" x2="320" y2="200" />
+      <line x1="520" y1="320" x2="320" y2="200" />
+    </g>
+
+    {/* Tip-to-tail construction of the resultant. */}
+    <path
+      d="M320,200 L403,235 L332,273 L259,229"
+      fill="none"
+      stroke="rgba(24,21,21,0.35)"
+      strokeWidth="1.1"
+      strokeDasharray="3 4"
+    />
+
+    {/* Individual field arrows from P. */}
+    <g stroke="#181515" strokeWidth="1.7" markerEnd="url(#ef6-ink)">
+      <line x1="320" y1="200" x2="403" y2="235" />
+      <line x1="320" y1="200" x2="249" y2="237" />
+      <line x1="320" y1="200" x2="247" y2="156" />
+    </g>
+
+    {/* Resultant. */}
+    <line
+      x1="320"
+      y1="200"
+      x2="259"
+      y2="229"
+      stroke="#B4552D"
+      strokeWidth="3"
+      markerEnd="url(#ef6-rust)"
+    />
+
+    {/* Source charges. */}
+    <g fontFamily="var(--font-mono), ui-monospace, monospace" fontWeight="700">
+      <circle cx="110" cy="110" r="13" fill="#BF4326" />
+      <path d="M105,110 H115 M110,105 V115" stroke="#FBF4EC" strokeWidth="2.6" strokeLinecap="round" />
+      <text x="110" y="84" textAnchor="middle" fill="#BF4326" fontSize="18">
+        Q₁
+      </text>
+
+      <circle cx="130" cy="300" r="13" fill="#33506E" />
+      <path d="M125,300 H135" stroke="#FBF4EC" strokeWidth="2.6" strokeLinecap="round" />
+      <text x="130" y="334" textAnchor="middle" fill="#33506E" fontSize="18">
+        Q₂
+      </text>
+
+      <circle cx="520" cy="320" r="13" fill="#BF4326" />
+      <path d="M515,320 H525 M520,315 V325" stroke="#FBF4EC" strokeWidth="2.6" strokeLinecap="round" />
+      <text x="520" y="354" textAnchor="middle" fill="#BF4326" fontSize="18">
+        Q₃
+      </text>
+
+      {/* Field point. */}
+      <circle cx="320" cy="200" r="9" fill="#181515" />
+      <text x="320" y="180" textAnchor="middle" fill="#181515" fontSize="18">
+        P
+      </text>
+    </g>
+
+    {/* Field labels. */}
+    <g
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+      fontSize="17"
+      fontWeight="600"
+      fill="#181515"
+    >
+      <text x="378" y="256">E₁</text>
+      <text x="258" y="258" textAnchor="end">E₂</text>
+      <text x="252" y="152" textAnchor="end">E₃</text>
+    </g>
+    <text
+      x="250"
+      y="220"
+      textAnchor="end"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+      fontSize="17"
+      fontWeight="700"
+      fill="#B4552D"
+    >
+      E
+    </text>
+  </svg>
+</Figure>
+
+Each source $Q_k$ at $\vec{r}_k$ contributes its own field at $\vec{r}$,
+using the derivation above with $\vec{r}\,'$ replaced by $\vec{r}_k$:
+
+$$
+\vec{E}_k = \frac{Q_k\,(\vec{r} - \vec{r}_k)}{4\pi\epsilon_0\,|\vec{r} - \vec{r}_k|^{3}}
+$$
+
+
+By superposition, the total field is the vector sum:
+
+$$
+\boxed{\vec{E} = \sum_{k=1}^{n} \frac{Q_k\,(\vec{r} - \vec{r}_k)}{4\pi\epsilon_0\,|\vec{r} - \vec{r}_k|^{3}}}
+$$
+
+
+<KeyIdea>
+  Superposition: the field of several charges is the vector sum of the
+  fields each would produce alone. There is no interaction term between
+  source charges — only addition of arrows.
+</KeyIdea>
+
+## Electric field intensity due to a line charge
+
+Charges are not always points. When charge is spread along a line we
+describe it with a **line charge density**
+
+$$
+\rho_L = \frac{dQ}{dL} \qquad [\mathrm{C/m}]
+$$
+
+
+so that a length element carries $dQ = \rho_L\,dL$.
+
+The assumptions for this derivation:
+
+- an infinite straight line of uniform $\rho_L$ lies along the $z$-axis;
+- the field point $P$ sits at perpendicular distance $\rho$ from the line;
+- the geometry is **cylindrical**: nothing depends on $\phi$ or on $z$, so
+  the field can only point radially, in the $\hat{a}_\rho$ direction.
+
+<Figure caption="Left: an infinite line charge lies on the z-axis. The element dz is at height +z, and P is a perpendicular distance ρ from the line. The slanted distance to P is R, and θ is the angle between R and the horizontal. Right: the paired vertical field components cancel, while the components along ρ add.">
+  <svg
+    viewBox="0 0 640 380"
+    className="block w-full"
+    role="img"
+    aria-label="Two panels: left, an infinite line charge along the z axis with elements dz at plus z and minus z, a field point P at perpendicular distance rho, and slant distance R with angle theta; right, the fields dE and dE prime at P with cancelling z components and a resultant along rho"
+  >
+    <defs>
+      <marker
+        id="ef7-ink"
+        viewBox="0 0 10 10"
+        refX="8"
+        refY="5"
+        markerWidth="6"
+        markerHeight="6"
+        orient="auto-start-reverse"
+      >
+        <path d="M0,0 L10,5 L0,10 z" fill="#181515" />
+      </marker>
+      <marker
+        id="ef7-rust"
+        viewBox="0 0 10 10"
+        refX="8"
+        refY="5"
+        markerWidth="6.5"
+        markerHeight="6.5"
+        orient="auto-start-reverse"
+      >
+        <path d="M0,0 L10,5 L0,10 z" fill="#B4552D" />
+      </marker>
+    </defs>
+
+    {/* Panel divider. */}
+    <line
+      x1="335"
+      y1="28"
+      x2="335"
+      y2="352"
+      stroke="rgba(24,21,21,0.2)"
+      strokeWidth="1.2"
+      strokeDasharray="4 6"
+    />
+
+    {/* ---- Left panel: geometry ---- */}
+    {/* z-axis / line charge. */}
+    <line
+      x1="130"
+      y1="35"
+      x2="130"
+      y2="348"
+      stroke="#BF4326"
+      strokeWidth="3"
+      markerEnd="url(#ef7-ink)"
+    />
+    <text
+      x="144"
+      y="52"
+      fill="#181515"
+      fontSize="19"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >z</text>
+    <text
+      x="112"
+      y="78"
+      textAnchor="end"
+      fill="#BF4326"
+      fontSize="20"
+      fontWeight="700"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >ρ<tspan dy="4" fontSize="14">L</tspan></text>
+
+    {/* Element dz at +z and its mirror at -z. */}
+    <line
+      x1="130"
+      y1="115"
+      x2="130"
+      y2="135"
+      stroke="#181515"
+      strokeWidth="6"
+    />
+    <text
+      x="146"
+      y="108"
+      fill="#181515"
+      fontSize="18"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >dz</text>
+    <line
+      x1="130"
+      y1="285"
+      x2="130"
+      y2="305"
+      stroke="rgba(24,21,21,0.45)"
+      strokeWidth="6"
+    />
+    <text
+      x="146"
+      y="320"
+      fill="rgba(24,21,21,0.55)"
+      fontSize="18"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >dz</text>
+
+    {/* z and -z distances from the origin. */}
+    <path
+      d="M112,210 L112,126 M107,134 L112,124 L117,134"
+      fill="none"
+      stroke="rgba(24,21,21,0.45)"
+      strokeWidth="1.2"
+    />
+    <text
+      x="100"
+      y="172"
+      textAnchor="end"
+      fill="rgba(24,21,21,0.7)"
+      fontSize="18"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >+z</text>
+    <path
+      d="M112,210 L112,294 M107,286 L112,296 L117,286"
+      fill="none"
+      stroke="rgba(24,21,21,0.35)"
+      strokeWidth="1.2"
+    />
+    <text
+      x="100"
+      y="252"
+      textAnchor="end"
+      fill="rgba(24,21,21,0.55)"
+      fontSize="18"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >−z</text>
+
+    {/* Perpendicular distance rho from the line to P. */}
+    <line
+      x1="130"
+      y1="210"
+      x2="285"
+      y2="210"
+      stroke="rgba(24,21,21,0.35)"
+      strokeWidth="1.2"
+      strokeDasharray="5 5"
+    />
+    <circle cx="130" cy="210" r="3.5" fill="#181515" />
+    <text
+      x="207"
+      y="232"
+      textAnchor="middle"
+      fill="#181515"
+      fontSize="19"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >ρ</text>
+
+    {/* Slant distances R from the two elements to P. */}
+    <line
+      x1="130"
+      y1="125"
+      x2="282"
+      y2="208"
+      stroke="#181515"
+      strokeWidth="1.6"
+      markerEnd="url(#ef7-ink)"
+    />
+    <text
+      x="222"
+      y="168"
+      fill="#181515"
+      fontSize="19"
+      fontWeight="700"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >R</text>
+    <line
+      x1="130"
+      y1="295"
+      x2="276"
+      y2="216"
+      stroke="rgba(24,21,21,0.5)"
+      strokeWidth="1.4"
+      strokeDasharray="4 4"
+      markerEnd="url(#ef7-ink)"
+    />
+
+    {/* Horizontal reference and angle theta. */}
+    <line
+      x1="130"
+      y1="125"
+      x2="300"
+      y2="125"
+      stroke="rgba(24,21,21,0.3)"
+      strokeWidth="1.1"
+      strokeDasharray="4 4"
+    />
+    <path
+      d="M192,125 A62,62 0 0 1 184.4,154.8"
+      fill="none"
+      stroke="rgba(24,21,21,0.55)"
+      strokeWidth="1.3"
+    />
+    <text
+      x="204"
+      y="158"
+      fill="rgba(24,21,21,0.8)"
+      fontSize="22"
+      fontWeight="700"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >θ</text>
+
+    {/* Point P. */}
+    <circle cx="285" cy="210" r="7" fill="#181515" />
+    <text
+      x="285"
+      y="193"
+      textAnchor="middle"
+      fill="#181515"
+      fontSize="19"
+      fontWeight="700"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >P</text>
+
+    {/* ---- Right panel: components at P ---- */}
+    <circle cx="430" cy="195" r="7" fill="#181515" />
+    <text
+      x="430"
+      y="178"
+      textAnchor="middle"
+      fill="#181515"
+      fontSize="19"
+      fontWeight="700"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >P</text>
+
+    {/* dE from the upper element (down-right), dE' from the lower (up-right). */}
+    <line
+      x1="430"
+      y1="195"
+      x2="540"
+      y2="255"
+      stroke="#181515"
+      strokeWidth="1.8"
+      markerEnd="url(#ef7-ink)"
+    />
+    <line
+      x1="430"
+      y1="195"
+      x2="540"
+      y2="135"
+      stroke="rgba(24,21,21,0.55)"
+      strokeWidth="1.8"
+      strokeDasharray="5 4"
+      markerEnd="url(#ef7-ink)"
+    />
+
+    {/* The vertical components are equal and opposite. */}
+    <line
+      x1="540"
+      y1="135"
+      x2="540"
+      y2="255"
+      stroke="rgba(24,21,21,0.3)"
+      strokeWidth="1.1"
+      strokeDasharray="3 4"
+    />
+
+    {/* Resultant along rho. */}
+    <line
+      x1="430"
+      y1="195"
+      x2="610"
+      y2="195"
+      stroke="#B4552D"
+      strokeWidth="2.6"
+      markerEnd="url(#ef7-rust)"
+    />
+
+    <g
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+      fontSize="19"
+      fontWeight="600"
+      fill="#181515"
+    >
+      <text x="550" y="282">dE</text>
+      <text x="550" y="110">dE′</text>
+    </g>
+    <g
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+      fontSize="18"
+      fontWeight="600"
+      fill="#181515"
+    >
+      <text x="550" y="250">dE<tspan dy="4" fontSize="13">z</tspan></text>
+      <text x="550" y="158">dE<tspan dy="4" fontSize="13">z′</tspan></text>
+    </g>
+    <text
+      x="555"
+      y="184"
+      fill="#B4552D"
+      fontSize="18"
+      fontWeight="700"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >dE<tspan dy="4" fontSize="13">ρ</tspan></text>
+  </svg>
+</Figure>
+
+**Step 1 — the source element.** Cut a length $dz$ from the line at
+height $z$. It carries
+
+$$
+dQ = \rho_L\,dz
+$$
+
+
+**Step 2 — the field of that element.** By Coulomb's law the element
+contributes
+
+$$
+d\vec{E} = \frac{\rho_L\,dz}{4\pi\epsilon_0 R^{2}}\,\hat{a}_R
+$$
+
+
+where $R = \sqrt{z^2 + \rho^2}$ is the slant distance from the element to
+$P$.
+
+**Step 3 — kill the components that cancel.** For every element at $+z$
+there is an identical element at $-z$. Their slant distances are equal,
+so their $dE$ magnitudes are equal; by mirror symmetry the components
+along the line cancel exactly, and only the components along $\rho$
+survive. The surviving piece of one element is
+
+$$
+dE_\rho = dE\,\cos\theta = dE\cdot\frac{\rho}{R}
+= \frac{\rho_L\,\rho\,dz}{4\pi\epsilon_0\left(z^2 + \rho^2\right)^{3/2}}
+$$
+
+
+**Step 4 — integrate over the whole line.** The surviving components all
+point along $\hat{a}_\rho$, so we can add them as scalars over
+$z \in (-\infty, \infty)$ — or, by symmetry, double the integral from
+$0$ to $\infty$:
+
+$$
+E = \frac{\rho_L\,\rho}{2\pi\epsilon_0}\int_0^{\infty}
+\frac{dz}{\left(z^2 + \rho^2\right)^{3/2}}
+$$
+
+
+**Step 5 — evaluate the integral.** The standard integral is
+
+$$
+\int \frac{dz}{\left(z^2 + \rho^2\right)^{3/2}}
+= \frac{z}{\rho^2\sqrt{z^2 + \rho^2}}
+$$
+
+
+Evaluated from $0$ to $\infty$:
+
+$$
+\left[\frac{z}{\rho^2\sqrt{z^2 + \rho^2}}\right]_0^{\infty}
+= \frac{1}{\rho^2} - 0 = \frac{1}{\rho^2}
+$$
+
+
+**Step 6 — assemble the result.**
+
+$$
+E = \frac{\rho_L\,\rho}{2\pi\epsilon_0}\cdot\frac{1}{\rho^2}
+= \frac{\rho_L}{2\pi\epsilon_0 \rho}
+$$
+
+
+In cylindrical notation, with $\hat{a}_\rho$ pointing from the line out to
+the field point:
+
+$$
+\boxed{\vec{E} = \frac{\rho_L}{2\pi\epsilon_0 \rho}\,\hat{a}_\rho}
+$$
+
+
+The field falls off as $1/\rho$, not $1/\rho^2$ — an infinite line keeps
+sending field outward along its whole length, so the inverse-square law
+softens. If the line does not lie on the $z$-axis, $\rho$ is still the
+perpendicular distance from the line to the point, and $\hat{a}_\rho$
+still points from the line toward the point.
+
+## Electric field intensity due to an infinite sheet of charge
+
+For charge spread over a surface we use the **surface charge density**
+
+$$
+\rho_S = \frac{dQ}{dS} \qquad [\mathrm{C/m^2}]
+$$
+
+
+Take an infinite sheet of uniform $\rho_S$ lying in the $yz$-plane
+($x = 0$), and find the field at $P(x, 0, 0)$ on the $x$-axis.
+
+Two symmetries fix the answer before any integration:
+
+- Strips at $+y$ and $-y$ send equal fields whose $y$-components cancel,
+  so only $E_x$ survives.
+- The sheet is infinite in $y$ and $z$, so nothing depends on where you
+  stand in the plane — the field can only depend on $x$.
+
+<Figure caption="The sheet is shown edge-on at x = 0. A strip of width dy at height y and its mirror at −y contribute equal fields at P. Their y-components cancel; the x-components add. R is the strip-to-point distance and θ is its angle to the x direction.">
+  <svg
+    viewBox="0 0 640 340"
+    className="block w-full"
+    role="img"
+    aria-label="An infinite sheet seen edge-on at x equals zero, with strips of width dy at plus y and minus y, a field point P on the x-axis, slant distance R and angle theta, and the fields at P with cancelling y components and a resultant along x"
+  >
+    <defs>
+      <marker
+        id="ef8-ink"
+        viewBox="0 0 10 10"
+        refX="8"
+        refY="5"
+        markerWidth="6"
+        markerHeight="6"
+        orient="auto-start-reverse"
+      >
+        <path d="M0,0 L10,5 L0,10 z" fill="#181515" />
+      </marker>
+      <marker
+        id="ef8-rust"
+        viewBox="0 0 10 10"
+        refX="8"
+        refY="5"
+        markerWidth="6.5"
+        markerHeight="6.5"
+        orient="auto-start-reverse"
+      >
+        <path d="M0,0 L10,5 L0,10 z" fill="#B4552D" />
+      </marker>
+    </defs>
+
+    {/* Sheet edge-on (yz-plane). */}
+    <line
+      x1="190"
+      y1="40"
+      x2="190"
+      y2="310"
+      stroke="#33506E"
+      strokeWidth="4"
+    />
+    <text
+      x="174"
+      y="60"
+      textAnchor="end"
+      fill="#33506E"
+      fontSize="20"
+      fontWeight="700"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >ρ<tspan dy="4" fontSize="14">S</tspan></text>
+    <text
+      x="174"
+      y="92"
+      textAnchor="end"
+      fill="rgba(24,21,21,0.55)"
+      fontSize="18"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >x = 0</text>
+
+    {/* Strip at +y and mirror at -y. */}
+    <line x1="190" y1="80" x2="190" y2="100" stroke="#181515" strokeWidth="7" />
+    <line
+      x1="190"
+      y1="280"
+      x2="190"
+      y2="300"
+      stroke="rgba(24,21,21,0.45)"
+      strokeWidth="7"
+    />
+
+    {/* dy bracket. */}
+    <path
+      d="M208,80 L212,80 L212,100 L208,100"
+      fill="none"
+      stroke="rgba(24,21,21,0.5)"
+      strokeWidth="1.2"
+    />
+    <text
+      x="218"
+      y="70"
+      fill="#181515"
+      fontSize="18"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >dy</text>
+
+    {/* y and -y distances from the x-axis. */}
+    <path
+      d="M166,190 L162,190 L162,90 L166,90"
+      fill="none"
+      stroke="rgba(24,21,21,0.4)"
+      strokeWidth="1.2"
+    />
+    <text
+      x="154"
+      y="140"
+      textAnchor="end"
+      fill="rgba(24,21,21,0.7)"
+      fontSize="18"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >y</text>
+    <path
+      d="M166,190 L162,190 L162,290 L166,290"
+      fill="none"
+      stroke="rgba(24,21,21,0.3)"
+      strokeWidth="1.2"
+    />
+    <text
+      x="154"
+      y="242"
+      textAnchor="end"
+      fill="rgba(24,21,21,0.55)"
+      fontSize="18"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >−y</text>
+
+    {/* x-axis from the sheet to P. */}
+    <line
+      x1="190"
+      y1="190"
+      x2="400"
+      y2="190"
+      stroke="rgba(24,21,21,0.35)"
+      strokeWidth="1.2"
+      strokeDasharray="5 5"
+    />
+    <circle cx="190" cy="190" r="3.5" fill="#181515" />
+    <text
+      x="295"
+      y="210"
+      textAnchor="middle"
+      fill="#181515"
+      fontSize="18"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >x</text>
+
+    {/* R from the strip to P, and mirror R. */}
+    <line
+      x1="190"
+      y1="90"
+      x2="394"
+      y2="188"
+      stroke="#181515"
+      strokeWidth="1.7"
+      markerEnd="url(#ef8-ink)"
+    />
+    <text
+      x="305"
+      y="125"
+      fill="#181515"
+      fontSize="19"
+      fontWeight="700"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >R</text>
+    <line
+      x1="190"
+      y1="290"
+      x2="394"
+      y2="194"
+      stroke="rgba(24,21,21,0.45)"
+      strokeWidth="1.4"
+      strokeDasharray="4 4"
+      markerEnd="url(#ef8-ink)"
+    />
+
+    {/* Horizontal reference and angle theta. */}
+    <line
+      x1="190"
+      y1="90"
+      x2="320"
+      y2="90"
+      stroke="rgba(24,21,21,0.3)"
+      strokeWidth="1.1"
+      strokeDasharray="4 4"
+    />
+    <path
+      d="M252,90 A62,62 0 0 1 245.9,116.9"
+      fill="none"
+      stroke="rgba(24,21,21,0.6)"
+      strokeWidth="1.4"
+    />
+    <text
+      x="264"
+      y="118"
+      fill="rgba(24,21,21,0.8)"
+      fontSize="22"
+      fontWeight="700"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >θ</text>
+
+    {/* Point P. */}
+    <circle cx="400" cy="190" r="7" fill="#181515" />
+    <text
+      x="400"
+      y="174"
+      textAnchor="middle"
+      fill="#181515"
+      fontSize="19"
+      fontWeight="700"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >P</text>
+
+    {/* dE from the +y strip (down-right), dE' from the -y strip (up-right). */}
+    <line
+      x1="400"
+      y1="190"
+      x2="520"
+      y2="250"
+      stroke="#181515"
+      strokeWidth="1.7"
+      markerEnd="url(#ef8-ink)"
+    />
+    <line
+      x1="400"
+      y1="190"
+      x2="520"
+      y2="130"
+      stroke="rgba(24,21,21,0.5)"
+      strokeWidth="1.6"
+      strokeDasharray="5 4"
+      markerEnd="url(#ef8-ink)"
+    />
+
+    {/* The vertical components are equal and opposite. */}
+    <line
+      x1="520"
+      y1="130"
+      x2="520"
+      y2="250"
+      stroke="rgba(24,21,21,0.3)"
+      strokeWidth="1.1"
+      strokeDasharray="3 4"
+    />
+
+    {/* Resultant along x. */}
+    <line
+      x1="400"
+      y1="190"
+      x2="610"
+      y2="190"
+      stroke="#B4552D"
+      strokeWidth="2.6"
+      markerEnd="url(#ef8-rust)"
+    />
+
+    <g
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+      fontSize="19"
+      fontWeight="600"
+      fill="#181515"
+    >
+      <text x="530" y="277">dE</text>
+      <text x="530" y="105">dE′</text>
+    </g>
+    <g
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+      fontSize="18"
+      fontWeight="600"
+      fill="#181515"
+    >
+      <text x="530" y="245">dE<tspan dy="4" fontSize="13">y</tspan></text>
+      <text x="530" y="152">dE<tspan dy="4" fontSize="13">y′</tspan></text>
+    </g>
+    <text
+      x="535"
+      y="180"
+      fill="#B4552D"
+      fontSize="18"
+      fontWeight="700"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >dE<tspan dy="4" fontSize="13">x</tspan></text>
+  </svg>
+</Figure>
+
+**Step 1 — cut a strip.** Slice the sheet into strips of width $dy$
+running along $z$. Each strip is an infinite line charge, so the
+previous section applies to it directly — with line density
+
+$$
+\rho_L = \rho_S\,dy
+$$
+
+
+**Step 2 — field of one strip.** The strip sits at coordinate $y$; its
+perpendicular distance to $P$ is $R = \sqrt{x^2 + y^2}$. Its field at $P$
+has magnitude
+
+$$
+dE = \frac{\rho_S\,dy}{2\pi\epsilon_0 R}
+$$
+
+
+pointing along the strip-to-$P$ direction.
+
+**Step 3 — keep the $x$-component.** Mirror strips at $\pm y$ cancel the
+$y$-components, so only
+
+$$
+dE_x = dE\cos\theta = dE\cdot\frac{x}{R}
+= \frac{\rho_S\,x\,dy}{2\pi\epsilon_0\left(x^2 + y^2\right)}
+$$
+
+
+survives.
+
+**Step 4 — integrate across the sheet.**
+
+$$
+E = \int_{-\infty}^{\infty}
+\frac{\rho_S\,x\,dy}{2\pi\epsilon_0\left(x^2 + y^2\right)}
+= \frac{\rho_S\,x}{2\pi\epsilon_0}
+\int_{-\infty}^{\infty} \frac{dy}{x^2 + y^2}
+$$
+
+
+The remaining integral is standard:
+
+$$
+\int_{-\infty}^{\infty} \frac{dy}{x^2 + y^2}
+= \left[\frac{1}{x}\arctan\frac{y}{x}\right]_{-\infty}^{\infty}
+= \frac{1}{x}\left(\frac{\pi}{2} - \left(-\frac{\pi}{2}\right)\right)
+= \frac{\pi}{x}
+$$
+
+
+**Step 5 — assemble the result.**
+
+$$
+E = \frac{\rho_S\,x}{2\pi\epsilon_0}\cdot\frac{\pi}{x}
+= \frac{\rho_S}{2\epsilon_0}
+$$
+
+
+The $x$ cancelled — the field of an infinite sheet does not depend on
+distance at all. In general form, with $\hat{a}_N$ the unit normal
+pointing away from the sheet:
+
+$$
+\boxed{\vec{E} = \frac{\rho_S}{2\epsilon_0}\,\hat{a}_N}
+$$
+
+
+## Electric field due to a parallel plate capacitor
+
+Put two infinite sheets side by side: one at $x = 0$ carrying
+$+\rho_S$, the other at $x = a$ carrying $-\rho_S$. This pair is a
+parallel-plate capacitor, and its field is just the superposition of the
+two sheet fields we now know.
+
+<Figure caption="The positive sheet is at x = 0 and the negative sheet at x = a. The field contributions cancel in regions I and III, and add in region II between the plates.">
+  <svg
+    viewBox="0 0 640 340"
+    className="block w-full"
+    role="img"
+    aria-label="Two parallel sheets marked plus rho s and minus rho s with three regions; uniform electric field arrows point from the positive to the negative sheet between them, and the field is zero outside"
+  >
+    <defs>
+      <marker
+        id="ef9-rust"
+        viewBox="0 0 10 10"
+        refX="8"
+        refY="5"
+        markerWidth="6.5"
+        markerHeight="6.5"
+        orient="auto-start-reverse"
+      >
+        <path d="M0,0 L10,5 L0,10 z" fill="#B4552D" />
+      </marker>
+    </defs>
+
+    {/* x-axis. */}
+    <line
+      x1="90"
+      y1="270"
+      x2="580"
+      y2="270"
+      stroke="rgba(24,21,21,0.4)"
+      strokeWidth="1.3"
+      strokeDasharray="5 5"
+      markerEnd="url(#ef9-rust)"
+    />
+    <text
+      x="592"
+      y="275"
+      fill="#181515"
+      fontSize="18"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >
+      x
+    </text>
+
+    {/* Sheets. */}
+    <line x1="200" y1="60" x2="200" y2="270" stroke="#BF4326" strokeWidth="5" />
+    <line x1="420" y1="60" x2="420" y2="270" stroke="#33506E" strokeWidth="5" />
+    <text
+      x="200"
+      y="48"
+      textAnchor="middle"
+      fill="#BF4326"
+      fontSize="18"
+      fontWeight="700"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >
+      +ρ_S
+    </text>
+    <text
+      x="420"
+      y="48"
+      textAnchor="middle"
+      fill="#33506E"
+      fontSize="18"
+      fontWeight="700"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >
+      −ρ_S
+    </text>
+    <text
+      x="200"
+      y="292"
+      textAnchor="middle"
+      fill="#181515"
+      fontSize="18"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >
+      0
+    </text>
+    <text
+      x="420"
+      y="292"
+      textAnchor="middle"
+      fill="#181515"
+      fontSize="18"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >
+      a
+    </text>
+
+    {/* Region labels. */}
+    <g
+      fill="rgba(24,21,21,0.5)"
+      fontSize="17"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+      textAnchor="middle"
+    >
+      <text x="140" y="90">x &lt; 0</text>
+      <text x="310" y="90">0 &lt; x &lt; a</text>
+      <text x="510" y="90">x &gt; a</text>
+    </g>
+
+    {/* Field arrows between the plates. */}
+    <g stroke="#B4552D" strokeWidth="2" markerEnd="url(#ef9-rust)">
+      <line x1="218" y1="130" x2="402" y2="130" />
+      <line x1="218" y1="180" x2="402" y2="180" />
+      <line x1="218" y1="230" x2="402" y2="230" />
+    </g>
+    <text
+      x="310"
+      y="115"
+      textAnchor="middle"
+      fill="#B4552D"
+      fontSize="18"
+      fontWeight="700"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >
+      E
+    </text>
+
+    {/* Zero field outside. */}
+    <g
+      fill="rgba(24,21,21,0.45)"
+      fontSize="17"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+      textAnchor="middle"
+    >
+      <text x="140" y="215">E = 0</text>
+      <text x="510" y="215">E = 0</text>
+    </g>
+  </svg>
+</Figure>
+
+**Step 1 — the two contributions.** From the previous section, the field
+of an infinite sheet is $\rho_S / 2\epsilon_0$ pointing away from the
+sheet. So:
+
+- The $+\rho_S$ sheet at $x = 0$ pushes right for $x > 0$ and left for
+  $x < 0$.
+- The $-\rho_S$ sheet at $x = a$ pulls right for $x < a$ and left for
+  $x > a$.
+
+**Step 2 — add them in each region.**
+
+1. **Region I, $x < 0$**
+   - Positive sheet: $-\dfrac{\rho_S}{2\epsilon_0}\,\hat{a}_x$.
+   - Negative sheet: $+\dfrac{\rho_S}{2\epsilon_0}\,\hat{a}_x$.
+   - **Total field:** $\vec{E} = \vec{0}$.
+2. **Region II, $0 < x < a$**
+   - Positive sheet: $+\dfrac{\rho_S}{2\epsilon_0}\,\hat{a}_x$.
+   - Negative sheet: $+\dfrac{\rho_S}{2\epsilon_0}\,\hat{a}_x$.
+   - **Total field:** $\vec{E} = \dfrac{\rho_S}{\epsilon_0}\,\hat{a}_x$.
+3. **Region III, $x > a$**
+   - Positive sheet: $+\dfrac{\rho_S}{2\epsilon_0}\,\hat{a}_x$.
+   - Negative sheet: $-\dfrac{\rho_S}{2\epsilon_0}\,\hat{a}_x$.
+   - **Total field:** $\vec{E} = \vec{0}$.
+
+**Step 3 — read the result.** Outside the plates the two fields cancel
+exactly; between them they reinforce. The field of the capacitor is a
+uniform field confined to the gap:
+
+$$
+\boxed{\vec{E} = \frac{\rho_S}{\epsilon_0}\,\hat{a}_x
+\qquad (0 < x < a)}
+$$
+
+
+uniform in the gap and zero everywhere else — twice the field of a
+single sheet, because both sheets contribute the same way inside.
+
+## Streamlines
+
+A **streamline** is a curve drawn through the field such that its
+tangent at every point points in the direction of $\vec{E}$ there. Field
+lines start on positive charges and end on negative charges; they never
+cross, because a crossing would give two directions for the field at one
+point.
+
+<Figure caption="Left: at any point on a streamline the tangent arrow is the field vector at that point. Right: the streamlines of a positive point charge are straight lines leaving the charge — every one of them satisfies y = C x.">
+  <svg
+    viewBox="0 0 640 320"
+    className="block w-full"
+    role="img"
+    aria-label="Two panels: on the left a curved streamline with a tangent arrow labelled E at a marked point; on the right a positive point charge with straight radial streamlines, one labelled y equals C x"
+  >
+    <defs>
+      <marker
+        id="ef10-ink"
+        viewBox="0 0 10 10"
+        refX="8"
+        refY="5"
+        markerWidth="6"
+        markerHeight="6"
+        orient="auto-start-reverse"
+      >
+        <path d="M0,0 L10,5 L0,10 z" fill="#181515" />
+      </marker>
+      <marker
+        id="ef10-rust"
+        viewBox="0 0 10 10"
+        refX="8"
+        refY="5"
+        markerWidth="6.5"
+        markerHeight="6.5"
+        orient="auto-start-reverse"
+      >
+        <path d="M0,0 L10,5 L0,10 z" fill="#B4552D" />
+      </marker>
+    </defs>
+
+    {/* Panel divider. */}
+    <line
+      x1="320"
+      y1="30"
+      x2="320"
+      y2="290"
+      stroke="rgba(24,21,21,0.2)"
+      strokeWidth="1.2"
+      strokeDasharray="4 6"
+    />
+
+    {/* Left: streamline with tangent. */}
+    <path
+      d="M50,260 C120,250 160,200 190,150 S250,70 300,60"
+      fill="none"
+      stroke="#181515"
+      strokeWidth="2"
+    />
+    <circle cx="176" cy="176" r="5" fill="#181515" />
+    <line
+      x1="176"
+      y1="176"
+      x2="276"
+      y2="136"
+      stroke="#B4552D"
+      strokeWidth="2.2"
+      markerEnd="url(#ef10-rust)"
+    />
+    <text
+      x="286"
+      y="136"
+      fill="#B4552D"
+      fontSize="19"
+      fontWeight="700"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >
+      E
+    </text>
+    <text
+      x="120"
+      y="200"
+      fill="rgba(24,21,21,0.55)"
+      fontSize="17"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >
+      streamline
+    </text>
+
+    {/* Right: radial streamlines of a point charge. */}
+    <g stroke="rgba(24,21,21,0.6)" strokeWidth="1.6">
+      <line x1="495" y1="160" x2="620" y2="160" markerEnd="url(#ef10-ink)" />
+      <line x1="480" y1="175" x2="480" y2="45" markerEnd="url(#ef10-ink)" />
+      <line x1="465" y1="160" x2="345" y2="160" markerEnd="url(#ef10-ink)" />
+      <line x1="480" y1="145" x2="480" y2="275" markerEnd="url(#ef10-ink)" />
+      <line x1="491" y1="149" x2="577" y2="63" markerEnd="url(#ef10-ink)" />
+      <line x1="469" y1="171" x2="383" y2="257" markerEnd="url(#ef10-ink)" />
+      <line x1="469" y1="149" x2="383" y2="63" markerEnd="url(#ef10-ink)" />
+      <line x1="491" y1="171" x2="577" y2="257" markerEnd="url(#ef10-ink)" />
+    </g>
+
+    <circle cx="480" cy="160" r="14" fill="#BF4326" />
+    <path d="M475,160 H485 M480,155 V165" stroke="#FBF4EC" strokeWidth="2.6" strokeLinecap="round" />
+    <text
+      x="504"
+      y="192"
+      fill="#BF4326"
+      fontSize="18"
+      fontWeight="700"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >
+      Q
+    </text>
+    <text
+      x="540"
+      y="118"
+      fill="#181515"
+      fontSize="18"
+      fontFamily="var(--font-mono), ui-monospace, monospace"
+    >
+      y = C x
+    </text>
+  </svg>
+</Figure>
+
+**The streamline equation.** In two dimensions a streamline is a graph
+$y(x)$, and its slope must match the slope of the field:
+
+$$
+\frac{dy}{dx} = \frac{E_y}{E_x}
+$$
+
+
+That single relation is the equation of the streamlines: solve the
+differential equation and every solution curve is a field line.
+
+**Example — a point charge at the origin.** For $Q$ at the origin,
+
+$$
+\vec{E} = \frac{Q}{4\pi\epsilon_0 r^3}\left(x\,\hat{a}_x +
+y\,\hat{a}_y\right)
+$$
+
+
+so the ratio of the components is
+
+$$
+\frac{dy}{dx} = \frac{E_y}{E_x}
+= \frac{y}{x}
+$$
+
+
+Separate variables and integrate:
+
+$$
+\int \frac{dy}{y} = \int \frac{dx}{x}
+\qquad\Longrightarrow\qquad
+\ln|y| = \ln|x| + \ln|C|
+$$
+
+
+$$
+\boxed{y = Cx}
+$$
+
+
+Every streamline is a straight line through the charge — exactly the
+radial pattern in the figure. The constant $C$ picks which line you are
+on; the sign of $Q$ decides whether the arrows point out along those
+lines or in toward the charge.
+
+## Practice problems
+
+Two problems. Try each one before revealing its solution. The answers
+use $K \approx 8.99 \times 10^{9}\ \mathrm{N\cdot m^{2}/C^{2}}$.
+
+<PracticeQuestion
+  number={1}
+  solution={
+    <>
+      <p>
+        Call the charges and the test charge as follows:{" "}
+        <Equation display={false} tex="Q_1 = 1\text{ mC}" /> at{" "}
+        <Equation display={false} tex="\vec{r}_1 = (3, 2, -1)" />,{" "}
+        <Equation display={false} tex="Q_2 = -2\text{ mC}" /> at{" "}
+        <Equation display={false} tex="\vec{r}_2 = (-1, -1, 4)" />, and the
+        test charge <Equation display={false} tex="q_t = 10\text{ nC}" /> at{" "}
+        <Equation display={false} tex="\vec{r}_t = (0, 3, 1)" />. By
+        superposition, the total field is{" "}
+        <Equation display={false} tex="\vec{E}_1 + \vec{E}_2" />.
+      </p>
+      <p>
+        <strong>Field from Q₁.</strong> The displacement is{" "}
+        <Equation display={false} tex="\vec{R}_1 = \vec{r}_t - \vec{r}_1 = (-3, 1, 2)" />,{" "}
+        with <Equation display={false} tex="|\vec{R}_1|^2 = 14" /> and{" "}
+        <Equation display={false} tex="|\vec{R}_1| = \sqrt{14}" />.
+      </p>
+      <Equation
+        tex="|\vec{E}_1| = \frac{K Q_1}{|\vec{R}_1|^2} = \frac{(8.99\times10^{9})(1\times10^{-3})}{14} = 6.42\times10^{5}\ \text{V/m}"
+      />
+      <p>
+        <Equation display={false} tex="Q_1" /> is positive, so{" "}
+        <Equation display={false} tex="\vec{E}_1" /> points along{" "}
+        <Equation display={false} tex="\vec{R}_1" />:
+      </p>
+      <Equation
+        tex="\vec{E}_1 = 6.42\times10^{5}\cdot\frac{-3\,\hat{a}_x + \hat{a}_y + 2\,\hat{a}_z}{\sqrt{14}} = -5.15\times10^{5}\,\hat{a}_x + 1.72\times10^{5}\,\hat{a}_y + 3.43\times10^{5}\,\hat{a}_z\ \text{V/m}"
+      />
+      <p>
+        <strong>Field from Q₂.</strong> Here{" "}
+        <Equation display={false} tex="\vec{R}_2 = \vec{r}_t - \vec{r}_2 = (1, 4, -3)" />{" "}
+        with <Equation display={false} tex="|\vec{R}_2|^2 = 26" />.
+      </p>
+      <Equation
+        tex="|\vec{E}_2| = \frac{K |Q_2|}{|\vec{R}_2|^2} = \frac{(8.99\times10^{9})(2\times10^{-3})}{26} = 6.92\times10^{5}\ \text{V/m}"
+      />
+      <p>
+        The product <Equation display={false} tex="Q_2" /> is negative, so{" "}
+        <Equation display={false} tex="\vec{E}_2" /> points opposite to{" "}
+        <Equation display={false} tex="\vec{R}_2" /> — toward Q₂:
+      </p>
+      <Equation
+        tex="\vec{E}_2 = -6.92\times10^{5}\cdot\frac{1\,\hat{a}_x + 4\,\hat{a}_y - 3\,\hat{a}_z}{\sqrt{26}} = -1.36\times10^{5}\,\hat{a}_x - 5.43\times10^{5}\,\hat{a}_y + 4.07\times10^{5}\,\hat{a}_z\ \text{V/m}"
+      />
+      <p>Adding the two field arrows component by component:</p>
+      <Equation
+        tex="\vec{E}_t = \vec{E}_1 + \vec{E}_2 = -6.51\times10^{5}\,\hat{a}_x - 3.71\times10^{5}\,\hat{a}_y + 7.50\times10^{5}\,\hat{a}_z\ \text{V/m}"
+      />
+      <Equation
+        tex="|\vec{E}_t| = \sqrt{(-6.51)^2 + (-3.71)^2 + (7.50)^2}\times10^{5} \approx 1.06\times10^{6}\ \text{V/m}"
+      />
+      <p>
+        <strong>Force.</strong> Once the field is known the force is one
+        multiplication away:
+      </p>
+      <Equation
+        tex="\vec{F} = q_t \vec{E}_t = 10\times10^{-9}\times\vec{E}_t = -6.51\,\hat{a}_x - 3.71\,\hat{a}_y + 7.50\,\hat{a}_z\ \text{mN}"
+      />
+      <Equation tex="|\vec{F}| = q_t |\vec{E}_t| \approx 10.6\ \text{mN}" />
+      <p>
+        <strong>Check:</strong> this is the same 10.6 mN force that
+        Coulomb's law gave in the previous lesson — the two routes, force
+        first or field first, must agree, and they do.
+      </p>
+    </>
+  }
+>
+  Two point charges $1\text{ mC}$ and $-2\text{ mC}$ are located at
+  $(3, 2, -1)\text{ m}$ and $(-1, -1, 4)\text{ m}$ respectively.
+  Calculate the electric force on a $10\text{ nC}$ charge located at
+  $(0, 3, 1)\text{ m}$, and find the electric field at that point.
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={2}
+  solution={
+    <>
+      <p>
+        Three distributions contribute at the origin. Find each field
+        separately, then add.
+      </p>
+      <p>
+        <strong>(a) Point charge.</strong> For{" "}
+        <Equation display={false} tex="Q = 12\text{ nC}" /> at{" "}
+        <Equation display={false} tex="(2, 0, 6)" />, the displacement to
+        the origin is <Equation display={false} tex="\vec{R} = (-2, 0, -6)" />,{" "}
+        with <Equation display={false} tex="|\vec{R}|^2 = 40" />:
+      </p>
+      <Equation
+        tex="\vec{E}_a = \frac{K Q}{|\vec{R}|^2}\,\frac{\vec{R}}{|\vec{R}|} = \frac{(8.99\times10^{9})(12\times10^{-9})}{40}\cdot\frac{-2\,\hat{a}_x - 6\,\hat{a}_z}{\sqrt{40}}"
+      />
+      <Equation
+        tex="\vec{E}_a = 2.70\cdot(-0.316\,\hat{a}_x - 0.949\,\hat{a}_z) = -0.85\,\hat{a}_x - 2.56\,\hat{a}_z\ \text{V/m}"
+      />
+      <p>
+        <strong>(b) Line charge.</strong> The infinite line of{" "}
+        <Equation display={false} tex="\rho_L = 3\text{ nC/m}" /> runs
+        through <Equation display={false} tex="(2, 3)" /> parallel to the{" "}
+        <Equation display={false} tex="z" />-axis. Its perpendicular
+        distance from the origin is
+      </p>
+      <Equation
+        tex="\rho = \sqrt{2^2 + 3^2} = \sqrt{13} = 3.61\ \text{m}"
+      />
+      <p>
+        and <Equation display={false} tex="\hat{a}_\rho" /> points from the
+        line toward the origin:
+      </p>
+      <Equation
+        tex="\hat{a}_\rho = \frac{-2\,\hat{a}_x - 3\,\hat{a}_y}{\sqrt{13}} = -0.555\,\hat{a}_x - 0.832\,\hat{a}_y"
+      />
+      <p>Using the line-charge result:</p>
+      <Equation
+        tex="|\vec{E}_b| = \frac{\rho_L}{2\pi\epsilon_0 \rho} = \frac{3\times10^{-9}}{2\pi(8.854\times10^{-12})(3.61)} = 15.0\ \text{V/m}"
+      />
+      <Equation
+        tex="\vec{E}_b = 15.0\,(-0.555\,\hat{a}_x - 0.832\,\hat{a}_y) = -8.30\,\hat{a}_x - 12.4\,\hat{a}_y\ \text{V/m}"
+      />
+      <p>
+        <strong>(c) Surface charge.</strong> The infinite sheet of{" "}
+        <Equation display={false} tex="\rho_S = 0.2\text{ nC/m}^2" /> lies
+        in the plane <Equation display={false} tex="x = 2" />. Its field
+        has constant magnitude
+      </p>
+      <Equation
+        tex="|\vec{E}_c| = \frac{\rho_S}{2\epsilon_0} = \frac{0.2\times10^{-9}}{2(8.854\times10^{-12})} = 11.3\ \text{V/m}"
+      />
+      <p>
+        and points away from the sheet. The origin sits on the negative-{" "}
+        <Equation display={false} tex="x" /> side of the sheet, so the
+        field there points in <Equation display={false} tex="-\hat{a}_x" />:
+      </p>
+      <Equation tex="\vec{E}_c = -11.3\,\hat{a}_x\ \text{V/m}" />
+      <p>Adding all three contributions:</p>
+      <Equation
+        tex="\vec{E} = \vec{E}_a + \vec{E}_b + \vec{E}_c = -20.4\,\hat{a}_x - 12.4\,\hat{a}_y - 2.56\,\hat{a}_z\ \text{V/m}"
+      />
+      <Equation
+        tex="|\vec{E}| = \sqrt{(20.4)^2 + (12.4)^2 + (2.56)^2} \approx 24.1\ \text{V/m}"
+      />
+      <p>
+        <strong>Check:</strong> each piece used the right formula for its
+        geometry — inverse-square for the point, inverse-distance for the
+        line, and distance-independent for the sheet — and the total is
+        dominated by the sheet, whose field never weakens with distance.
+      </p>
+    </>
+  }
+>
+  Find the electric field intensity at the origin if the following charge
+  distributions are present in free space: a point charge of
+  $12\text{ nC}$ at $P(2, 0, 6)$, a uniform line charge density of
+  $3\text{ nC/m}$ at $x = 2$, $y = 3$, and a uniform surface charge
+  density of $0.2\text{ nC/m}^2$ at $x = 2$.
+</PracticeQuestion>
