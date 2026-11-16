@@ -1,0 +1,570 @@
+## From Electric Fields to Electric Flux
+
+In the previous lesson, you saw that a charge changes the space around it. A positive source charge pushes a positive test charge away; a negative source charge pulls it inward. We described that influence with the **electric field intensity** $\vec{E}$: at every point, $\vec{E}$ tells you the direction and strength of the force that would act on a positive test charge placed there.
+
+Now place an **imaginary surface** in that field. It could be a flat sheet of paper held in the air, a window frame, or a bubble drawn in space. The surface is not a physical barrier — it is a bookkeeping surface we choose so we can ask a simple question:
+
+<KeyIdea>
+  How much electric field passes through this surface?
+</KeyIdea>
+
+If the field is strong, or if the surface is large and faces the field directly, many field lines pierce it. If the surface is small, turned edge-on, or placed where the field is weak, few lines pierce it. **Electric flux** is the quantity that measures this “amount of field passing through.”
+
+<Playground id="electric-flux-lines" />
+
+<PracticeQuestion
+  number={1}
+  solution={
+    <>
+      Electric flux measures how much electric field passes through a chosen surface. A stronger field, a larger surface facing the field, or both, generally give more flux.
+    </>
+  }
+>
+  In plain language, what does electric flux measure?
+</PracticeQuestion>
+
+## Understanding Electric Flux (Ψ)
+
+**Electric flux** is the total electric displacement flux passing through a surface. We denote it by the Greek letter $\Psi$ (Psi).
+
+- $\Psi$ — electric flux (a total amount over a surface).
+
+The word *total* matters. Flux is not defined at a single point the way $\vec{E}$ or $\vec{D}$ is. Instead, it adds up the contribution from the whole surface.
+
+### Physical interpretation
+
+Imagine electric displacement as something that “flows” through the area you chose. Where field lines cross the surface densely and head-on, the contribution is large. Where they skim along the surface, the contribution is zero. Flux counts the net crossing over the entire surface.
+
+### A scalar quantity
+
+Electric flux $\Psi$ is a **scalar**. It has magnitude and sign (positive, negative, or zero, depending on direction relative to a chosen normal), but it does not have a direction like a vector. This is different from electric flux density $\vec{D}$, which is a vector field defined at each point.
+
+### Relationship with surface area and field strength
+
+For the same field, a larger surface can intercept more field. For the same surface, a stronger field produces more flux. Orientation also matters — we will make that precise when we introduce the surface normal and the dot product.
+
+### Units
+
+In SI units, electric flux $\Psi$ is measured in **coulombs (C)**. You will see this is consistent once we define electric flux density in $\text{C/m}^2$ and multiply by area in $\text{m}^2$.
+
+<Callout title="Why coulombs?" variant="note">
+  Electric flux is often called <em>electric displacement flux</em>. In this course’s convention, its total amount through a surface is expressed in coulombs, matching the units you obtain from $\vec{D}$ integrated over area.
+</Callout>
+
+<PracticeQuestion
+  number={2}
+  solution={
+    <>
+      Electric flux <Equation tex="\Psi" display={false} /> is a <strong>scalar</strong> quantity. It can be positive, negative, or zero, but it is not a vector.
+    </>
+  }
+>
+  Is electric flux $\Psi$ a scalar or a vector quantity?
+</PracticeQuestion>
+
+## Electric Flux Density (D)
+
+To describe how concentrated the flux is at a surface, we use **electric flux density** $\vec{D}$.
+
+For a **uniform** field that is **perpendicular** to a **flat** surface, the density is the flux per unit area:
+
+$$
+D = \frac{\Psi}{S}
+$$
+
+- $D$ — magnitude of electric flux density (for this special uniform, perpendicular case).
+- $\Psi$ — total electric flux through the surface, in coulombs (C).
+- $S$ — surface area, in square metres ($\text{m}^2$).
+
+Rearranging gives the equivalent uniform, perpendicular form $\Psi = D S$.
+
+### Physical meaning
+
+$\vec{D}$ tells you how much electric flux passes through each unit of area when you look locally at the field. A larger $\vec{D}$ means more flux packed into each square metre (for a surface facing the field).
+
+### Vector nature and units
+
+Electric flux density $\vec{D}$ is a **vector**. Its direction is the direction of electric displacement at that point, and its magnitude tells you the flux per unit area perpendicular to that direction. Its SI unit is **coulombs per square metre ($\text{C/m}^2$)**.
+
+### Flux versus flux density
+
+| Quantity | Symbol | Type | Unit | Meaning |
+| --- | --- | --- | --- | --- |
+| Electric flux | $\Psi$ | Scalar | C | Total displacement flux through a surface |
+| Electric flux density | $\vec{D}$ | Vector | $\text{C/m}^2$ | Flux per unit area (locally directed) |
+
+### Different areas, same perpendicular field
+
+If the same uniform $\vec{D}$ passes perpendicularly through two surfaces, the larger surface intercepts more total flux even though the density is the same.
+
+<Figure caption="With the same uniform flux density perpendicular to both flat surfaces, the larger area collects more total flux: Ψ = D S.">
+  <svg viewBox="0 0 640 220" className="block w-full" role="img" aria-label="Two flat surfaces of different areas in the same perpendicular uniform field. The larger surface has more field lines crossing it and a larger total flux.">
+    <defs>
+      <marker id="flux-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#B4552D" />
+      </marker>
+    </defs>
+    <rect x="0" y="0" width="640" height="220" fill="#FBF4EC" />
+    <g stroke="#B4552D" strokeWidth="2" markerEnd="url(#flux-arr)" opacity="0.85">
+      <line x1="70" y1="40" x2="70" y2="180" />
+      <line x1="110" y1="40" x2="110" y2="180" />
+      <line x1="150" y1="40" x2="150" y2="180" />
+      <line x1="190" y1="40" x2="190" y2="180" />
+      <line x1="390" y1="40" x2="390" y2="180" />
+      <line x1="430" y1="40" x2="430" y2="180" />
+      <line x1="470" y1="40" x2="470" y2="180" />
+      <line x1="510" y1="40" x2="510" y2="180" />
+      <line x1="550" y1="40" x2="550" y2="180" />
+      <line x1="590" y1="40" x2="590" y2="180" />
+    </g>
+    <rect x="55" y="85" width="150" height="50" fill="rgba(51,80,110,0.18)" stroke="#33506E" strokeWidth="2" />
+    <rect x="375" y="70" width="230" height="80" fill="rgba(51,80,110,0.18)" stroke="#33506E" strokeWidth="2" />
+    <text x="130" y="205" textAnchor="middle" fill="#181515" fontSize="14" fontFamily="var(--font-mono), ui-monospace, monospace">Area S₁ (smaller)</text>
+    <text x="490" y="205" textAnchor="middle" fill="#181515" fontSize="14" fontFamily="var(--font-mono), ui-monospace, monospace">Area S₂ (larger)</text>
+    <text x="130" y="120" textAnchor="middle" fill="#33506E" fontSize="13" fontWeight="700" fontFamily="var(--font-mono), ui-monospace, monospace">Ψ₁ = D S₁</text>
+    <text x="490" y="120" textAnchor="middle" fill="#33506E" fontSize="13" fontWeight="700" fontFamily="var(--font-mono), ui-monospace, monospace">Ψ₂ = D S₂ &gt; Ψ₁</text>
+    <text x="320" y="28" textAnchor="middle" fill="#B4552D" fontSize="13" fontWeight="600" fontFamily="var(--font-mono), ui-monospace, monospace">Uniform D⃗ perpendicular to both surfaces</text>
+  </svg>
+</Figure>
+
+<Callout title="When does D = Ψ/S apply directly?" variant="warn">
+  The simple ratio $D = \Psi/S$ (using magnitudes in this perpendicular, uniform case) applies directly only when the electric flux density is <strong>uniform</strong> over a <strong>flat</strong> surface and <strong>perpendicular</strong> to it. For other orientations or nonuniform fields, we need the area vector and an integral.
+</Callout>
+
+<PracticeQuestion
+  number={3}
+  solution={
+    <>
+      No. Doubling the surface area doubles the flux only in special cases (for example, a uniform field perpendicular to the flat surface). In general, flux also depends on orientation: <Equation tex="\Psi = \int_S \vec{D}\cdot d\vec{S}" display={false} />.
+    </>
+  }
+>
+  Does doubling the surface area always double the electric flux?
+</PracticeQuestion>
+
+## Relationship Between Electric Field Intensity and Flux Density
+
+Electric field intensity $\vec{E}$ and electric flux density $\vec{D}$ are closely related, but they are not the same quantity. The material occupying the space affects how $\vec{D}$ responds to $\vec{E}$.
+
+### Free space
+
+In free space (vacuum), the relationship is
+
+$$
+\vec{D} = \varepsilon_0 \vec{E}
+$$
+
+- $\varepsilon_0$ — **permittivity of free space**, a constant that sets how electric displacement relates to the electric field in vacuum. Its value is approximately $8.854 \times 10^{-12}\,\text{F/m}$.
+
+### Linear isotropic dielectric
+
+In a simple (linear, isotropic) dielectric material, the material responds proportionally and in the same direction as the applied field:
+
+$$
+\vec{D} = \varepsilon \vec{E} = \varepsilon_0 \varepsilon_r \vec{E}
+$$
+
+- $\varepsilon$ — **permittivity** of the material ($\text{F/m}$).
+- $\varepsilon_r$ — **relative permittivity** (dielectric constant), a dimensionless number comparing the material’s permittivity to $\varepsilon_0$.
+
+### General macroscopic relationship
+
+More generally, the macroscopic constitutive relationship can be written as
+
+$$
+\vec{D} = \varepsilon_0 \vec{E} + \vec{P}
+$$
+
+- $\vec{P}$ — **polarization**, the electric dipole moment per unit volume produced when the material’s bound charges shift slightly in response to the field.
+
+### Intuition: why the material matters
+
+An applied electric field $\vec{E}$ exerts forces on charges inside matter. Bound charges can shift a little, creating polarization $\vec{P}$. That internal response contributes to the overall electric displacement $\vec{D}$. In vacuum there is no material to polarize, so $\vec{P} = \vec{0}$ and we recover $\vec{D} = \varepsilon_0 \vec{E}$. In a linear isotropic dielectric, this response can be summarized by $\varepsilon_r$.
+
+<Callout title="Keep E and D distinct" variant="note">
+  $\vec{E}$ describes the electric field intensity (force per unit charge). $\vec{D}$ describes electric flux density (displacement flux per unit area). They point in the same direction in linear isotropic media, but they are different physical quantities with different units.
+</Callout>
+
+<PracticeQuestion
+  number={4}
+  solution={
+    <>
+      No. <Equation tex="\vec{E}" display={false} /> is electric field intensity (N/C or V/m) and <Equation tex="\vec{D}" display={false} /> is electric flux density (<Equation tex="\text{C/m}^2" display={false} />). They are related by the material, for example <Equation tex="\vec{D}=\varepsilon_0\vec{E}" display={false} /> in free space, but they are not the same quantity.
+    </>
+  }
+>
+  Are $\vec{E}$ and $\vec{D}$ the same physical quantity?
+</PracticeQuestion>
+
+## Area as a Vector
+
+So far, area sounded like “how big the surface is.” But to compute flux correctly, **orientation** matters just as much as size. Turning a surface can change the flux even when its area stays the same. To capture both magnitude and orientation, we treat a small surface element as a vector.
+
+For a differential surface element of magnitude $dS$, define
+
+$$
+d\vec{S} = \hat{a}_n\, dS
+$$
+
+- $d\vec{S}$ — **vector area element** ($\text{m}^2$ in magnitude), pointing normal to the surface.
+- $dS$ — **scalar area** (magnitude) of the small element.
+- $\hat{a}_n$ — **unit normal vector** (dimensionless, magnitude 1) perpendicular to the surface element.
+
+### Direction and choice of normal
+
+At any smooth surface point there are two opposite perpendicular directions. You must **choose** which one is the positive normal direction and use it consistently:
+
+- For an **open surface**, the choice is set by convention or by the problem (often indicated by an arrow).
+- For a **closed surface**, the positive normal is usually taken as **outward**.
+
+Once $\hat{a}_n$ is chosen, the sign of flux through that element follows from how $\vec{D}$ aligns with $\hat{a}_n$.
+
+<PracticeQuestion
+  number={5}
+  solution={
+    <>
+      The normal vector tells us the orientation of the surface. Flux depends on how the field crosses the surface, and the dot product <Equation tex="\vec{D}\cdot d\vec{S} = \vec{D}\cdot \hat{a}_n\, dS" display={false} /> uses that normal direction to pick out the perpendicular component.
+    </>
+  }
+>
+  Why do we associate a normal vector with a surface when calculating flux?
+</PracticeQuestion>
+
+## Surface Orientation and Electric Flux
+
+Let $\theta$ be the angle between the electric flux density $\vec{D}$ and the **surface normal** $\hat{a}_n$ (not the angle between $\vec{D}$ and the plane of the surface).
+
+For a **uniform** $\vec{D}$ over a **flat** surface of area $S$ with constant orientation, the flux is
+
+$$
+\Psi = D S \cos\theta
+$$
+
+- $D$ — magnitude of $\vec{D}$ ($\text{C/m}^2$).
+- $S$ — area of the flat surface ($\text{m}^2$).
+- $\theta$ — angle between $\vec{D}$ and the chosen normal $\hat{a}_n$ (radians or degrees).
+- $\cos\theta$ — picks out how much of $\vec{D}$ passes through the surface along the normal.
+
+This comes from the dot product idea: only the component of $\vec{D}$ along $\hat{a}_n$ contributes to crossing the surface. The effective “projected” coupling is $S\cos\theta$ relative to the field direction.
+
+### Three important cases
+
+- **$\theta = 0^\circ$ (maximum positive flux):** $\vec{D}$ is aligned with the chosen normal, $\cos 0^\circ = 1$, so $\Psi = DS$.
+- **$\theta = 90^\circ$ (zero flux):** $\vec{D}$ is parallel to the surface and perpendicular to the normal, $\cos 90^\circ = 0$, so $\Psi = 0$.
+- **$\theta = 180^\circ$ (maximum negative flux):** $\vec{D}$ is opposite to the chosen normal, $\cos 180^\circ = -1$, so $\Psi = -DS$.
+
+The sign tells you whether the net displacement flux crosses the surface in the **same** sense as the chosen normal (positive) or the **opposite** sense (negative).
+
+<Playground id="electric-flux-angle" />
+
+<PracticeQuestion
+  number={6}
+  solution={
+    <>
+      When the field is parallel to the surface, it is perpendicular to the surface normal, so <Equation tex="\theta = 90^\circ" display={false} /> and <Equation tex="\Psi = DS\cos 90^\circ = 0" display={false} />. No flux crosses the surface.
+    </>
+  }
+>
+  What happens to the electric flux when $\vec{D}$ is parallel to the surface?
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={7}
+  solution={
+    <>
+      The dot product <Equation tex="\vec{D}\cdot d\vec{S} = |\vec{D}||d\vec{S}|\cos\theta" display={false} /> gives the component of <Equation tex="\vec{D}" display={false} /> along the surface normal times the element area — physically, how much flux passes through that element in the chosen normal direction.
+    </>
+  }
+>
+  What does the dot product $\vec{D}\cdot d\vec{S}$ represent physically?
+</PracticeQuestion>
+
+## Surface Integration
+
+The formula $\Psi = D S \cos\theta$ works when $\vec{D}$ is uniform, the surface is flat, and $\theta$ is the same everywhere on it. Real situations are often more complicated: the field can vary from point to point, the surface can be curved, or the angle between $\vec{D}$ and the local normal can change across the surface.
+
+### A small element
+
+Divide the surface into many tiny elements. Over a sufficiently small element, $\vec{D}$ and the orientation are approximately constant. The flux through one differential element is
+
+$$
+d\Psi = \vec{D} \cdot d\vec{S}
+$$
+
+- $d\Psi$ — differential (small) contribution to the total flux.
+- $\vec{D}$ — electric flux density at the element.
+- $d\vec{S} = \hat{a}_n dS$ — vector area element at the same location.
+
+### Adding all contributions
+
+Total flux is the sum of all these small contributions over the entire surface $S$:
+
+$$
+\Psi = \int_S \vec{D} \cdot d\vec{S}
+$$
+
+- $\int_S (\cdot)$ — surface integral over the chosen surface $S$.
+
+Geometrically, the dot product keeps only the normal component at each element: $d\Psi = D\, dS \cos\theta$, where $\theta$ is the local angle between $\vec{D}$ and $\hat{a}_n$. Adding (integrating) these pieces accumulates the net flux.
+
+### Connection to the simple formula
+
+If $\vec{D}$ has constant magnitude and direction, the surface is flat, and $\hat{a}_n$ is constant so that $\theta$ is the same everywhere, then $\vec{D}\cdot \hat{a}_n = D\cos\theta$ can be taken outside the integral and $\int_S dS = S$, giving $\Psi = D S \cos\theta$ as before.
+
+<Playground id="electric-flux-integration" />
+
+<PracticeQuestion
+  number={8}
+  solution={
+    <>
+      Because <Equation tex="\vec{D}" display={false} />, the surface orientation, or both can vary over the surface. The integral <Equation tex="\Psi = \int_S \vec{D}\cdot d\vec{S}" display={false} /> adds the correct local contribution <Equation tex="d\Psi" display={false} /> from every element.
+    </>
+  }
+>
+  Why is the surface integral needed for a general surface or nonuniform field?
+</PracticeQuestion>
+
+## Open and Closed Surfaces
+
+A surface used for flux calculations can be **open** or **closed**.
+
+- **Open surface:** has an edge or boundary (like a sheet, a disk, or a looped frame). Field lines can pass through it, and you choose a positive normal direction.
+- **Closed surface:** completely encloses a volume (like a sphere or a box). It has no boundary edge. By convention, the positive normal $\hat{a}_n$ points **outward** everywhere.
+
+For a closed surface, we often write the integral with a circle on the integral sign:
+
+$$
+\Psi = \oint_S \vec{D} \cdot d\vec{S}
+$$
+
+- $\oint_S$ — integral over a closed surface $S$.
+
+If a positive charge sits inside a closed surface, its outward field lines cross the surface from inside to outside, contributing net outward flux. In this article we focus on seeing and computing that flux; we will not turn this into a law relating enclosed charge and flux.
+
+<Playground id="electric-flux-surfaces" />
+
+<PracticeQuestion
+  number={9}
+  solution={
+    <>
+      An open surface has a boundary and does not enclose a volume; a closed surface completely encloses a volume (e.g. a sphere). For a closed surface, the positive normal is usually taken outward.
+    </>
+  }
+>
+  What is the main difference between an open surface and a closed surface?
+</PracticeQuestion>
+
+## Worked Examples
+
+### Example 1: Uniform perpendicular field
+
+**Given:** A uniform electric displacement field of magnitude $D = 5\,\mu\text{C/m}^2$ passes perpendicularly through a flat surface of area $S = 2\,\text{m}^2$.
+
+**Required:** Electric flux $\Psi$.
+
+**Relevant formula:** For a uniform field perpendicular to a flat surface, $\theta = 0^\circ$ and
+
+$$
+\Psi = D S
+$$
+
+**Substitution:**
+
+$$
+\Psi = \left(5\,\mu\text{C/m}^2\right)\left(2\,\text{m}^2\right)
+$$
+
+**Calculation:**
+
+$$
+\Psi = 10\,\mu\text{C}
+$$
+
+**Final answer:** $\Psi = 10\,\mu\text{C}$.
+
+<Figure caption="Example 1: uniform D⃗ perpendicular to a flat area S.">
+  <svg viewBox="0 0 420 160" className="block w-full" role="img" aria-label="Uniform field arrows passing perpendicularly through a flat rectangular surface labeled S equals 2 square metres.">
+    <defs>
+      <marker id="ex1-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#B4552D" />
+      </marker>
+    </defs>
+    <rect width="420" height="160" fill="#FBF4EC" />
+    <g stroke="#B4552D" strokeWidth="2" markerEnd="url(#ex1-arr)">
+      <line x1="90" y1="20" x2="90" y2="140" />
+      <line x1="140" y1="20" x2="140" y2="140" />
+      <line x1="190" y1="20" x2="190" y2="140" />
+      <line x1="240" y1="20" x2="240" y2="140" />
+    </g>
+    <rect x="70" y="60" width="190" height="40" fill="rgba(51,80,110,0.18)" stroke="#33506E" strokeWidth="2" />
+    <text x="165" y="86" textAnchor="middle" fill="#33506E" fontSize="13" fontWeight="700" fontFamily="var(--font-mono), ui-monospace, monospace">S = 2 m²</text>
+    <text x="320" y="70" fill="#181515" fontSize="13" fontFamily="var(--font-mono), ui-monospace, monospace">D = 5 μC/m²</text>
+    <text x="320" y="95" fill="#181515" fontSize="13" fontFamily="var(--font-mono), ui-monospace, monospace">θ = 0°</text>
+    <text x="320" y="120" fill="#B4552D" fontSize="13" fontWeight="700" fontFamily="var(--font-mono), ui-monospace, monospace">Ψ = 10 μC</text>
+  </svg>
+</Figure>
+
+### Example 2: Field at an angle to the normal
+
+**Given:** A uniform electric displacement field of magnitude $D = 8\,\mu\text{C/m}^2$ passes through a flat surface of area $S = 0.5\,\text{m}^2$. The angle between the field and the **surface normal** is $\theta = 60^\circ$.
+
+**Required:** Electric flux $\Psi$.
+
+**Relevant formula:** For uniform $\vec{D}$ on a flat surface,
+
+$$
+\Psi = D S \cos\theta
+$$
+
+**Substitution:**
+
+$$
+\Psi = \left(8\,\mu\text{C/m}^2\right)\left(0.5\,\text{m}^2\right)\cos 60^\circ
+$$
+
+**Calculation:** $\cos 60^\circ = 0.5$, so
+
+$$
+\Psi = (8)(0.5)(0.5)\,\mu\text{C} = 2\,\mu\text{C}
+$$
+
+**Final answer:** $\Psi = 2\,\mu\text{C}$.
+
+<Figure caption="Example 2: θ is measured from the surface normal, not from the surface plane.">
+  <svg viewBox="0 0 420 180" className="block w-full" role="img" aria-label="A flat surface with its normal, a D vector at 60 degrees to the normal, and labeled values.">
+    <defs>
+      <marker id="ex2-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#B4552D" />
+      </marker>
+      <marker id="ex2-n" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#33506E" />
+      </marker>
+    </defs>
+    <rect width="420" height="180" fill="#FBF4EC" />
+    <g transform="translate(170,95)">
+      <rect x="-90" y="-8" width="180" height="16" fill="rgba(51,80,110,0.18)" stroke="#33506E" strokeWidth="2" transform="rotate(-20)" />
+      <line x1="0" y1="0" x2="0" y2="-70" stroke="#33506E" strokeWidth="2.5" markerEnd="url(#ex2-n)" />
+      <line x1="0" y1="0" x2="60.6" y2="-35" stroke="#B4552D" strokeWidth="2.5" markerEnd="url(#ex2-arr)" />
+      <path d="M0,-28 A28,28 0 0 1 24.2,-14" fill="none" stroke="#181515" strokeWidth="1.5" />
+      <text x="18" y="-30" fill="#181515" fontSize="12" fontFamily="var(--font-mono), ui-monospace, monospace">60°</text>
+      <text x="-6" y="-78" textAnchor="end" fill="#33506E" fontSize="12" fontWeight="700" fontFamily="var(--font-mono), ui-monospace, monospace">n̂</text>
+      <text x="68" y="-32" fill="#B4552D" fontSize="12" fontWeight="700" fontFamily="var(--font-mono), ui-monospace, monospace">D⃗</text>
+    </g>
+    <text x="300" y="70" fill="#181515" fontSize="13" fontFamily="var(--font-mono), ui-monospace, monospace">D = 8 μC/m²</text>
+    <text x="300" y="92" fill="#181515" fontSize="13" fontFamily="var(--font-mono), ui-monospace, monospace">S = 0.5 m²</text>
+    <text x="300" y="114" fill="#181515" fontSize="13" fontFamily="var(--font-mono), ui-monospace, monospace">θ = 60°</text>
+    <text x="300" y="140" fill="#B4552D" fontSize="13" fontWeight="700" fontFamily="var(--font-mono), ui-monospace, monospace">Ψ = 2 μC</text>
+  </svg>
+</Figure>
+
+### Example 3: Finding flux density
+
+**Given:** A flat surface of area $S = 0.25\,\text{m}^2$ experiences an electric flux $\Psi = 4\,\mu\text{C}$. The field is perpendicular to the surface and uniform.
+
+**Required:** Electric flux density magnitude $D$.
+
+**Relevant formula:** For a uniform field perpendicular to a flat surface,
+
+$$
+D = \frac{\Psi}{S}
+$$
+
+**Substitution:**
+
+$$
+D = \frac{4\,\mu\text{C}}{0.25\,\text{m}^2}
+$$
+
+**Calculation:**
+
+$$
+D = 16\,\mu\text{C/m}^2
+$$
+
+**Final answer:** $D = 16\,\mu\text{C/m}^2$ (in the direction of $\vec{D}$, normal to the surface).
+
+<Figure caption="Example 3: flux density is total flux divided by perpendicular area.">
+  <svg viewBox="0 0 420 160" className="block w-full" role="img" aria-label="A smaller surface with known flux and area used to compute flux density.">
+    <defs>
+      <marker id="ex3-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#B4552D" />
+      </marker>
+    </defs>
+    <rect width="420" height="160" fill="#FBF4EC" />
+    <g stroke="#B4552D" strokeWidth="2" markerEnd="url(#ex3-arr)">
+      <line x1="120" y1="20" x2="120" y2="140" />
+      <line x1="170" y1="20" x2="170" y2="140" />
+      <line x1="220" y1="20" x2="220" y2="140" />
+    </g>
+    <rect x="100" y="60" width="140" height="40" fill="rgba(51,80,110,0.18)" stroke="#33506E" strokeWidth="2" />
+    <text x="170" y="86" textAnchor="middle" fill="#33506E" fontSize="13" fontWeight="700" fontFamily="var(--font-mono), ui-monospace, monospace">S = 0.25 m²</text>
+    <text x="300" y="70" fill="#181515" fontSize="13" fontFamily="var(--font-mono), ui-monospace, monospace">Ψ = 4 μC</text>
+    <text x="300" y="95" fill="#181515" fontSize="13" fontFamily="var(--font-mono), ui-monospace, monospace">θ = 0°</text>
+    <text x="300" y="120" fill="#B4552D" fontSize="13" fontWeight="700" fontFamily="var(--font-mono), ui-monospace, monospace">D = 16 μC/m²</text>
+  </svg>
+</Figure>
+
+## Practice
+
+<PracticeQuestion
+  number={10}
+  solution={
+    <>
+      <Equation tex="\Psi" display={false} /> is the total electric flux through a surface (a scalar, in C). <Equation tex="\vec{D}" display={false} /> is the electric flux density (a vector, in <Equation tex="\text{C/m}^2" display={false} />) describing flux per unit area and direction locally.
+    </>
+  }
+>
+  State one key difference between $\Psi$ and $\vec{D}$.
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={11}
+  solution={
+    <>
+      <Equation tex="\theta" display={false} /> is the angle between <Equation tex="\vec{D}" display={false} /> and the <strong>surface normal</strong> <Equation tex="\hat{a}_n" display={false} />. It is not measured from the plane of the surface.
+    </>
+  }
+>
+  In $\Psi = D S \cos\theta$, where is the angle $\theta$ measured from?
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={12}
+  solution={
+    <>
+      The sign depends on the chosen positive normal direction <Equation tex="\hat{a}_n" display={false} />. If <Equation tex="\vec{D}" display={false} /> crosses the surface in the same sense as <Equation tex="\hat{a}_n" display={false} />, <Equation tex="\vec{D}\cdot d\vec{S} > 0" display={false} /> and flux is positive; if opposite, flux is negative.
+    </>
+  }
+>
+  What determines whether electric flux through a surface element is positive or negative?
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={13}
+  solution={
+    <>
+      Use <Equation tex="\Psi = D S \cos\theta = (6\,\mu\text{C/m}^2)(3\,\text{m}^2)\cos 0^\circ = 18\,\mu\text{C}" display={false} />.
+    </>
+  }
+>
+  A uniform flux density of $6\,\mu\text{C/m}^2$ passes perpendicularly through a flat $3\,\text{m}^2$ surface. What is the electric flux?
+</PracticeQuestion>
+
+<PracticeQuestion
+  number={14}
+  solution={
+    <>
+      Use <Equation tex="\Psi = D S \cos\theta = (10\,\mu\text{C/m}^2)(0.4\,\text{m}^2)\cos 60^\circ = 4 \times 0.5 = 2\,\mu\text{C}" display={false} />.
+    </>
+  }
+>
+  A uniform flux density of $10\,\mu\text{C/m}^2$ passes through a $0.4\,\text{m}^2$ flat surface at $\theta = 60^\circ$ to the normal. Find $\Psi$.
+</PracticeQuestion>
+
+## A Question to Carry Forward
+
+<KeyIdea>
+  "If electric field lines pass through a closed surface, can we determine the total charge enclosed by simply measuring the electric flux through that surface?"
+</KeyIdea>
+
+We will leave this question unanswered for now. It sets up the next idea you will meet when you study how total flux through a closed surface relates to enclosed charge.

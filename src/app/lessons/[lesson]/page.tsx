@@ -23,6 +23,8 @@ const LESSON_LOADERS: Record<string, () => Promise<{ default: ComponentType }>> 
       import("@/content/lessons/engineering/coulombs-law.mdx"),
     "electric-field": () =>
       import("@/content/lessons/engineering/electric-field.mdx"),
+    "electric-flux": () =>
+      import("@/content/lessons/engineering/electric-flux.mdx"),
   };
 
 export function generateStaticParams() {
